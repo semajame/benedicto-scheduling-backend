@@ -1,14 +1,7 @@
-import { Item } from "src/items/models/entities/item.entity";
-import { User } from "src/users/models/entities/user.entity";
+import { User } from 'src/users/models/entities/user.entity';
 
-const entities = [
-  User,
-  Item
-];
+const entities = [User];
 
-export {
-  User,
-  Item
-};
+export { User };
 
 export default entities;

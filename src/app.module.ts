@@ -6,12 +6,11 @@ import entities from './typeorm';
 
 import { UsersModule } from './users/users.module';
 import { AuthModule } from './auth/auth.module';
-import { ItemsModule } from './items/items.module';
 
 @Module({
   imports: [
     ConfigModule.forRoot({
-      isGlobal: true
+      isGlobal: true,
     }),
     TypeOrmModule.forRoot({
       type: process.env.DB_TYPE as any,
@@ -26,10 +25,8 @@ import { ItemsModule } from './items/items.module';
     }),
     UsersModule,
     AuthModule,
-    ItemsModule
   ],
   controllers: [],
   providers: [],
 })
-
 export class AppModule {}
