@@ -6,7 +6,7 @@ async function bootstrap() {
 
   app.enableCors();
 
-  app.setGlobalPrefix('bcscheduling');
+  // app.setGlobalPrefix('bcscheduling');
 
   // app.enableCors({
   //   origin: 'http://localhost:4200', // Replace with your frontend's origin
