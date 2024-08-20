@@ -7,6 +7,7 @@ import entities from './typeorm';
 import { UsersModule } from './users/users.module';
 import { AuthModule } from './auth/auth.module';
 import { TeachersModule } from './teachers/teachers.module';
+import { FirstModule } from './schedule/first/first.module';
 
 @Module({
   imports: [
@@ -22,11 +23,12 @@ import { TeachersModule } from './teachers/teachers.module';
       database: process.env.DB_NAME,
       //entities: ['dist/**/*.entity.js'],
       entities,
-      synchronize: true,
+      synchronize: false,
     }),
     UsersModule,
     AuthModule,
     TeachersModule,
+    FirstModule,
   ],
   controllers: [],
   providers: [],

@@ -6,13 +6,10 @@ import {
   Delete,
   Param,
   Body,
-  UseInterceptors,
-  UsePipes,
-  ValidationPipe,
   Res,
   HttpStatus,
 } from '@nestjs/common';
-import { FileInterceptor } from '@nestjs/platform-express';
+
 import { Response } from 'express';
 import { TeacherService } from './teachers.service';
 import { CreateTeacherDto } from './dto/create-teacher.dto';
@@ -43,8 +40,7 @@ export class TeacherController {
   }
 
   @Post('add-teacher')
-  @UsePipes(new ValidationPipe({ transform: true }))
-  @UseInterceptors(FileInterceptor('file'))
+  // @UsePipes(new ValidationPipe({ transform: true }))
   async create(
     @Body() createTeacherDto: CreateTeacherDto,
 
@@ -59,12 +55,9 @@ export class TeacherController {
   }
 
   @Put('edit-teacher/:id')
-  @UsePipes(new ValidationPipe({ transform: true }))
-  @UseInterceptors(FileInterceptor('file'))
   async update(
     @Param('id') id: number,
     @Body() updateTeacherDto: UpdateTeacherDto,
-
     @Res() res: Response,
   ) {
     try {

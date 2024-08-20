@@ -4,9 +4,10 @@ import {
   ConflictException,
 } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
+import { Not, Repository } from 'typeorm';
 import { Teacher } from './entities/teacher.entity';
 import { CreateTeacherDto } from './dto/create-teacher.dto';
+import { UpdateTeacherDto } from './dto/update-teacher.dto';
 
 @Injectable()
 export class TeacherService {
@@ -45,17 +46,19 @@ export class TeacherService {
 
   async update(
     id: number,
-    updateTeacherDto: CreateTeacherDto,
+    updateTeacherDto: UpdateTeacherDto,
   ): Promise<Teacher> {
+    // Find the teacher by ID
     const teacher = await this.teacherRepository.findOneBy({ id });
     if (!teacher) {
       throw new NotFoundException('Teacher not found');
     }
 
+    // Check for conflict with other teachers (excluding the current teacher)
     const existingTeacher = await this.teacherRepository.findOneBy({
       firstName: updateTeacherDto.firstName,
       lastName: updateTeacherDto.lastName,
-      id: id, // Exclude current teacher
+      id: Not(id), // Ensure this teacher's ID is excluded from the check
     });
 
     if (existingTeacher) {
@@ -64,7 +67,10 @@ export class TeacherService {
       );
     }
 
+    // Apply the updates to the teacher object
     Object.assign(teacher, updateTeacherDto);
+
+    // Save the updated teacher
     return this.teacherRepository.save(teacher);
   }
 
