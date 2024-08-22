@@ -11,11 +11,11 @@ import { FirstService } from './first.service';
 import { CreateFirstDto } from './dto/create-first.dto';
 // import { UpdateFirstDto } from './dto/update-first.dto';
 
-@Controller('first')
+@Controller('schedule')
 export class FirstController {
   constructor(private readonly firstService: FirstService) {}
 
-  @Get()
+  @Get('1st-year')
   async findAll() {
     try {
       const schedules = await this.firstService.findAll();
@@ -26,7 +26,7 @@ export class FirstController {
     }
   }
 
-  @Post()
+  @Post('1st-year')
   async create(@Body() createFirstDto: CreateFirstDto) {
     // Create the new schedule
     const newSchedule = await this.firstService.create(createFirstDto);

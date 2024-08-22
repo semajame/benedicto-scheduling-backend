@@ -15,7 +15,7 @@ export class First extends BaseEntity {
   units: number;
 
   @Column({ type: 'varchar', length: 255 })
-  location: string;
+  room: string;
 
   @Column({ type: 'varchar', length: 255 })
   start: string;
@@ -27,8 +27,8 @@ export class First extends BaseEntity {
   day: string;
 
   @Column({ type: 'varchar', length: 255, nullable: true })
-  recurrencePattern: string;
+  recurrencePattern: string | null;
 
   @Column({ type: 'varchar', length: 255, nullable: true })
-  background: string;
+  background: string | null;
 }

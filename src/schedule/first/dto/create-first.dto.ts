@@ -15,7 +15,7 @@ export class CreateFirstDto {
 
   @IsString()
   @IsNotEmpty()
-  location: string;
+  room: string;
 
   @IsString()
   @IsNotEmpty()

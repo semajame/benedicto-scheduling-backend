@@ -17,7 +17,7 @@ export class UpdateFirstDto extends PartialType(CreateFirstDto) {
 
   @IsString()
   @IsNotEmpty()
-  location: string;
+  room: string;
 
   @IsString()
   @IsNotEmpty()
