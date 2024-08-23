@@ -23,7 +23,7 @@ import { FirstModule } from './schedule/first/first.module';
       database: process.env.DB_NAME,
       //entities: ['dist/**/*.entity.js'],
       entities,
-      synchronize: true,
+      synchronize: false,
     }),
     UsersModule,
     AuthModule,

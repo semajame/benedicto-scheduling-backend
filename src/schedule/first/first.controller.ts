@@ -5,11 +5,15 @@ import {
   Body,
   HttpException,
   HttpStatus,
+  Put,
+  Param,
+  Delete,
 } from '@nestjs/common';
 
 import { FirstService } from './first.service';
 import { CreateFirstDto } from './dto/create-first.dto';
-// import { UpdateFirstDto } from './dto/update-first.dto';
+import { UpdateFirstDto } from './dto/update-first.dto';
+import { First } from 'src/typeorm';
 
 @Controller('schedule')
 export class FirstController {
@@ -35,5 +39,18 @@ export class FirstController {
   catch(err) {
     console.error('Error executing query:', err);
     throw new HttpException(err.message, HttpStatus.INTERNAL_SERVER_ERROR);
+  }
+
+  @Put('1st-year/:id')
+  async update(
+    @Param('id') id: number,
+    @Body() updateFirstDto: UpdateFirstDto,
+  ): Promise<First> {
+    return this.firstService.update(id, updateFirstDto);
+  }
+
+  @Delete('1st-year/:id')
+  async delete(@Param('id') id: number): Promise<void> {
+    return this.firstService.delete(id);
   }
 }
