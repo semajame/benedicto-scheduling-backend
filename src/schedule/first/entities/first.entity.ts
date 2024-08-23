@@ -17,6 +17,12 @@ export class First extends BaseEntity {
   @Column({ type: 'varchar', length: 255 })
   room: string;
 
+  @Column({
+    type: 'varchar',
+    length: 255,
+  })
+  teacher: string;
+
   @Column({ type: 'varchar', length: 255 })
   start: string;
 

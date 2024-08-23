@@ -19,6 +19,10 @@ export class CreateFirstDto {
 
   @IsString()
   @IsNotEmpty()
+  teacher: string;
+
+  @IsString()
+  @IsNotEmpty()
   start: string;
 
   @IsString()

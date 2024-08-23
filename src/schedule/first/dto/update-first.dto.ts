@@ -21,6 +21,10 @@ export class UpdateFirstDto extends PartialType(CreateFirstDto) {
 
   @IsString()
   @IsNotEmpty()
+  teacher: string;
+
+  @IsString()
+  @IsNotEmpty()
   start: string;
 
   @IsString()

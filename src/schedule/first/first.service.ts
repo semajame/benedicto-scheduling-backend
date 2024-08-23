@@ -20,18 +20,18 @@ export class FirstService {
   //   return await this.firstRepository.findOne({ where: { subject_code } });
   // }
 
-  // GET
+  //^ GET
   async findAll(): Promise<First[]> {
     return await this.firstRepository.find();
   }
 
-  // POST
+  //^ POST
   async create(createFirstDto: CreateFirstDto): Promise<First> {
     const newSchedule = this.firstRepository.create({ ...createFirstDto });
     return await this.firstRepository.save(newSchedule);
   }
 
-  // PUT
+  //^ PUT
   async update(id: number, updateFirstDto: UpdateFirstDto): Promise<First> {
     const existingSchedule = await this.firstRepository.findOneBy({ id });
     if (!existingSchedule) {
@@ -42,7 +42,7 @@ export class FirstService {
     return await this.firstRepository.save(existingSchedule);
   }
 
-  // DELETE
+  //^ DELETE
   async delete(id: number): Promise<void> {
     const result = await this.firstRepository.delete(id);
     if (result.affected === 0) {
