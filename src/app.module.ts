@@ -9,6 +9,8 @@ import { AuthModule } from './auth/auth.module';
 import { TeachersModule } from './teachers/teachers.module';
 import { FirstModule } from './schedule/first/first.module';
 import { SecondModule } from './schedule/second/second.module';
+import { ThirdModule } from './schedule/third/third.module';
+import { FourthModule } from './schedule/fourth/fourth.module';
 
 @Module({
   imports: [
@@ -31,6 +33,8 @@ import { SecondModule } from './schedule/second/second.module';
     TeachersModule,
     FirstModule,
     SecondModule,
+    ThirdModule,
+    FourthModule,
   ],
   controllers: [],
   providers: [],
