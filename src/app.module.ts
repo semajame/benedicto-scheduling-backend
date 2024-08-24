@@ -8,6 +8,7 @@ import { UsersModule } from './users/users.module';
 import { AuthModule } from './auth/auth.module';
 import { TeachersModule } from './teachers/teachers.module';
 import { FirstModule } from './schedule/first/first.module';
+import { SecondModule } from './schedule/second/second.module';
 
 @Module({
   imports: [
@@ -23,12 +24,13 @@ import { FirstModule } from './schedule/first/first.module';
       database: process.env.DB_NAME,
       //entities: ['dist/**/*.entity.js'],
       entities,
-      synchronize: false,
+      synchronize: true,
     }),
     UsersModule,
     AuthModule,
     TeachersModule,
     FirstModule,
+    SecondModule,
   ],
   controllers: [],
   providers: [],
