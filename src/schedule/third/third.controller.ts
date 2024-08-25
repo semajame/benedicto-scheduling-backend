@@ -13,7 +13,7 @@ import {
 import { ThirdService } from './third.service';
 import { CreateThirdDto } from './dto/create-first.dto';
 import { UpdateThirdDto } from './dto/update-first.dto';
-import { First } from 'src/typeorm';
+import { Third } from 'src/typeorm';
 
 @Controller('schedule')
 export class ThirdController {
@@ -45,7 +45,7 @@ export class ThirdController {
   async update(
     @Param('id') id: number,
     @Body() updateThirdDto: UpdateThirdDto,
-  ): Promise<First> {
+  ): Promise<Third> {
     return this.thirdService.update(id, updateThirdDto);
   }
 
