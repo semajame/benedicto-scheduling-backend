@@ -8,13 +8,32 @@ import { Not, Repository } from 'typeorm';
 import { Teacher } from './entities/teacher.entity';
 import { CreateTeacherDto } from './dto/create-teacher.dto';
 import { UpdateTeacherDto } from './dto/update-teacher.dto';
+import { TeacherSchedule } from './entities/teacher_subjects.entity';
 
 @Injectable()
 export class TeacherService {
   constructor(
+    @InjectRepository(TeacherSchedule)
+    private teacherScheduleRepository: Repository<TeacherSchedule>,
+
     @InjectRepository(Teacher)
     private teacherRepository: Repository<Teacher>,
   ) {}
+
+  async getTeacherScheduleById(id: number): Promise<TeacherSchedule> {
+    const schedule = await this.teacherScheduleRepository.findOne({
+      where: { id },
+      relations: ['teacher'],
+    });
+    if (!schedule) {
+      throw new NotFoundException(`Schedule with ID ${id} not found`);
+    }
+    return schedule;
+  }
+
+  async getAllSchedules(): Promise<TeacherSchedule[]> {
+    return this.teacherScheduleRepository.find({ relations: ['teacher'] });
+  }
 
   async findAll(): Promise<Teacher[]> {
     return this.teacherRepository.find();

@@ -34,6 +34,8 @@ export class FirstController {
   async create(@Body() createFirstDto: CreateFirstDto) {
     // Create the new schedule
     const newSchedule = await this.firstService.create(createFirstDto);
+    await this.firstService.transferSchedules();
+
     return newSchedule;
   }
   catch(err) {
@@ -46,11 +48,12 @@ export class FirstController {
     @Param('id') id: number,
     @Body() updateFirstDto: UpdateFirstDto,
   ): Promise<First> {
+    await this.firstService.transferSchedules();
     return this.firstService.update(id, updateFirstDto);
   }
 
   @Delete('1st-year/:id')
   async delete(@Param('id') id: number): Promise<void> {
-    return this.firstService.delete(id);
+    await this.firstService.delete(id);
   }
 }

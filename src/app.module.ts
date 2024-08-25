@@ -26,7 +26,7 @@ import { FourthModule } from './schedule/fourth/fourth.module';
       database: process.env.DB_NAME,
       //entities: ['dist/**/*.entity.js'],
       entities,
-      synchronize: false,
+      synchronize: true,
     }),
     UsersModule,
     AuthModule,

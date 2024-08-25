@@ -8,10 +8,12 @@ import {
   Body,
   Res,
   HttpStatus,
+  HttpException,
 } from '@nestjs/common';
 
 import { Response } from 'express';
 import { TeacherService } from './teachers.service';
+
 import { CreateTeacherDto } from './dto/create-teacher.dto';
 import { UpdateTeacherDto } from './dto/update-teacher.dto';
 
@@ -29,13 +31,47 @@ export class TeacherController {
     }
   }
 
-  @Get(':id')
-  async findOne(@Param('id') id: number, @Res() res: Response) {
+  @Get('all-subjects')
+  async getAllSchedules(): Promise<any[]> {
     try {
-      const teacher = await this.teacherService.findOne(id);
-      res.json(teacher);
+      const schedules = await this.teacherService.getAllSchedules();
+      return schedules.map((schedule) => ({
+        id: schedule.id,
+        teacherId: schedule.teacherId,
+        subject_code: schedule.subject_code,
+        subject: schedule.subject,
+        units: schedule.units,
+        room: schedule.room,
+        start: schedule.start,
+        end: schedule.end,
+        day: schedule.day,
+        teacherName: `${schedule.teacher.firstName} ${schedule.teacher.lastName}`, // Compute teacherName
+      }));
     } catch (err) {
-      res.status(HttpStatus.INTERNAL_SERVER_ERROR).json({ error: err.message });
+      console.error('Error retrieving all schedules:', err);
+      throw new HttpException(err.message, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+  }
+
+  @Get('subject/:id')
+  async getTeacherSchedule(@Param('id') id: number): Promise<any> {
+    try {
+      const schedule = await this.teacherService.getTeacherScheduleById(id);
+      return {
+        id: schedule.id,
+        teacherId: schedule.teacherId,
+        subject_code: schedule.subject_code,
+        subject: schedule.subject,
+        units: schedule.units,
+        room: schedule.room,
+        start: schedule.start,
+        end: schedule.end,
+        day: schedule.day,
+        teacherName: `${schedule.teacher.firstName} ${schedule.teacher.lastName}`, // Compute teacherName
+      };
+    } catch (err) {
+      console.error('Error retrieving teacher schedule:', err);
+      throw new HttpException(err.message, HttpStatus.NOT_FOUND);
     }
   }
 
