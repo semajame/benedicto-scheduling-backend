@@ -16,6 +16,7 @@ import { TeacherService } from './teachers.service';
 
 import { CreateTeacherDto } from './dto/create-teacher.dto';
 import { UpdateTeacherDto } from './dto/update-teacher.dto';
+import { error } from 'console';
 
 @Controller('teachers')
 export class TeacherController {
@@ -28,6 +29,16 @@ export class TeacherController {
       res.json(teachers);
     } catch (err) {
       res.status(HttpStatus.INTERNAL_SERVER_ERROR).json({ error: err.message });
+    }
+  }
+
+  @Get(':id')
+  async findOne(@Param('id') id: number): Promise<any> {
+    try {
+      const teachers = await this.teacherService.findOne(id);
+      return teachers;
+    } catch (err) {
+      error;
     }
   }
 
@@ -53,13 +64,17 @@ export class TeacherController {
     }
   }
 
-  @Get('subject/:id')
-  async getTeacherSchedule(@Param('id') id: number): Promise<any> {
+  @Get('schedules/:teacherId')
+  async getTeacherSchedule(
+    @Param('teacherId') teacherId: number,
+  ): Promise<any> {
     try {
-      const schedule = await this.teacherService.getTeacherScheduleById(id);
-      return {
+      const schedules =
+        await this.teacherService.getTeacherSchedulesByTeacherId(teacherId);
+      return schedules.map((schedule) => ({
         id: schedule.id,
         teacherId: schedule.teacherId,
+        teacherName: `${schedule.teacher.firstName} ${schedule.teacher.lastName}`, // Compute teacherName
         subject_code: schedule.subject_code,
         subject: schedule.subject,
         units: schedule.units,
@@ -67,8 +82,7 @@ export class TeacherController {
         start: schedule.start,
         end: schedule.end,
         day: schedule.day,
-        teacherName: `${schedule.teacher.firstName} ${schedule.teacher.lastName}`, // Compute teacherName
-      };
+      }));
     } catch (err) {
       console.error('Error retrieving teacher schedule:', err);
       throw new HttpException(err.message, HttpStatus.NOT_FOUND);

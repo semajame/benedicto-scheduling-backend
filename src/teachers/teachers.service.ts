@@ -100,4 +100,13 @@ export class TeacherService {
     }
     await this.teacherRepository.remove(teacher);
   }
+
+  async getTeacherSchedulesByTeacherId(
+    teacherId: number,
+  ): Promise<TeacherSchedule[]> {
+    return this.teacherScheduleRepository.find({
+      where: { teacherId },
+      relations: ['teacher'],
+    });
+  }
 }
