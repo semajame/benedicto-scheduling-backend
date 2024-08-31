@@ -34,6 +34,8 @@ export class ThirdController {
   async create(@Body() createThirdDto: CreateThirdDto) {
     // Create the new schedule
     const newSchedule = await this.thirdService.create(createThirdDto);
+    await this.thirdService.transferSchedules();
+
     return newSchedule;
   }
   catch(err) {

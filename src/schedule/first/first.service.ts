@@ -100,6 +100,12 @@ export class FirstService {
     }
 
     // Optional: Check and handle related schedules if not using cascade
-    await this.teacherScheduleRepository.delete({ id: id });
+    const deleteRelatedResult = await this.teacherScheduleRepository.delete({
+      id: id,
+    });
+
+    if (deleteRelatedResult.affected === 0) {
+      console.warn(`No related teacher schedules found for schedule ID ${id}`);
+    }
   }
 }

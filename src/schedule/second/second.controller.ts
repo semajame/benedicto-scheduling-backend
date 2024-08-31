@@ -34,6 +34,9 @@ export class SecondController {
   async create(@Body() createSecondDto: CreateSecondDto) {
     // Create the new schedule
     const newSchedule = await this.secondService.create(createSecondDto);
+
+    await this.secondService.transferSchedules();
+
     return newSchedule;
   }
   catch(err) {
