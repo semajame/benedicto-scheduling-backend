@@ -1,6 +1,6 @@
 import { Entity, Column, PrimaryGeneratedColumn, BaseEntity } from 'typeorm';
 
-@Entity({ name: 'thirdschedules' })
+@Entity({ name: 'third_schedules' })
 export class Third extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: number;
@@ -37,4 +37,7 @@ export class Third extends BaseEntity {
 
   @Column({ type: 'varchar', length: 255, nullable: true })
   background: string | null;
+
+  @Column({ type: 'boolean', default: false })
+  transferred: boolean;
 }

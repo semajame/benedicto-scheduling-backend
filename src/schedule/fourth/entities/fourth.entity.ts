@@ -37,4 +37,7 @@ export class Fourth extends BaseEntity {
 
   @Column({ type: 'varchar', length: 255, nullable: true })
   background: string | null;
+
+  @Column({ type: 'boolean', default: false })
+  transferred: boolean;
 }
