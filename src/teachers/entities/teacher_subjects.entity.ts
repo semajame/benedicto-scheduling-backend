@@ -9,7 +9,9 @@ import {
 import { Teacher } from './teacher.entity'; // Adjust import path as needed
 import { First } from 'src/schedule/first/entities/first.entity';
 import { Second } from 'src/schedule/second/entities/second.entity';
-import { Fourth, Third } from 'src/typeorm';
+import { Fourth } from 'src/schedule/fourth/entities/fourth.entity';
+
+import { Third } from 'src/schedule/third/entities/third.entity';
 
 @Entity({ name: 'teacher_schedules' })
 export class TeacherSchedule extends BaseEntity {
@@ -21,25 +23,35 @@ export class TeacherSchedule extends BaseEntity {
   teacher: Teacher;
 
   @ManyToOne(() => First, { onDelete: 'CASCADE' })
+  @JoinColumn({ name: 'firstId' })
   firstSchedule: First;
 
   @ManyToOne(() => Second, { onDelete: 'CASCADE' })
+  @JoinColumn({ name: 'secondId' })
   secondSchedule: Second;
 
-  @ManyToOne(() => Second, { onDelete: 'CASCADE' })
+  @ManyToOne(() => Third, { onDelete: 'CASCADE' })
+  @JoinColumn({ name: 'thirdId' })
   thirdSchedule: Third;
 
-  @ManyToOne(() => Second, { onDelete: 'CASCADE' })
+  @ManyToOne(() => Fourth, { onDelete: 'CASCADE' })
+  @JoinColumn({ name: 'fourthId' })
   fourthSchedule: Fourth;
 
   @Column({ type: 'int', nullable: true })
   teacherId: number; // Foreign key for Teacher
 
-  // @Column({ type: 'int', nullable: true })
-  // firstId: number; // Foreign key for First (make sure it allows null if optional)
+  @Column({ type: 'int', nullable: true })
+  firstId: number; // Foreign key for First (make sure it allows null if optional)
 
-  // @Column({ type: 'int', nullable: true })
-  // secondId: number; // Foreign key for Second (make sure it allows null if optional)
+  @Column({ type: 'int', nullable: true })
+  secondId: number; // Foreign key for Second (make sure it allows null if optional)
+
+  @Column({ type: 'int', nullable: true })
+  thirdId: number; // Foreign key for First (make sure it allows null if optional)
+
+  @Column({ type: 'int', nullable: true })
+  fourthId: number; // Foreign key for Second (make sure it allows null if optional)
 
   @Column({ type: 'varchar', length: 255 })
   subject_code: string;

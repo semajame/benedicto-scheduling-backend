@@ -64,6 +64,7 @@ export class FirstService {
       teacherSchedule.start = schedule.start;
       teacherSchedule.end = schedule.end;
       teacherSchedule.day = schedule.day;
+      teacherSchedule.firstId = schedule.id;
 
       try {
         await this.teacherScheduleRepository.save(teacherSchedule);
@@ -94,18 +95,19 @@ export class FirstService {
 
   //^ DELETE
   async delete(id: number): Promise<void> {
-    const result = await this.firstRepository.delete(id);
-    if (result.affected === 0) {
-      throw new NotFoundException(`Schedule with ID ${id} not found`);
-    }
-
-    // Optional: Check and handle related schedules if not using cascade
+    // First, delete related TeacherSchedule entries
     const deleteRelatedResult = await this.teacherScheduleRepository.delete({
-      id: id,
+      firstId: id, // Ensure you use the correct column to match related schedules
     });
 
     if (deleteRelatedResult.affected === 0) {
       console.warn(`No related teacher schedules found for schedule ID ${id}`);
+    }
+
+    // Now delete the First schedule
+    const result = await this.firstRepository.delete(id);
+    if (result.affected === 0) {
+      throw new NotFoundException(`Schedule with ID ${id} not found`);
     }
   }
 }

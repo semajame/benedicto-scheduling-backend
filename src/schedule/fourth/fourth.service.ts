@@ -63,6 +63,7 @@ export class FourthService {
       teacherSchedule.start = schedule.start;
       teacherSchedule.end = schedule.end;
       teacherSchedule.day = schedule.day;
+      teacherSchedule.fourthId = schedule.id;
 
       try {
         await this.teacherScheduleRepository.save(teacherSchedule);
@@ -93,11 +94,19 @@ export class FourthService {
 
   //^ DELETE
   async delete(id: number): Promise<void> {
-    const result = await this.fourthRepository.delete(id);
-    if (result.affected === 0) {
-      throw new NotFoundException(`Appointment with ID ${id} not found`);
+    // First, delete related TeacherSchedule entries
+    const deleteRelatedResult = await this.teacherScheduleRepository.delete({
+      fourthId: id, // Ensure you use the correct column to match related schedules
+    });
+
+    if (deleteRelatedResult.affected === 0) {
+      console.warn(`No related teacher schedules found for schedule ID ${id}`);
     }
 
-    await this.teacherScheduleRepository.delete({ id: id });
+    // Now delete the First schedule
+    const result = await this.fourthRepository.delete(id);
+    if (result.affected === 0) {
+      throw new NotFoundException(`Schedule with ID ${id} not found`);
+    }
   }
 }

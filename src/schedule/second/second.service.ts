@@ -70,6 +70,7 @@ export class SecondService {
       teacherSchedule.start = schedule.start;
       teacherSchedule.end = schedule.end;
       teacherSchedule.day = schedule.day;
+      teacherSchedule.secondId = schedule.id;
 
       try {
         await this.teacherScheduleRepository.save(teacherSchedule);
@@ -93,20 +94,37 @@ export class SecondService {
   }
 
   //^ DELETE
-  async delete(id: number): Promise<void> {
-    // Delete the Second entity
-    const result = await this.secondRepository.delete(id);
-    if (result.affected === 0) {
-      throw new NotFoundException(`Appointment with ID ${id} not found`);
-    }
+  // async delete(id: number): Promise<void> {
+  //   // Delete the Second entity
+  //   const result = await this.secondRepository.delete(id);
+  //   if (result.affected === 0) {
+  //     throw new NotFoundException(`Appointment with ID ${id} not found`);
+  //   }
 
-    // Optionally, handle related schedules if cascade delete is not working as expected
+  //   // Optionally, handle related schedules if cascade delete is not working as expected
+  //   const deleteRelatedResult = await this.teacherScheduleRepository.delete({
+  //     id: id, // Use the correct foreign key column for the Second entity
+  //   });
+
+  //   if (deleteRelatedResult.affected === 0) {
+  //     console.warn(`No related teacher schedules found for schedule ID ${id}`);
+  //   }
+  // }
+
+  async delete(id: number): Promise<void> {
+    // First, delete related TeacherSchedule entries
     const deleteRelatedResult = await this.teacherScheduleRepository.delete({
-      id: id, // Use the correct foreign key column for the Second entity
+      secondId: id, // Ensure you use the correct column to match related schedules
     });
 
     if (deleteRelatedResult.affected === 0) {
       console.warn(`No related teacher schedules found for schedule ID ${id}`);
+    }
+
+    // Now delete the First schedule
+    const result = await this.secondRepository.delete(id);
+    if (result.affected === 0) {
+      throw new NotFoundException(`Schedule with ID ${id} not found`);
     }
   }
 }
