@@ -83,34 +83,43 @@ export class SecondService {
   }
 
   //^ PUT
-  async update(id: number, updateSecondDto: UpdateSecondDto): Promise<Second> {
-    const existingSchedule = await this.secondRepository.findOneBy({ id });
-    if (!existingSchedule) {
-      throw new NotFoundException(`Schedule with ID ${id} not found`);
+  async update(id: number, updateDto: UpdateSecondDto): Promise<void> {
+    // Find the existing First entity along with related TeacherSchedules
+    const existingFirst = await this.secondRepository.findOne({
+      where: { id },
+      relations: ['teacherSchedules'], // Ensure we load related TeacherSchedules
+    });
+
+    if (!existingFirst) {
+      throw new NotFoundException(`First with ID ${id} not found`);
     }
 
-    Object.assign(existingSchedule, updateSecondDto);
-    return await this.secondRepository.save(existingSchedule);
+    // Update the existing First entity with the new values
+    Object.assign(existingFirst, updateDto);
+    await this.secondRepository.save(existingFirst);
+
+    // Update related TeacherSchedule entities
+    if (
+      existingFirst.teacherSchedules &&
+      existingFirst.teacherSchedules.length > 0
+    ) {
+      for (const teacherSchedule of existingFirst.teacherSchedules) {
+        // Update the related TeacherSchedule fields
+        teacherSchedule.subject_code = existingFirst.subject_code;
+        teacherSchedule.subject = existingFirst.subject;
+        teacherSchedule.units = existingFirst.units;
+        teacherSchedule.room = existingFirst.room;
+        teacherSchedule.start = existingFirst.start;
+        teacherSchedule.end = existingFirst.end;
+        teacherSchedule.day = existingFirst.day;
+
+        // Save updated TeacherSchedule entity
+        await this.teacherScheduleRepository.save(teacherSchedule);
+      }
+    }
   }
 
   //^ DELETE
-  // async delete(id: number): Promise<void> {
-  //   // Delete the Second entity
-  //   const result = await this.secondRepository.delete(id);
-  //   if (result.affected === 0) {
-  //     throw new NotFoundException(`Appointment with ID ${id} not found`);
-  //   }
-
-  //   // Optionally, handle related schedules if cascade delete is not working as expected
-  //   const deleteRelatedResult = await this.teacherScheduleRepository.delete({
-  //     id: id, // Use the correct foreign key column for the Second entity
-  //   });
-
-  //   if (deleteRelatedResult.affected === 0) {
-  //     console.warn(`No related teacher schedules found for schedule ID ${id}`);
-  //   }
-  // }
-
   async delete(id: number): Promise<void> {
     // First, delete related TeacherSchedule entries
     const deleteRelatedResult = await this.teacherScheduleRepository.delete({

@@ -47,8 +47,8 @@ export class ThirdController {
   async update(
     @Param('id') id: number,
     @Body() updateThirdDto: UpdateThirdDto,
-  ): Promise<Third> {
-    return this.thirdService.update(id, updateThirdDto);
+  ): Promise<void> {
+    await this.thirdService.update(id, updateThirdDto);
   }
 
   @Delete('3rd-year/:id')

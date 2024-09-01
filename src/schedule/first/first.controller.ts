@@ -47,9 +47,8 @@ export class FirstController {
   async update(
     @Param('id') id: number,
     @Body() updateFirstDto: UpdateFirstDto,
-  ): Promise<First> {
-    await this.firstService.transferSchedules();
-    return this.firstService.update(id, updateFirstDto);
+  ): Promise<void> {
+    await this.firstService.update(id, updateFirstDto);
   }
 
   @Delete('1st-year/:id')

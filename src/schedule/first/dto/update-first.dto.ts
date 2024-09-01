@@ -1,47 +1,45 @@
 import { PartialType } from '@nestjs/mapped-types';
 import { CreateFirstDto } from './create-first.dto';
-import { IsString, IsInt, IsOptional, IsNotEmpty } from 'class-validator';
+import { IsString, IsInt, IsOptional } from 'class-validator';
 
 export class UpdateFirstDto extends PartialType(CreateFirstDto) {
   @IsString()
-  @IsNotEmpty()
-  subject_code: string;
+  @IsOptional()
+  subject_code?: string;
 
   @IsString()
-  @IsNotEmpty()
-  subject: string;
+  @IsOptional()
+  subject?: string;
 
   @IsInt()
-  @IsNotEmpty()
-  units: number;
-
-  @IsString()
-  @IsNotEmpty()
-  room: string;
-
-  @IsString()
-  @IsNotEmpty()
-  teacher: string;
-
-  @IsString()
-  @IsNotEmpty()
-  start: string;
-
-  @IsString()
-  @IsNotEmpty()
-  end: string;
-
-  @IsString()
-  @IsNotEmpty()
-  day: string;
-
-  @IsString()
-  @IsNotEmpty()
   @IsOptional()
-  recurrencePattern: string;
+  units?: number;
 
   @IsString()
-  @IsNotEmpty()
   @IsOptional()
-  background: string;
+  room?: string;
+
+  @IsString()
+  @IsOptional()
+  teacher?: string;
+
+  @IsString()
+  @IsOptional()
+  start?: string;
+
+  @IsString()
+  @IsOptional()
+  end?: string;
+
+  @IsString()
+  @IsOptional()
+  day?: string;
+
+  @IsString()
+  @IsOptional()
+  recurrencePattern?: string;
+
+  @IsString()
+  @IsOptional()
+  background?: string;
 }

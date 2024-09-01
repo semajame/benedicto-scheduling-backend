@@ -48,8 +48,8 @@ export class SecondController {
   async update(
     @Param('id') id: number,
     @Body() updateSecondDto: UpdateSecondDto,
-  ): Promise<Second> {
-    return this.secondService.update(id, updateSecondDto);
+  ): Promise<void> {
+    await this.secondService.update(id, updateSecondDto);
   }
 
   @Delete('2nd-year/:id')

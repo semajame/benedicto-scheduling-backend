@@ -48,10 +48,10 @@ export class Second extends BaseEntity {
   @Column({ type: 'boolean', default: false })
   transferred: boolean;
 
-  // @OneToMany(
-  //   () => TeacherSchedule,
-  //   (teacherSchedule) => teacherSchedule.secondSchedule,
-  //   { cascade: true },
-  // )
-  // teacherSchedules: TeacherSchedule[];
+  @OneToMany(
+    () => TeacherSchedule,
+    (teacherSchedule) => teacherSchedule.secondSchedule,
+    { cascade: true },
+  )
+  teacherSchedules: TeacherSchedule[];
 }

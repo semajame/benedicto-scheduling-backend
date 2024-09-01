@@ -46,8 +46,8 @@ export class FourthController {
   async update(
     @Param('id') id: number,
     @Body() updateFourthDto: UpdateFourthDto,
-  ): Promise<Fourth> {
-    return this.fourthService.update(id, updateFourthDto);
+  ): Promise<void> {
+    await this.fourthService.update(id, updateFourthDto);
   }
 
   @Delete('4th-year/:id')

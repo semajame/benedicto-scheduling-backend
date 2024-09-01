@@ -82,14 +82,40 @@ export class ThirdService {
   }
 
   //^ PUT
-  async update(id: number, updateThirdDto: UpdateThirdDto): Promise<Third> {
-    const existingSchedule = await this.thirdRepository.findOneBy({ id });
-    if (!existingSchedule) {
-      throw new NotFoundException(`Schedule with ID ${id} not found`);
+  async update(id: number, updateDto: UpdateThirdDto): Promise<void> {
+    // Find the existing First entity along with related TeacherSchedules
+    const existingFirst = await this.thirdRepository.findOne({
+      where: { id },
+      relations: ['teacherSchedules'], // Ensure we load related TeacherSchedules
+    });
+
+    if (!existingFirst) {
+      throw new NotFoundException(`First with ID ${id} not found`);
     }
 
-    Object.assign(existingSchedule, updateThirdDto);
-    return await this.thirdRepository.save(existingSchedule);
+    // Update the existing First entity with the new values
+    Object.assign(existingFirst, updateDto);
+    await this.thirdRepository.save(existingFirst);
+
+    // Update related TeacherSchedule entities
+    if (
+      existingFirst.teacherSchedules &&
+      existingFirst.teacherSchedules.length > 0
+    ) {
+      for (const teacherSchedule of existingFirst.teacherSchedules) {
+        // Update the related TeacherSchedule fields
+        teacherSchedule.subject_code = existingFirst.subject_code;
+        teacherSchedule.subject = existingFirst.subject;
+        teacherSchedule.units = existingFirst.units;
+        teacherSchedule.room = existingFirst.room;
+        teacherSchedule.start = existingFirst.start;
+        teacherSchedule.end = existingFirst.end;
+        teacherSchedule.day = existingFirst.day;
+
+        // Save updated TeacherSchedule entity
+        await this.teacherScheduleRepository.save(teacherSchedule);
+      }
+    }
   }
 
   //^ DELETE
