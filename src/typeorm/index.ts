@@ -4,10 +4,20 @@ import { First } from 'src/schedule/first/entities/first.entity';
 import { Second } from 'src/schedule/second/entities/second.entity';
 import { Third } from 'src/schedule/third/entities/third.entity';
 import { Fourth } from 'src/schedule/fourth/entities/fourth.entity';
+import { All } from 'src/schedule/all/entities/all.entity';
 import { TeacherSchedule } from 'src/teachers/entities/teacher_subjects.entity';
 
-const entities = [User, Teacher, First, Second, Third, Fourth, TeacherSchedule];
+const entities = [
+  User,
+  Teacher,
+  First,
+  Second,
+  Third,
+  Fourth,
+  All,
+  TeacherSchedule,
+];
 
-export { User, Teacher, First, Second, Third, Fourth, TeacherSchedule };
+export { User, Teacher, First, Second, Third, Fourth, All, TeacherSchedule };
 
 export default entities;

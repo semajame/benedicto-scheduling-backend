@@ -11,6 +11,7 @@ import { FirstModule } from './schedule/first/first.module';
 import { SecondModule } from './schedule/second/second.module';
 import { ThirdModule } from './schedule/third/third.module';
 import { FourthModule } from './schedule/fourth/fourth.module';
+import { AllModule } from './schedule/all/all.module';
 
 @Module({
   imports: [
@@ -35,6 +36,7 @@ import { FourthModule } from './schedule/fourth/fourth.module';
     SecondModule,
     ThirdModule,
     FourthModule,
+    AllModule,
   ],
   controllers: [],
   providers: [],

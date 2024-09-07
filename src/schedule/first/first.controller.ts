@@ -13,7 +13,7 @@ import {
 import { FirstService } from './first.service';
 import { CreateFirstDto } from './dto/create-first.dto';
 import { UpdateFirstDto } from './dto/update-first.dto';
-import { First } from 'src/typeorm';
+// import { First } from 'src/typeorm';
 
 @Controller('schedule')
 export class FirstController {

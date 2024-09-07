@@ -8,7 +8,7 @@ import {
 } from 'typeorm';
 
 @Entity({ name: 'all_schedules' })
-export class First extends BaseEntity {
+export class All extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: number;
 

@@ -16,6 +16,7 @@ import { First } from '../schedule/first/entities/first.entity';
 import { Second } from '../schedule/second/entities/second.entity';
 import { Third } from '../schedule/third/entities/third.entity';
 import { Fourth } from '../schedule/fourth/entities/fourth.entity';
+import { All } from 'src/schedule/all/entities/all.entity';
 
 @Injectable()
 export class TeacherService {
@@ -34,6 +35,9 @@ export class TeacherService {
 
     @InjectRepository(Fourth)
     private readonly fourthRepository: Repository<Fourth>,
+
+    @InjectRepository(All)
+    private readonly allRepository: Repository<All>,
 
     @InjectRepository(Teacher)
     private teacherRepository: Repository<Teacher>,
@@ -245,7 +249,7 @@ export class TeacherService {
       try {
         await this.teacherScheduleRepository.save(teacherSchedule);
         schedule.transferred = true;
-        await this.secondRepository.save(schedule);
+        await this.thirdRepository.save(schedule);
       } catch (error) {
         console.error('Error saving teacher schedule:', error);
       }
@@ -286,7 +290,48 @@ export class TeacherService {
       try {
         await this.teacherScheduleRepository.save(teacherSchedule);
         schedule.transferred = true;
-        await this.secondRepository.save(schedule);
+        await this.fourthRepository.save(schedule);
+      } catch (error) {
+        console.error('Error saving teacher schedule:', error);
+      }
+    }
+  }
+
+  async transferAllSchedules(): Promise<void> {
+    const allSchedules = await this.allRepository.find({
+      where: { transferred: false }, // Only get schedules that haven't been transferred
+    });
+
+    for (const schedule of allSchedules) {
+      // Find the teacher by name
+      const teacher = await this.teacherRepository.findOne({
+        where: {
+          firstName: schedule.teacher.split(' ')[0],
+          lastName: schedule.teacher.split(' ')[1],
+        }, // Assumes the name is in "First Last" format
+      });
+
+      if (!teacher) {
+        console.warn(
+          `Teacher not found for schedule with subject code ${schedule.subject_code}`,
+        );
+        Error; // Skip this schedule if the teacher is not found
+      }
+
+      const teacherSchedule = new TeacherSchedule();
+      teacherSchedule.teacher = teacher; // Assuming teacher is a Teacher entity
+      teacherSchedule.subject_code = schedule.subject_code;
+      teacherSchedule.subject = schedule.subject;
+      teacherSchedule.units = schedule.units;
+      teacherSchedule.room = schedule.room;
+      teacherSchedule.start = schedule.start;
+      teacherSchedule.end = schedule.end;
+      teacherSchedule.day = schedule.day;
+
+      try {
+        await this.teacherScheduleRepository.save(teacherSchedule);
+        schedule.transferred = true;
+        await this.allRepository.save(schedule);
       } catch (error) {
         console.error('Error saving teacher schedule:', error);
       }

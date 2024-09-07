@@ -9,6 +9,7 @@ import { First } from '../schedule/first/entities/first.entity';
 import { Second } from '../schedule/second/entities/second.entity';
 import { Third } from '../schedule/third/entities/third.entity';
 import { Fourth } from '../schedule/fourth/entities/fourth.entity';
+import { All } from '../schedule/all/entities/all.entity';
 
 @Module({
   imports: [
@@ -19,6 +20,7 @@ import { Fourth } from '../schedule/fourth/entities/fourth.entity';
       Second,
       Third,
       Fourth,
+      All,
     ]),
   ],
   controllers: [TeacherController],

@@ -10,33 +10,37 @@ import { Teacher } from './teacher.entity'; // Adjust import path as needed
 import { First } from 'src/schedule/first/entities/first.entity';
 import { Second } from 'src/schedule/second/entities/second.entity';
 import { Fourth } from 'src/schedule/fourth/entities/fourth.entity';
-
 import { Third } from 'src/schedule/third/entities/third.entity';
+import { All } from 'src/schedule/all/entities/all.entity';
 
 @Entity({ name: 'teacher_schedules' })
 export class TeacherSchedule extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @ManyToOne(() => Teacher, { eager: true, onDelete: 'CASCADE' })
+  @ManyToOne(() => Teacher, { eager: true })
   @JoinColumn({ name: 'teacherId' })
   teacher: Teacher;
 
-  @ManyToOne(() => First, { onDelete: 'CASCADE' })
+  @ManyToOne(() => First)
   @JoinColumn({ name: 'firstId' })
   firstSchedule: First;
 
-  @ManyToOne(() => Second, { onDelete: 'CASCADE' })
+  @ManyToOne(() => Second)
   @JoinColumn({ name: 'secondId' })
   secondSchedule: Second;
 
-  @ManyToOne(() => Third, { onDelete: 'CASCADE' })
+  @ManyToOne(() => Third)
   @JoinColumn({ name: 'thirdId' })
   thirdSchedule: Third;
 
-  @ManyToOne(() => Fourth, { onDelete: 'CASCADE' })
+  @ManyToOne(() => Fourth)
   @JoinColumn({ name: 'fourthId' })
   fourthSchedule: Fourth;
+
+  @ManyToOne(() => All)
+  @JoinColumn({ name: 'allId' })
+  allSchedule: All;
 
   @Column({ type: 'int', nullable: true })
   teacherId: number; // Foreign key for Teacher
@@ -52,6 +56,9 @@ export class TeacherSchedule extends BaseEntity {
 
   @Column({ type: 'int', nullable: true })
   fourthId: number; // Foreign key for Second (make sure it allows null if optional)
+
+  @Column({ type: 'int', nullable: true })
+  allId: number; // Foreign key for Second (make sure it allows null if optional)
 
   @Column({ type: 'varchar', length: 255 })
   subject_code: string;
