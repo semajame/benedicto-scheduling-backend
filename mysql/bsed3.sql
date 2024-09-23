@@ -1,0 +1,16 @@
+INSERT INTO `bsed3`(`subject_code`, `subject`, `units`, `pre-req`) VALUES ('EDUC 313', 'Facilitating Learner-Centered Teaching	', 3, 'EDUC 101');
+INSERT INTO `bsed3`(`subject_code`, `subject`, `units`, `pre-req`) VALUES ('SOCPHIL', 'Social Science and Philosophy', 3, '-');
+INSERT INTO `bsed3`(`subject_code`, `subject`, `units`, `pre-req`) VALUES ('EDUC 311', 'Assessment in Learning 1', 3, 'EDUC 101');
+INSERT INTO `bsed3`(`subject_code`, `subject`, `units`, `pre-req`) VALUES ('LIT 316', 'Contemporary, Popular & Emergement Literature', 2, 'LIT 201');
+INSERT INTO `bsed3`(`subject_code`, `subject`, `units`, `pre-req`) VALUES ('LIT 315', 'Survey of English & American Literature', 3, 'LIT 201');
+INSERT INTO `bsed3`(`subject_code`, `subject`, `units`, `pre-req`) VALUES ('ELT 314', 'Survey of Afro-Asian Literature', 3, 'LIT 201');
+INSERT INTO `bsed3`(`subject_code`, `subject`, `units`, `pre-req`) VALUES ('ELT 313', 'Survey of Phil. Literature in English', 3, 'LIT 201');
+INSERT INTO `bsed3`(`subject_code`, `subject`, `units`, `pre-req`) VALUES ('EDUC 312', 'Technology for Teaching and Learning 1', 3, 'EDUC 211');
+INSERT INTO `bsed3`(`subject_code`, `subject`, `units`, `pre-req`) VALUES ('EDUC 324', 'Bulding & Enhancing New Literacies Accross the Curriculum', 3, 'ELT 121');
+INSERT INTO `bsed3`(`subject_code`, `subject`, `units`, `pre-req`) VALUES ('EDUC 321', 'Assessment in Learning 2', 3, 'EDUC 311');
+INSERT INTO `bsed3`(`subject_code`, `subject`, `units`, `pre-req`) VALUES ('EDUC 322', 'Technology for Teaching and Learning 2', 3, 'EDUC 312');
+INSERT INTO `bsed3`(`subject_code`, `subject`, `units`, `pre-req`) VALUES ('EDUC 323', 'The Teacher and the School Curriculum ', 3, 'EDUC 211');
+INSERT INTO `bsed3`(`subject_code`, `subject`, `units`, `pre-req`) VALUES ('CAMJOUR', 'Campus Journalism', 3, 'ELT 228');
+INSERT INTO `bsed3`(`subject_code`, `subject`, `units`, `pre-req`) VALUES ('RGEC 1 ', 'Review on General Education Cources', 3, '3Y STANDING');
+INSERT INTO `bsed3`(`subject_code`, `subject`, `units`, `pre-req`) VALUES ('LIT 327', 'Literacy Critism', 3, 'LIT 313, LIT 314, LIT 315, LIT 316');
+INSERT INTO `bsed3`(`subject_code`, `subject`, `units`, `pre-req`) VALUES ('ESP 100', 'English for Special Purpose', 3, '-');

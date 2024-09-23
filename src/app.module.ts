@@ -13,6 +13,8 @@ import { ThirdModule } from './schedule/third/third.module';
 import { FourthModule } from './schedule/fourth/fourth.module';
 import { AllModule } from './schedule/all/all.module';
 
+import { itsubjectsModule } from './subjects/IT/itsubjects.module';
+
 @Module({
   imports: [
     ConfigModule.forRoot({
@@ -37,6 +39,7 @@ import { AllModule } from './schedule/all/all.module';
     ThirdModule,
     FourthModule,
     AllModule,
+    itsubjectsModule,
   ],
   controllers: [],
   providers: [],
