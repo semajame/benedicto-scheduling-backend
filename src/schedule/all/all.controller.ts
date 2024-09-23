@@ -10,19 +10,19 @@ import {
   Delete,
 } from '@nestjs/common';
 
-import { FirstService } from './first.service';
+import { AllService } from './all.service';
 import { CreateFirstDto } from './dto/create-first.dto';
 import { UpdateFirstDto } from './dto/update-first.dto';
-// import { First } from 'src/typeorm';
+// import { All } from 'src/typeorm';
 
 @Controller('schedule')
-export class FirstController {
-  constructor(private readonly firstService: FirstService) {}
+export class AllController {
+  constructor(private readonly allService: AllService) {}
 
-  @Get('1st-year')
+  @Get('all-year')
   async findAll() {
     try {
-      const schedules = await this.firstService.findAll();
+      const schedules = await this.allService.findAll();
       return schedules;
     } catch (err) {
       console.error('Error executing query:', err);
@@ -30,11 +30,11 @@ export class FirstController {
     }
   }
 
-  @Post('1st-year')
+  @Post('all-year')
   async create(@Body() createFirstDto: CreateFirstDto) {
     // Create the new schedule
-    const newSchedule = await this.firstService.create(createFirstDto);
-    await this.firstService.transferSchedules();
+    const newSchedule = await this.allService.create(createFirstDto);
+    await this.allService.transferSchedules();
 
     return newSchedule;
   }
@@ -43,16 +43,16 @@ export class FirstController {
     throw new HttpException(err.message, HttpStatus.INTERNAL_SERVER_ERROR);
   }
 
-  @Put('1st-year/:id')
+  @Put('all-year/:id')
   async update(
     @Param('id') id: number,
     @Body() updateFirstDto: UpdateFirstDto,
   ): Promise<void> {
-    await this.firstService.update(id, updateFirstDto);
+    await this.allService.update(id, updateFirstDto);
   }
 
-  @Delete('1st-year/:id')
+  @Delete('all-year/:id')
   async delete(@Param('id') id: number): Promise<void> {
-    await this.firstService.delete(id);
+    await this.allService.delete(id);
   }
 }

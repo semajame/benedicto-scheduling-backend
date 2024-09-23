@@ -1,4 +1,4 @@
-INSERT INTO `benedicto-scheduling-nestjs`.`user`
+INSERT INTO `benedict-scheduling-test`.`user`
 (`id`,
 `first_name`,
 `last_name`,

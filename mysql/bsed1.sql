@@ -1,0 +1,18 @@
+INSERT INTO `educ1`(`subject_code`, `subject`, `units`, `pre-req`) VALUES ('HIST', 'Reading in Philippine History', 3, '-');
+INSERT INTO `educ1`(`subject_code`, `subject`, `units`, `pre-req`) VALUES ('STS', 'Science, Technology and Society', 3, '-');
+INSERT INTO `educ1`(`subject_code`, `subject`, `units`, `pre-req`) VALUES ('PE 1', 'Physical Education 1', 2, '-');
+INSERT INTO `educ1`(`subject_code`, `subject`, `units`, `pre-req`) VALUES ('EL 100', 'Introduction to Linguistics', 3, '-');
+INSERT INTO `educ1`(`subject_code`, `subject`, `units`, `pre-req`) VALUES ('FIL 1', 'Retorika', 3, '-');
+INSERT INTO `educ1`(`subject_code`, `subject`, `units`, `pre-req`) VALUES ('NSTP 1', 'National Service Training Program 1', 3, '-');
+INSERT INTO `educ1`(`subject_code`, `subject`, `units`, `pre-req`) VALUES ('EL 102', 'Structures in English', 3, '-');
+INSERT INTO `educ1`(`subject_code`, `subject`, `units`, `pre-req`) VALUES ('PURCOM', 'Purposive Communication', 3, '-');
+INSERT INTO `educ1`(`subject_code`, `subject`, `units`, `pre-req`) VALUES ('UTS', 'Understanding the Self', 3, '-');
+INSERT INTO `educ1`(`subject_code`, `subject`, `units`, `pre-req`) VALUES ('ELT 122', 'Language Programs & Policies in Multulingual Societies', 3, 'ELT 121');
+INSERT INTO `educ1`(`subject_code`, `subject`, `units`, `pre-req`) VALUES ('ELT 123', 'Language Learning Materials Development', 3, 'EL 101');
+INSERT INTO `educ1`(`subject_code`, `subject`, `units`, `pre-req`) VALUES ('ARTAPP', 'Art Appreciation', 3, '-');
+INSERT INTO `educ1`(`subject_code`, `subject`, `units`, `pre-req`) VALUES ('MATHWORLD', 'Mathematics in the Modern World', 3, '-');
+INSERT INTO `educ1`(`subject_code`, `subject`, `units`, `pre-req`) VALUES ('EDUC 101', 'The Child & Adolescent Learners & Learning Principles', 3, '-');
+INSERT INTO `educ1`(`subject_code`, `subject`, `units`, `pre-req`) VALUES ('NSTP 2', 'National Service Training Program 2', 3, 'NSTP 1');
+INSERT INTO `educ1`(`subject_code`, `subject`, `units`, `pre-req`) VALUES ('PE 2', 'Physical Education 2', 2, 'PE 1');
+INSERT INTO `educ1`(`subject_code`, `subject`, `units`, `pre-req`) VALUES ('CW', 'The Contemporary World', 3, '-');
+INSERT INTO `educ1`(`subject_code`, `subject`, `units`, `pre-req`) VALUES ('FIL 2', 'Panitikan ng Pilipinas', 3, '-');
