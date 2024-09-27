@@ -14,6 +14,7 @@ import { FourthModule } from './schedule/fourth/fourth.module';
 import { AllModule } from './schedule/all/all.module';
 
 import { itsubjectsModule } from './subjects/IT/itsubjects.module';
+import { CalendarModule } from './calendar/calendar.module';
 
 @Module({
   imports: [
@@ -29,7 +30,7 @@ import { itsubjectsModule } from './subjects/IT/itsubjects.module';
       database: process.env.DB_NAME,
       //entities: ['dist/**/*.entity.js'],
       entities,
-      synchronize: false,
+      synchronize: true,
     }),
     UsersModule,
     AuthModule,
@@ -40,6 +41,7 @@ import { itsubjectsModule } from './subjects/IT/itsubjects.module';
     FourthModule,
     AllModule,
     itsubjectsModule,
+    CalendarModule,
   ],
   controllers: [],
   providers: [],

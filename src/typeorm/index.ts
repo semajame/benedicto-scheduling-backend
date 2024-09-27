@@ -13,6 +13,10 @@ import { itsubjectstwoEntity } from 'src/subjects/IT/entity/itsubjectstwo.entity
 import { itsubjectsthreeEntity } from 'src/subjects/IT/entity/itsubjectsthree.entity';
 import { itsubjectsfourEntity } from 'src/subjects/IT/entity/itsubjectsfour.entity';
 
+//^ CALENDAR
+
+import { CalendarEntity } from 'src/calendar/entities/calendar.entity';
+
 const entities = [
   User,
   Teacher,
@@ -26,6 +30,7 @@ const entities = [
   itsubjectstwoEntity,
   itsubjectsthreeEntity,
   itsubjectsfourEntity,
+  CalendarEntity,
 ];
 
 export {
@@ -41,6 +46,7 @@ export {
   itsubjectstwoEntity,
   itsubjectsthreeEntity,
   itsubjectsfourEntity,
+  CalendarEntity,
 };
 
 export default entities;
