@@ -15,6 +15,8 @@ import { AllModule } from './schedule/all/all.module';
 
 import { itsubjectsModule } from './subjects/IT/itsubjects.module';
 import { CalendarModule } from './calendar/calendar.module';
+import { cteSubjectsModule } from './subjects/CTE/cte.module';
+import { cteScheduleModule } from './schedule/CTE/cte-schedule.module';
 
 @Module({
   imports: [
@@ -30,7 +32,7 @@ import { CalendarModule } from './calendar/calendar.module';
       database: process.env.DB_NAME,
       //entities: ['dist/**/*.entity.js'],
       entities,
-      synchronize: true,
+      synchronize: false,
     }),
     UsersModule,
     AuthModule,
@@ -42,6 +44,8 @@ import { CalendarModule } from './calendar/calendar.module';
     AllModule,
     itsubjectsModule,
     CalendarModule,
+    cteSubjectsModule,
+    cteScheduleModule,
   ],
   controllers: [],
   providers: [],

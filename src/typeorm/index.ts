@@ -13,6 +13,12 @@ import { itsubjectstwoEntity } from 'src/subjects/IT/entity/itsubjectstwo.entity
 import { itsubjectsthreeEntity } from 'src/subjects/IT/entity/itsubjectsthree.entity';
 import { itsubjectsfourEntity } from 'src/subjects/IT/entity/itsubjectsfour.entity';
 
+//^ CTE
+
+import { bsedSubjectsEntity } from 'src/subjects/CTE/entity/bsedsubjects.entity';
+import { beedSubjectsEntity } from 'src/subjects/CTE/entity/beedsubjects.entity';
+import { bsedScheduleEntity } from 'src/schedule/CTE/BSED/entities/bsedSchedule.entity';
+
 //^ CALENDAR
 
 import { CalendarEntity } from 'src/calendar/entities/calendar.entity';
@@ -30,6 +36,9 @@ const entities = [
   itsubjectstwoEntity,
   itsubjectsthreeEntity,
   itsubjectsfourEntity,
+  bsedSubjectsEntity,
+  beedSubjectsEntity,
+  bsedScheduleEntity,
   CalendarEntity,
 ];
 
@@ -46,6 +55,9 @@ export {
   itsubjectstwoEntity,
   itsubjectsthreeEntity,
   itsubjectsfourEntity,
+  bsedSubjectsEntity,
+  beedSubjectsEntity,
+  bsedScheduleEntity,
   CalendarEntity,
 };
 
