@@ -17,6 +17,10 @@ export class UpdateFirstDto extends PartialType(CreateFirstDto) {
 
   @IsString()
   @IsOptional()
+  year?: number;
+
+  @IsString()
+  @IsOptional()
   room?: string;
 
   @IsString()

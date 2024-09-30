@@ -1,4 +1,4 @@
-INSERT INTO `bsit3` (`subject_code`, `subject`, `units`, `pre_req`) VALUES
+INSERT INTO `bsit` (`subject_code`, `subject`, `units`, `pre_req`) VALUES
 ('ITELEC2', 'IT Elective II - LEC', 3, 'IT Elec 1'),
 ('ITELEC1', 'IT ELECTIVE I - LEC', 3, '3rd Year Level'),
 ('IT310', 'Applications Development and Emerging Technologies - LEC', 3, 'IT220'),

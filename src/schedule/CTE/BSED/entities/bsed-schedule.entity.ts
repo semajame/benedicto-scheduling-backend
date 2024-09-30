@@ -1,3 +1,4 @@
+import { TeacherSchedule } from 'src/typeorm';
 import {
   Entity,
   Column,
@@ -5,10 +6,9 @@ import {
   BaseEntity,
   OneToMany,
 } from 'typeorm';
-import { TeacherSchedule } from 'src/typeorm';
 
-@Entity({ name: 'third_schedules' })
-export class Third extends BaseEntity {
+@Entity({ name: 'bsed_schedules' })
+export class bsedScheduleEntity extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
@@ -23,6 +23,9 @@ export class Third extends BaseEntity {
 
   @Column({ type: 'varchar', length: 255 })
   room: string;
+
+  @Column({ type: 'int' })
+  year: number;
 
   @Column({
     type: 'varchar',
@@ -48,10 +51,10 @@ export class Third extends BaseEntity {
   @Column({ type: 'boolean', default: false })
   transferred: boolean;
 
-  @OneToMany(
-    () => TeacherSchedule,
-    (teacherSchedule) => teacherSchedule.thirdSchedule,
-    { cascade: true },
-  )
-  teacherSchedules: TeacherSchedule[];
+  // @OneToMany(
+  //   () => TeacherSchedule,
+  //   (teacherSchedule) => teacherSchedule.firstSchedule,
+  //   { cascade: true },
+  // )
+  // teacherSchedules: TeacherSchedule[];
 }

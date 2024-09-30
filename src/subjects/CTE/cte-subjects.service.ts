@@ -3,7 +3,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 
 import { bsedSubjectsEntity } from 'src/typeorm';
-import { beedSubjectsEntity } from './entity/beedsubjects.entity';
+import { beedSubjectsEntity } from './entity/beed-subjects.entity';
 
 @Injectable()
 export class cteSubjectsService {

@@ -1,5 +1,5 @@
 import { Controller, Get } from '@nestjs/common';
-import { cteSubjectsService } from './cte.service';
+import { cteSubjectsService } from './cte-subjects.service';
 import { beedSubjectsEntity } from 'src/typeorm';
 import { bsedSubjectsEntity } from 'src/typeorm';
 

@@ -2,7 +2,7 @@ import { Module } from '@nestjs/common';
 import { cteService } from './cte-schedule.service';
 import { cteScheduleController } from './cte-schedule.controller';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { bsedScheduleEntity } from '../CTE/BSED/entities/bsedSchedule.entity';
+import { bsedScheduleEntity } from './BSED/entities/bsed-schedule.entity';
 import { TeacherSchedule } from 'src/teachers/entities/teacher_subjects.entity';
 import { Teacher } from 'src/typeorm';
 

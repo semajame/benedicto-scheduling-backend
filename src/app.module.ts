@@ -7,15 +7,17 @@ import entities from './typeorm';
 import { UsersModule } from './users/users.module';
 import { AuthModule } from './auth/auth.module';
 import { TeachersModule } from './teachers/teachers.module';
-import { FirstModule } from './schedule/first/first.module';
-import { SecondModule } from './schedule/second/second.module';
-import { ThirdModule } from './schedule/third/third.module';
-import { FourthModule } from './schedule/fourth/fourth.module';
-import { AllModule } from './schedule/all/all.module';
-
-import { itsubjectsModule } from './subjects/IT/itsubjects.module';
+// import { FirstModule } from './schedule/first/first.module';
+// import { SecondModule } from './schedule/second/second.module';
+// import { ThirdModule } from './schedule/third/third.module';
+// import { FourthModule } from './schedule/fourth/fourth.module';
+// import { AllModule } from './schedule/all/all.module';
 import { CalendarModule } from './calendar/calendar.module';
-import { cteSubjectsModule } from './subjects/CTE/cte.module';
+
+import { CcsModule } from './schedule/CCS/ccs-schedule.module';
+import { itsubjectsModule } from './subjects/IT/ccs-subjects.module';
+
+import { cteSubjectsModule } from './subjects/CTE/cte-subjects.module';
 import { cteScheduleModule } from './schedule/CTE/cte-schedule.module';
 
 @Module({
@@ -37,15 +39,16 @@ import { cteScheduleModule } from './schedule/CTE/cte-schedule.module';
     UsersModule,
     AuthModule,
     TeachersModule,
-    FirstModule,
-    SecondModule,
-    ThirdModule,
-    FourthModule,
-    AllModule,
+    // FirstModule,
+    // SecondModule,
+    // ThirdModule,
+    // FourthModule,
+    // AllModule,
     itsubjectsModule,
     CalendarModule,
     cteSubjectsModule,
     cteScheduleModule,
+    CcsModule,
   ],
   controllers: [],
   providers: [],

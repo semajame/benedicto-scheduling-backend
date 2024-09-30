@@ -7,11 +7,7 @@ import {
   JoinColumn,
 } from 'typeorm';
 import { Teacher } from './teacher.entity'; // Adjust import path as needed
-import { First } from 'src/schedule/first/entities/first.entity';
-import { Second } from 'src/schedule/second/entities/second.entity';
-import { Fourth } from 'src/schedule/fourth/entities/fourth.entity';
-import { Third } from 'src/schedule/third/entities/third.entity';
-import { All } from 'src/schedule/all/entities/all.entity';
+import { CcsScheduleEntitiy } from 'src/typeorm';
 
 @Entity({ name: 'teacher_schedules' })
 export class TeacherSchedule extends BaseEntity {
@@ -22,25 +18,9 @@ export class TeacherSchedule extends BaseEntity {
   @JoinColumn({ name: 'teacherId' })
   teacher: Teacher;
 
-  @ManyToOne(() => First)
+  @ManyToOne(() => CcsScheduleEntitiy)
   @JoinColumn({ name: 'firstId' })
-  firstSchedule: First;
-
-  @ManyToOne(() => Second)
-  @JoinColumn({ name: 'secondId' })
-  secondSchedule: Second;
-
-  @ManyToOne(() => Third)
-  @JoinColumn({ name: 'thirdId' })
-  thirdSchedule: Third;
-
-  @ManyToOne(() => Fourth)
-  @JoinColumn({ name: 'fourthId' })
-  fourthSchedule: Fourth;
-
-  @ManyToOne(() => All)
-  @JoinColumn({ name: 'allId' })
-  allSchedule: All;
+  ccsSchedule: CcsScheduleEntitiy;
 
   @Column({ type: 'int', nullable: true })
   teacherId: number; // Foreign key for Teacher

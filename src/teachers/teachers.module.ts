@@ -5,23 +5,11 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 
 import { TeacherSchedule } from './entities/teacher_subjects.entity';
 import { Teacher } from './entities/teacher.entity';
-import { First } from '../schedule/first/entities/first.entity';
-import { Second } from '../schedule/second/entities/second.entity';
-import { Third } from '../schedule/third/entities/third.entity';
-import { Fourth } from '../schedule/fourth/entities/fourth.entity';
-import { All } from '../schedule/all/entities/all.entity';
+import { CcsScheduleEntitiy } from 'src/typeorm';
 
 @Module({
   imports: [
-    TypeOrmModule.forFeature([
-      TeacherSchedule,
-      Teacher,
-      First,
-      Second,
-      Third,
-      Fourth,
-      All,
-    ]),
+    TypeOrmModule.forFeature([TeacherSchedule, Teacher, CcsScheduleEntitiy]),
   ],
   controllers: [TeacherController],
   providers: [TeacherService],

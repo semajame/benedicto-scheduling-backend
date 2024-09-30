@@ -7,8 +7,8 @@ import {
   OneToMany,
 } from 'typeorm';
 
-@Entity({ name: 'second_schedules' })
-export class Second extends BaseEntity {
+@Entity({ name: 'ccs_schedules' })
+export class CcsScheduleEntitiy extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
@@ -23,6 +23,9 @@ export class Second extends BaseEntity {
 
   @Column({ type: 'varchar', length: 255 })
   room: string;
+
+  @Column({ type: 'int' })
+  year: number;
 
   @Column({
     type: 'varchar',
@@ -48,10 +51,10 @@ export class Second extends BaseEntity {
   @Column({ type: 'boolean', default: false })
   transferred: boolean;
 
-  @OneToMany(
-    () => TeacherSchedule,
-    (teacherSchedule) => teacherSchedule.secondSchedule,
-    { cascade: true },
-  )
-  teacherSchedules: TeacherSchedule[];
+  // @OneToMany(
+  //   () => TeacherSchedule,
+  //   (teacherSchedule) => teacherSchedule.firstSchedule,
+  //   { cascade: true },
+  // )
+  // teacherSchedules: TeacherSchedule[];
 }

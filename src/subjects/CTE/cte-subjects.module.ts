@@ -1,8 +1,8 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 // import { SubjectsService } from './subjects.service';
-import { cteSubjectsService } from './cte.service';
-import { cteSubjectsController } from './cte.controller';
+import { cteSubjectsService } from './cte-subjects.service';
+import { cteSubjectsController } from './cte-subjects.controller';
 
 import { bsedSubjectsEntity } from 'src/typeorm';
 import { beedSubjectsEntity } from 'src/typeorm';

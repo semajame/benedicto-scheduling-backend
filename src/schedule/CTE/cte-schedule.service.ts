@@ -4,7 +4,7 @@ import { UpdateFirstDto } from './BSED/dto/update-first.dto';
 
 import { InjectRepository } from '@nestjs/typeorm';
 
-import { bsedScheduleEntity } from './BSED/entities/bsedSchedule.entity';
+import { bsedScheduleEntity } from './BSED/entities/bsed-schedule.entity';
 import { Repository } from 'typeorm';
 import { TeacherSchedule } from 'src/teachers/entities/teacher_subjects.entity';
 import { Teacher } from 'src/teachers/entities/teacher.entity';
@@ -119,24 +119,24 @@ export class cteService {
     await this.bsedScheduleRepository.save(existingFirst);
 
     // Update related TeacherSchedule entities
-    if (
-      existingFirst.teacherSchedules &&
-      existingFirst.teacherSchedules.length > 0
-    ) {
-      for (const teacherSchedule of existingFirst.teacherSchedules) {
-        // Update the related TeacherSchedule fields
-        teacherSchedule.subject_code = existingFirst.subject_code;
-        teacherSchedule.subject = existingFirst.subject;
-        teacherSchedule.units = existingFirst.units;
-        teacherSchedule.room = existingFirst.room;
-        teacherSchedule.start = existingFirst.start;
-        teacherSchedule.end = existingFirst.end;
-        teacherSchedule.day = existingFirst.day;
+    // if (
+    //   existingFirst.teacherSchedules &&
+    //   existingFirst.teacherSchedules.length > 0
+    // ) {
+    //   for (const teacherSchedule of existingFirst.teacherSchedules) {
+    //     // Update the related TeacherSchedule fields
+    //     teacherSchedule.subject_code = existingFirst.subject_code;
+    //     teacherSchedule.subject = existingFirst.subject;
+    //     teacherSchedule.units = existingFirst.units;
+    //     teacherSchedule.room = existingFirst.room;
+    //     teacherSchedule.start = existingFirst.start;
+    //     teacherSchedule.end = existingFirst.end;
+    //     teacherSchedule.day = existingFirst.day;
 
-        // Save updated TeacherSchedule entity
-        await this.teacherScheduleRepository.save(teacherSchedule);
-      }
-    }
+    //     // Save updated TeacherSchedule entity
+    //     await this.teacherScheduleRepository.save(teacherSchedule);
+    //   }
+    // }
   }
 
   //^ DELETE

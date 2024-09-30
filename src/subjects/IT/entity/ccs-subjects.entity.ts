@@ -1,7 +1,7 @@
 import { Entity, Column, PrimaryColumn } from 'typeorm';
 
-@Entity({ name: 'bsit1' })
-export class itsubjectsEntity {
+@Entity({ name: 'bsit' })
+export class itSubjectsEntity {
   @PrimaryColumn()
   subject_code: string;
 
@@ -13,4 +13,7 @@ export class itsubjectsEntity {
 
   @Column({ nullable: true })
   pre_req: string;
+
+  @Column()
+  year: number;
 }

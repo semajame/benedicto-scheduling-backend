@@ -1,6 +1,6 @@
 import { IsString, IsInt, IsOptional, IsNotEmpty } from 'class-validator';
 
-export class CreateThirdDto {
+export class CreateFirstDto {
   @IsString()
   @IsNotEmpty()
   subject_code: string;
@@ -12,6 +12,10 @@ export class CreateThirdDto {
   @IsInt()
   @IsNotEmpty()
   units: number;
+
+  @IsString()
+  @IsNotEmpty()
+  year: number;
 
   @IsString()
   @IsNotEmpty()
