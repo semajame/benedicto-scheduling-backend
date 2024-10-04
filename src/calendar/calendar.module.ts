@@ -4,12 +4,10 @@ import { CalendarController } from './calendar.controller';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { CalendarEntity } from '../calendar/entities/calendar.entity';
 import { TeacherSchedule } from 'src/teachers/entities/teacher_subjects.entity';
-import { Teacher } from 'src/typeorm';
+// import { Teacher } from 'src/typeorm';
 
 @Module({
-  imports: [
-    TypeOrmModule.forFeature([CalendarEntity, TeacherSchedule, Teacher]),
-  ],
+  imports: [TypeOrmModule.forFeature([CalendarEntity, TeacherSchedule])],
   controllers: [CalendarController],
   providers: [CalendarService],
   exports: [CalendarService, TypeOrmModule],

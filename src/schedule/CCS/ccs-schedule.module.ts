@@ -4,7 +4,7 @@ import { CcsController } from './ccs-schedule.controller';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { CcsScheduleEntitiy } from 'src/typeorm';
 import { TeacherSchedule } from 'src/teachers/entities/teacher_subjects.entity';
-import { Teacher } from 'src/typeorm';
+import { Teacher } from 'src/teachers/entities/teacher.entity';
 
 @Module({
   imports: [

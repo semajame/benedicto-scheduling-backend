@@ -1,4 +1,4 @@
-import { TeacherSchedule } from 'src/typeorm';
+import { TeacherSchedule } from 'src/typeorm'; // Adjust the import path as needed
 import {
   Entity,
   Column,
@@ -11,6 +11,10 @@ import {
 export class CcsScheduleEntitiy extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: number;
+
+  // Employee ID from the external API
+  @Column({ type: 'int', nullable: true })
+  employee_id: number | null;
 
   @Column({ type: 'varchar', length: 255 })
   subject_code: string;
@@ -51,10 +55,11 @@ export class CcsScheduleEntitiy extends BaseEntity {
   @Column({ type: 'boolean', default: false })
   transferred: boolean;
 
-  // @OneToMany(
-  //   () => TeacherSchedule,
-  //   (teacherSchedule) => teacherSchedule.firstSchedule,
-  //   { cascade: true },
-  // )
-  // teacherSchedules: TeacherSchedule[];
+  // Relation to TeacherSchedule entity
+  @OneToMany(
+    () => TeacherSchedule,
+    (teacherSchedule) => teacherSchedule.ccsSchedule,
+    { cascade: true }, // Ensures cascading insert/update on TeacherSchedule
+  )
+  teacherSchedules: TeacherSchedule[];
 }

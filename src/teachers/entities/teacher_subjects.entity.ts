@@ -6,39 +6,30 @@ import {
   ManyToOne,
   JoinColumn,
 } from 'typeorm';
-import { Teacher } from './teacher.entity'; // Adjust import path as needed
-import { CcsScheduleEntitiy } from 'src/typeorm';
+// import { Teacher } from './teacher.entity'; // Adjust import path as needed
+import { CcsScheduleEntitiy } from 'src/schedule/CCS/entities/ccs-schedule.entity';
 
 @Entity({ name: 'teacher_schedules' })
 export class TeacherSchedule extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @ManyToOne(() => Teacher, { eager: true })
-  @JoinColumn({ name: 'teacherId' })
-  teacher: Teacher;
+  // @ManyToOne(() => Teacher, { eager: true })
+  // @JoinColumn({ name: 'employee_id' })
+  // teacher: Teacher;
 
-  @ManyToOne(() => CcsScheduleEntitiy)
-  @JoinColumn({ name: 'firstId' })
+  @Column({ type: 'int', nullable: true })
+  transferId: number; // Foreign key for CcsScheduleEntity
+
+  @ManyToOne(
+    () => CcsScheduleEntitiy,
+    (ccsSchedule) => ccsSchedule.teacherSchedules,
+  )
+  @JoinColumn({ name: 'transferId' })
   ccsSchedule: CcsScheduleEntitiy;
 
-  @Column({ type: 'int', nullable: true })
-  teacherId: number; // Foreign key for Teacher
-
-  @Column({ type: 'int', nullable: true })
-  firstId: number; // Foreign key for First (make sure it allows null if optional)
-
-  @Column({ type: 'int', nullable: true })
-  secondId: number; // Foreign key for Second (make sure it allows null if optional)
-
-  @Column({ type: 'int', nullable: true })
-  thirdId: number; // Foreign key for First (make sure it allows null if optional)
-
-  @Column({ type: 'int', nullable: true })
-  fourthId: number; // Foreign key for Second (make sure it allows null if optional)
-
-  @Column({ type: 'int', nullable: true })
-  allId: number; // Foreign key for Second (make sure it allows null if optional)
+  @Column({ type: 'int', nullable: true }) // Change this to 'nullable: true'
+  employee_id: number | null; // Update type to number | null
 
   @Column({ type: 'varchar', length: 255 })
   subject_code: string;

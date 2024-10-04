@@ -80,7 +80,7 @@ export class CcsService {
       }
 
       const teacherSchedule = new TeacherSchedule();
-      teacherSchedule.teacher = teacher; // Assuming teacher is a Teacher entity
+      // teacherSchedule.teacher = teacher; // Assuming teacher is a Teacher entity
       teacherSchedule.subject_code = schedule.subject_code;
       teacherSchedule.subject = schedule.subject;
       teacherSchedule.units = schedule.units;
@@ -88,7 +88,7 @@ export class CcsService {
       teacherSchedule.start = schedule.start;
       teacherSchedule.end = schedule.end;
       teacherSchedule.day = schedule.day;
-      teacherSchedule.firstId = schedule.id;
+      teacherSchedule.transferId = schedule.id;
 
       try {
         await this.teacherScheduleRepository.save(teacherSchedule);
@@ -147,7 +147,7 @@ export class CcsService {
   async delete(id: number): Promise<void> {
     // First, delete related TeacherSchedule entries
     const deleteRelatedResult = await this.teacherScheduleRepository.delete({
-      firstId: id, // Ensure you use the correct column to match related schedules
+      transferId: id, // Ensure you use the correct column to match related schedules
     });
 
     if (deleteRelatedResult.affected === 0) {

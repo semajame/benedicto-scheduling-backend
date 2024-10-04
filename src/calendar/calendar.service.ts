@@ -7,7 +7,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { CalendarEntity } from './entities/calendar.entity';
 import { Repository } from 'typeorm';
 import { TeacherSchedule } from 'src/teachers/entities/teacher_subjects.entity';
-import { Teacher } from 'src/teachers/entities/teacher.entity';
+// import { Teacher } from 'src/teachers/entities/teacher.entity';
 
 @Injectable()
 export class CalendarService {
@@ -15,8 +15,8 @@ export class CalendarService {
     @InjectRepository(CalendarEntity)
     private readonly calendarRepository: Repository<CalendarEntity>,
 
-    @InjectRepository(Teacher)
-    private teacherRepository: Repository<Teacher>,
+    // @InjectRepository(Teacher)
+    // private teacherRepository: Repository<Teacher>,
 
     @InjectRepository(TeacherSchedule)
     private teacherScheduleRepository: Repository<TeacherSchedule>,

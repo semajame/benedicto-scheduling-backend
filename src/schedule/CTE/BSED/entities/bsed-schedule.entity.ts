@@ -12,6 +12,10 @@ export class bsedScheduleEntity extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
+  // Use employee_id from the external API
+  @Column({ type: 'int', nullable: false })
+  employee_id: number;
+
   @Column({ type: 'varchar', length: 255 })
   subject_code: string;
 
@@ -53,7 +57,7 @@ export class bsedScheduleEntity extends BaseEntity {
 
   // @OneToMany(
   //   () => TeacherSchedule,
-  //   (teacherSchedule) => teacherSchedule.firstSchedule,
+  //   (teacherSchedule) => teacherSchedule.bsedSchedule,
   //   { cascade: true },
   // )
   // teacherSchedules: TeacherSchedule[];

@@ -10,13 +10,10 @@ import {
   HttpStatus,
   HttpException,
 } from '@nestjs/common';
-
 import { Response } from 'express';
 import { TeacherService } from './teachers.service';
-
 import { CreateTeacherDto } from './dto/create-teacher.dto';
 import { UpdateTeacherDto } from './dto/update-teacher.dto';
-import { error } from 'console';
 
 @Controller('teachers')
 export class TeacherController {
@@ -26,29 +23,33 @@ export class TeacherController {
   async findAll(@Res() res: Response) {
     try {
       const teachers = await this.teacherService.findAll();
-      res.json(teachers);
+      return res.status(HttpStatus.OK).json(teachers);
     } catch (err) {
-      res.status(HttpStatus.INTERNAL_SERVER_ERROR).json({ error: err.message });
+      return res
+        .status(HttpStatus.INTERNAL_SERVER_ERROR)
+        .json({ error: err.message });
     }
   }
 
   @Get(':id')
-  async findOne(@Param('id') id: number): Promise<any> {
+  async findOne(@Param('id') id: number, @Res() res: Response) {
     try {
-      const teachers = await this.teacherService.findOne(id);
-      return teachers;
+      const teacher = await this.teacherService.findOne(id);
+      return res.status(HttpStatus.OK).json(teacher);
     } catch (err) {
-      error;
+      return res
+        .status(HttpStatus.NOT_FOUND)
+        .json({ error: 'Teacher not found' });
     }
   }
 
   @Get('all-subjects')
-  async getAllSchedules(): Promise<any[]> {
+  async getAllSchedules(@Res() res: Response) {
     try {
       const schedules = await this.teacherService.getAllSchedules();
-      return schedules.map((schedule) => ({
+      const formattedSchedules = schedules.map((schedule) => ({
         id: schedule.id,
-        teacherId: schedule.teacherId,
+        employee_id: schedule.employee_id,
         subject_code: schedule.subject_code,
         subject: schedule.subject,
         units: schedule.units,
@@ -56,25 +57,28 @@ export class TeacherController {
         start: schedule.start,
         end: schedule.end,
         day: schedule.day,
-        teacherName: `${schedule.teacher.firstName} ${schedule.teacher.lastName}`, // Compute teacherName
       }));
+      return res.status(HttpStatus.OK).json(formattedSchedules);
     } catch (err) {
       console.error('Error retrieving all schedules:', err);
-      throw new HttpException(err.message, HttpStatus.INTERNAL_SERVER_ERROR);
+      return res
+        .status(HttpStatus.INTERNAL_SERVER_ERROR)
+        .json({ error: err.message });
     }
   }
 
-  @Get('schedules/:teacherId')
+  @Get('schedules/:employee_id')
   async getTeacherSchedule(
-    @Param('teacherId') teacherId: number,
-  ): Promise<any> {
+    @Param('employee_id') employee_id: number,
+    @Res() res: Response,
+  ) {
     try {
       const schedules =
-        await this.teacherService.getTeacherSchedulesByTeacherId(teacherId);
-      return schedules.map((schedule) => ({
+        await this.teacherService.getTeacherSchedulesByTeacherId(employee_id);
+      const formattedSchedules = schedules.map((schedule) => ({
         id: schedule.id,
-        teacherId: schedule.teacherId,
-        teacherName: `${schedule.teacher.firstName} ${schedule.teacher.lastName}`, // Compute teacherName
+        employee_id: schedule.employee_id,
+        // teacherName: schedule.name, // Teacher name is fetched from the API
         subject_code: schedule.subject_code,
         subject: schedule.subject,
         units: schedule.units,
@@ -83,24 +87,27 @@ export class TeacherController {
         end: schedule.end,
         day: schedule.day,
       }));
+      return res.status(HttpStatus.OK).json(formattedSchedules);
     } catch (err) {
       console.error('Error retrieving teacher schedule:', err);
-      throw new HttpException(err.message, HttpStatus.NOT_FOUND);
+      return res
+        .status(HttpStatus.NOT_FOUND)
+        .json({ error: 'Schedule not found' });
     }
   }
 
   @Post('add-teacher')
-  // @UsePipes(new ValidationPipe({ transform: true }))
   async create(
     @Body() createTeacherDto: CreateTeacherDto,
-
     @Res() res: Response,
   ) {
     try {
       const newTeacher = await this.teacherService.create(createTeacherDto);
-      res.status(HttpStatus.CREATED).json(newTeacher);
+      return res.status(HttpStatus.CREATED).json(newTeacher);
     } catch (err) {
-      res.status(HttpStatus.INTERNAL_SERVER_ERROR).json({ error: err.message });
+      return res
+        .status(HttpStatus.INTERNAL_SERVER_ERROR)
+        .json({ error: err.message });
     }
   }
 
@@ -115,9 +122,11 @@ export class TeacherController {
         id,
         updateTeacherDto,
       );
-      res.status(HttpStatus.OK).json(updatedTeacher);
+      return res.status(HttpStatus.OK).json(updatedTeacher);
     } catch (err) {
-      res.status(HttpStatus.INTERNAL_SERVER_ERROR).json({ error: err.message });
+      return res
+        .status(HttpStatus.INTERNAL_SERVER_ERROR)
+        .json({ error: err.message });
     }
   }
 
@@ -125,11 +134,13 @@ export class TeacherController {
   async remove(@Param('id') id: number, @Res() res: Response) {
     try {
       await this.teacherService.remove(id);
-      res
+      return res
         .status(HttpStatus.OK)
         .json({ message: 'Teacher deleted successfully' });
     } catch (err) {
-      res.status(HttpStatus.INTERNAL_SERVER_ERROR).json({ error: err.message });
+      return res
+        .status(HttpStatus.INTERNAL_SERVER_ERROR)
+        .json({ error: err.message });
     }
   }
 }

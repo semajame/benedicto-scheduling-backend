@@ -5,6 +5,7 @@ import {
 } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Not, Repository } from 'typeorm';
+import { HttpService } from '@nestjs/axios';
 
 import { CreateTeacherDto } from './dto/create-teacher.dto';
 import { UpdateTeacherDto } from './dto/update-teacher.dto';
@@ -24,6 +25,8 @@ export class TeacherService {
 
     @InjectRepository(Teacher)
     private teacherRepository: Repository<Teacher>,
+
+    private readonly httpService: HttpService,
   ) {}
 
   async getTeacherScheduleById(id: number): Promise<TeacherSchedule> {
@@ -41,8 +44,19 @@ export class TeacherService {
     return this.teacherScheduleRepository.find({ relations: ['teacher'] });
   }
 
-  async findAll(): Promise<Teacher[]> {
-    return this.teacherRepository.find();
+  async findAll(): Promise<any[]> {
+    // Adjust the return type if needed
+    const url = process.env.EXTERNAL_ENDPOINT;
+
+    try {
+      const response = await this.httpService.get(url).toPromise(); // Await the HTTP request
+      return response.data; // Assuming the response data is an array of teachers
+    } catch (err) {
+      // Hide Auth Details
+      if (err.config) {
+        err.config.auth = undefined;
+      }
+    }
   }
 
   async findOne(id: number): Promise<Teacher> {
@@ -111,7 +125,7 @@ export class TeacherService {
     teacherId: number,
   ): Promise<TeacherSchedule[]> {
     return this.teacherScheduleRepository.find({
-      where: { teacherId },
+      // where: { teacherId },
       relations: ['teacher'],
     });
   }
@@ -138,7 +152,7 @@ export class TeacherService {
       }
 
       const teacherSchedule = new TeacherSchedule();
-      teacherSchedule.teacher = teacher; // Assuming teacher is a Teacher entity
+      // teacherSchedule.teacher = teacher; // Assuming teacher is a Teacher entity
       teacherSchedule.subject_code = schedule.subject_code;
       teacherSchedule.subject = schedule.subject;
       teacherSchedule.units = schedule.units;
