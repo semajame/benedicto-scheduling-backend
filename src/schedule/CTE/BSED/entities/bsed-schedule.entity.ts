@@ -12,9 +12,9 @@ export class bsedScheduleEntity extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
-  // Use employee_id from the external API
-  @Column({ type: 'int', nullable: false })
-  employee_id: number;
+  // // Employee ID from the external API
+  // @Column({ type: 'int', nullable: true })
+  // employee_id: number | null;
 
   @Column({ type: 'varchar', length: 255 })
   subject_code: string;
@@ -55,10 +55,10 @@ export class bsedScheduleEntity extends BaseEntity {
   @Column({ type: 'boolean', default: false })
   transferred: boolean;
 
-  // @OneToMany(
-  //   () => TeacherSchedule,
-  //   (teacherSchedule) => teacherSchedule.bsedSchedule,
-  //   { cascade: true },
-  // )
-  // teacherSchedules: TeacherSchedule[];
+  @OneToMany(
+    () => TeacherSchedule,
+    (teacherSchedule) => teacherSchedule.bsedSchedule,
+    { cascade: true }, // Ensures cascading insert/update on TeacherSchedule
+  )
+  teacherSchedules: TeacherSchedule[];
 }

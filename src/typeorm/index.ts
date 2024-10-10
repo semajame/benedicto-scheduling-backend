@@ -1,5 +1,5 @@
 import { User } from 'src/users/models/entities/user.entity';
-import { Teacher } from 'src/teachers/entities/teacher.entity';
+// import { Teacher } from 'src/teachers/entities/teacher.entity';
 
 import { TeacherSchedule } from 'src/teachers/entities/teacher_subjects.entity';
 
@@ -20,7 +20,7 @@ import { CalendarEntity } from 'src/calendar/entities/calendar.entity';
 
 const entities = [
   User,
-  Teacher,
+  // Teacher,
   TeacherSchedule,
 
   //^ IT
@@ -38,7 +38,7 @@ const entities = [
 
 export {
   User,
-  Teacher,
+  // Teacher,
   TeacherSchedule,
   // itsubjectsEntity,
   // itsubjectstwoEntity,

@@ -12,9 +12,9 @@ export class CcsScheduleEntitiy extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
-  // Employee ID from the external API
-  @Column({ type: 'int', nullable: true })
-  employee_id: number | null;
+  // // Employee ID from the external API
+  // @Column({ type: 'int', nullable: true })
+  // employee_id: number | null;
 
   @Column({ type: 'varchar', length: 255 })
   subject_code: string;

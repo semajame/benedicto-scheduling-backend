@@ -10,14 +10,24 @@ import {
   Delete,
 } from '@nestjs/common';
 
+import { Repository } from 'typeorm/repository/Repository';
+import { InjectRepository } from '@nestjs/typeorm';
+
 import { CcsService } from './ccs-schedule.service';
 import { CreateFirstDto } from './dto/create-first.dto';
 import { UpdateFirstDto } from './dto/update-first.dto';
+import { TeacherSchedule } from 'src/teachers/entities/teacher_subjects.entity';
+
 // import { First } from 'src/typeorm';
 
 @Controller('schedule')
 export class CcsController {
-  constructor(private readonly ccsService: CcsService) {}
+  constructor(
+    private readonly ccsService: CcsService,
+
+    @InjectRepository(TeacherSchedule)
+    private teacherScheduleRepository: Repository<TeacherSchedule>,
+  ) {}
 
   @Get('bachelor-of-information-technology')
   async findAll() {
@@ -91,12 +101,19 @@ export class CcsController {
   async create(@Body() createFirstDto: CreateFirstDto) {
     // Create the new schedule
     const newSchedule = await this.ccsService.create(createFirstDto);
-    await this.ccsService.transferSchedules();
+    // await this.ccsService.transferSchedules();
 
     return newSchedule;
   }
   catch(err) {
     console.error('Error executing query:', err);
     throw new HttpException(err.message, HttpStatus.INTERNAL_SERVER_ERROR);
+  }
+
+  @Get('teacher/:teacher')
+  async getTeacherSchedulesByTeacherName(
+    @Param('teacher') teacher: string,
+  ): Promise<TeacherSchedule[]> {
+    return await this.ccsService.getTeacherSchedulesByTeacherName(teacher);
   }
 }

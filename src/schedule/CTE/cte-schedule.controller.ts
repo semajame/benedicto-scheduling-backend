@@ -13,6 +13,7 @@ import {
 import { cteService } from './cte-schedule.service';
 import { CreateFirstDto } from './BSED/dto/create-first.dto';
 import { UpdateFirstDto } from './BSED/dto/update-first.dto';
+import { TeacherSchedule } from 'src/teachers/entities/teacher_subjects.entity';
 // import { First } from 'src/typeorm';
 
 @Controller('schedule')
@@ -78,7 +79,7 @@ export class cteScheduleController {
   async create(@Body() createFirstDto: CreateFirstDto) {
     // Create the new schedule
     const newSchedule = await this.CteService.create(createFirstDto);
-    await this.CteService.transferSchedules();
+    // await this.CteService.transferSchedules();
 
     return newSchedule;
   }
@@ -98,5 +99,12 @@ export class cteScheduleController {
   @Delete('bachelor-of-secondary-education/:id')
   async delete(@Param('id') id: number): Promise<void> {
     await this.CteService.delete(id);
+  }
+
+  @Get('teacher/:teacher')
+  async getTeacherSchedulesByTeacherName(
+    @Param('teacher') teacher: string,
+  ): Promise<TeacherSchedule[]> {
+    return await this.CteService.getTeacherSchedulesByTeacherName(teacher);
   }
 }

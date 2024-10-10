@@ -6,7 +6,7 @@ import entities from './typeorm';
 
 import { UsersModule } from './users/users.module';
 import { AuthModule } from './auth/auth.module';
-import { TeachersModule } from './teachers/teachers.module';
+// import { TeachersModule } from './teachers/teachers.module';
 import { CalendarModule } from './calendar/calendar.module';
 import { ExternalModule } from './external/external.module';
 
@@ -30,7 +30,7 @@ import { cteScheduleModule } from './schedule/CTE/cte-schedule.module';
       database: process.env.DB_NAME,
       //entities: ['dist/**/*.entity.js'],
       entities,
-      synchronize: false,
+      synchronize: true,
     }),
     UsersModule,
     AuthModule,

@@ -7,7 +7,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { CcsScheduleEntitiy } from './entities/ccs-schedule.entity';
 import { Repository } from 'typeorm';
 import { TeacherSchedule } from 'src/teachers/entities/teacher_subjects.entity';
-import { Teacher } from 'src/teachers/entities/teacher.entity';
+// import { Teacher } from 'src/teachers/entities/teacher.entity';
 import { error } from 'console';
 
 @Injectable()
@@ -16,8 +16,8 @@ export class CcsService {
     @InjectRepository(CcsScheduleEntitiy)
     private readonly CcsRepository: Repository<CcsScheduleEntitiy>,
 
-    @InjectRepository(Teacher)
-    private teacherRepository: Repository<Teacher>,
+    // @InjectRepository(Teacher)
+    // private teacherRepository: Repository<Teacher>,
 
     @InjectRepository(TeacherSchedule)
     private teacherScheduleRepository: Repository<TeacherSchedule>,
@@ -28,6 +28,15 @@ export class CcsService {
   // ): Promise<FirstService | undefined> {
   //   return await this.firstRepository.findOne({ where: { subject_code } });
   // }
+
+  //^ GET TEACHER SCHEDULE BY TEACHER NAME
+  async getTeacherSchedulesByTeacherName(
+    teacher: string,
+  ): Promise<TeacherSchedule[]> {
+    return await this.teacherScheduleRepository.find({
+      where: { teacher: teacher },
+    });
+  }
 
   //^ GET
   async findAll(): Promise<CcsScheduleEntitiy[]> {
@@ -58,52 +67,29 @@ export class CcsService {
     });
   }
 
-  async transferSchedules(): Promise<void> {
-    const firstSchedules = await this.CcsRepository.find({
-      where: { transferred: false }, // Only get schedules that haven't been transferred
-    });
-
-    for (const schedule of firstSchedules) {
-      // Find the teacher by name
-      const teacher = await this.teacherRepository.findOne({
-        where: {
-          firstName: schedule.teacher.split(' ')[0],
-          lastName: schedule.teacher.split(' ')[1],
-        }, // Assumes the name is in "First Last" format
-      });
-
-      if (!teacher) {
-        console.warn(
-          `Teacher not found for schedule with subject code ${schedule.subject_code}`,
-        );
-        error; // Skip this schedule if the teacher is not found
-      }
-
-      const teacherSchedule = new TeacherSchedule();
-      // teacherSchedule.teacher = teacher; // Assuming teacher is a Teacher entity
-      teacherSchedule.subject_code = schedule.subject_code;
-      teacherSchedule.subject = schedule.subject;
-      teacherSchedule.units = schedule.units;
-      teacherSchedule.room = schedule.room;
-      teacherSchedule.start = schedule.start;
-      teacherSchedule.end = schedule.end;
-      teacherSchedule.day = schedule.day;
-      teacherSchedule.transferId = schedule.id;
-
-      try {
-        await this.teacherScheduleRepository.save(teacherSchedule);
-        schedule.transferred = true;
-        await this.CcsRepository.save(schedule);
-      } catch (error) {
-        console.error('Error saving teacher schedule:', error);
-      }
-    }
-  }
-
   //^ POST
   async create(createFirstDto: CreateFirstDto): Promise<CcsScheduleEntitiy> {
+    // Create and save the new CcsSchedule entity
     const newSchedule = this.CcsRepository.create({ ...createFirstDto });
-    return await this.CcsRepository.save(newSchedule);
+    const savedSchedule = await this.CcsRepository.save(newSchedule);
+
+    // Create a corresponding TeacherSchedule entity
+    const newTeacherSchedule = this.teacherScheduleRepository.create({
+      teacher: createFirstDto.teacher, // Use teacher's name from createFirstDto
+      subject_code: createFirstDto.subject_code,
+      subject: createFirstDto.subject,
+      units: createFirstDto.units,
+      room: createFirstDto.room,
+      start: createFirstDto.start,
+      end: createFirstDto.end,
+      day: createFirstDto.day,
+      transferIdCcs: savedSchedule.id, // Link with saved CcsSchedule
+    });
+
+    // Save the TeacherSchedule entity
+    await this.teacherScheduleRepository.save(newTeacherSchedule);
+
+    return savedSchedule; // Return the newly created CcsSchedule
   }
 
   //^ PUT
@@ -123,31 +109,31 @@ export class CcsService {
     await this.CcsRepository.save(existingFirst);
 
     // Update related TeacherSchedule entities
-    // if (
-    //   existingFirst.teacherSchedules &&
-    //   existingFirst.teacherSchedules.length > 0
-    // ) {
-    //   for (const teacherSchedule of existingFirst.teacherSchedules) {
-    //     // Update the related TeacherSchedule fields
-    //     teacherSchedule.subject_code = existingFirst.subject_code;
-    //     teacherSchedule.subject = existingFirst.subject;
-    //     teacherSchedule.units = existingFirst.units;
-    //     teacherSchedule.room = existingFirst.room;
-    //     teacherSchedule.start = existingFirst.start;
-    //     teacherSchedule.end = existingFirst.end;
-    //     teacherSchedule.day = existingFirst.day;
+    if (
+      existingFirst.teacherSchedules &&
+      existingFirst.teacherSchedules.length > 0
+    ) {
+      for (const teacherSchedule of existingFirst.teacherSchedules) {
+        // Update the related TeacherSchedule fields
+        teacherSchedule.subject_code = existingFirst.subject_code;
+        teacherSchedule.subject = existingFirst.subject;
+        teacherSchedule.units = existingFirst.units;
+        teacherSchedule.room = existingFirst.room;
+        teacherSchedule.start = existingFirst.start;
+        teacherSchedule.end = existingFirst.end;
+        teacherSchedule.day = existingFirst.day;
 
-    //     // Save updated TeacherSchedule entity
-    //     await this.teacherScheduleRepository.save(teacherSchedule);
-    //   }
-    // }
+        // Save updated TeacherSchedule entity
+        await this.teacherScheduleRepository.save(teacherSchedule);
+      }
+    }
   }
 
   //^ DELETE
   async delete(id: number): Promise<void> {
     // First, delete related TeacherSchedule entries
     const deleteRelatedResult = await this.teacherScheduleRepository.delete({
-      transferId: id, // Ensure you use the correct column to match related schedules
+      transferIdCcs: id, // Ensure you use the correct column to match related schedules
     });
 
     if (deleteRelatedResult.affected === 0) {

@@ -3,18 +3,12 @@ import { HttpException, HttpStatus, Injectable, Logger } from '@nestjs/common';
 import { catchError, lastValueFrom, map } from 'rxjs';
 import { Cron } from '@nestjs/schedule';
 
-interface Teacher {
-  employee_id: number;
-  firstName: string;
-  lastName: string;
-  // Add other properties as needed
-}
-
 @Injectable()
 export class ExternalService {
   constructor(private readonly httpService: HttpService) {}
   private readonly logger = new Logger(ExternalService.name);
 
+  //^ GET DATA TEACHERS
   async getDatasByCampusAndDepartment(
     campusName: string,
     departmentName: string,
@@ -46,6 +40,7 @@ export class ExternalService {
     return filteredData;
   }
 
+  //^ GET TEACHER BY ID
   async getTeacherByEmployeeId(employee_id: number) {
     const url = process.env.EXTERNAL_ENDPOINT; // Make sure the URL is correct and set in your .env file
     try {

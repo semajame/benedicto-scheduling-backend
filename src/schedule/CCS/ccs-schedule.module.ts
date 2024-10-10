@@ -4,12 +4,10 @@ import { CcsController } from './ccs-schedule.controller';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { CcsScheduleEntitiy } from 'src/typeorm';
 import { TeacherSchedule } from 'src/teachers/entities/teacher_subjects.entity';
-import { Teacher } from 'src/teachers/entities/teacher.entity';
+// import { Teacher } from 'src/teachers/entities/teacher.entity';
 
 @Module({
-  imports: [
-    TypeOrmModule.forFeature([CcsScheduleEntitiy, TeacherSchedule, Teacher]),
-  ],
+  imports: [TypeOrmModule.forFeature([CcsScheduleEntitiy, TeacherSchedule])],
   controllers: [CcsController],
   providers: [CcsService],
   exports: [CcsService, TypeOrmModule],

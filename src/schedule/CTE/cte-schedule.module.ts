@@ -4,12 +4,10 @@ import { cteScheduleController } from './cte-schedule.controller';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { bsedScheduleEntity } from './BSED/entities/bsed-schedule.entity';
 import { TeacherSchedule } from 'src/teachers/entities/teacher_subjects.entity';
-import { Teacher } from 'src/teachers/entities/teacher.entity';
+// import { Teacher } from 'src/teachers/entities/teacher.entity';
 
 @Module({
-  imports: [
-    TypeOrmModule.forFeature([bsedScheduleEntity, TeacherSchedule, Teacher]),
-  ],
+  imports: [TypeOrmModule.forFeature([bsedScheduleEntity, TeacherSchedule])],
   controllers: [cteScheduleController],
   providers: [cteService],
   exports: [cteService, TypeOrmModule],
