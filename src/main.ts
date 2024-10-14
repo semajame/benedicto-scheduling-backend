@@ -8,6 +8,11 @@ async function bootstrap() {
 
   // app.setGlobalPrefix('bcscheduling');
 
+  app.enableCors({
+    origin: 'https://bc-scheduling-1024.vercel.app/', // Replace with your frontend's origin
+    credentials: true, // Allow credentials (e.g., cookies) to be sent
+  });
+
   // app.enableCors({
   //   origin: 'http://localhost:4200', // Replace with your frontend's origin
   //   credentials: true, // Allow credentials (e.g., cookies) to be sent
