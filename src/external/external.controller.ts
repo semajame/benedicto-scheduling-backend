@@ -8,6 +8,12 @@ export class Teacher {
   // Other fields
 }
 
+export class Subject {
+  courseCode: string;
+  courseDescription: string;
+  unit: number;
+}
+
 @Controller('external')
 export class ExternalController {
   constructor(private readonly externalService: ExternalService) {}
@@ -16,6 +22,7 @@ export class ExternalController {
    * GET datas by departmentName or departmentCode from test Endpoint
    * @returns filtered datas
    */
+
   @Get('datas/campus/:campusName/department/:departmentName')
   async getDatasByCampusAndDepartment(
     @Param('campusName') campusName: string,
@@ -29,10 +36,21 @@ export class ExternalController {
     return filteredData;
   }
 
+  //^ GET TEACHER
   @Get('datas/teacher/:id')
   async getTeacherByEmployeeId(
     @Param('id') employee_id: number,
   ): Promise<Teacher> {
     return this.externalService.getTeacherByEmployeeId(employee_id);
+  }
+
+  //^ GET SUBJECTS BY DEPARTMENT
+  @Get('datas/subjects/:departmentCodeForClass')
+  async getSubjectsByDepartmentCode(
+    @Param('departmentCodeForClass') departmentCodeForClass: string,
+  ): Promise<Subject[]> {
+    return this.externalService.getSubjectsByDepartmentCode(
+      departmentCodeForClass,
+    );
   }
 }

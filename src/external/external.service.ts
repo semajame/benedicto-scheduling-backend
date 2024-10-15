@@ -97,6 +97,31 @@ export class ExternalService {
     }
   }
 
+  //^ GET SUBJECTS BY DEPARTMENT CODE
+  async getSubjectsByDepartmentCode(departmentCodeForClass: string) {
+    const url = process.env.EXTERNAL_SUBJECTS; // Ensure this is set in your .env file
+    const request = this.httpService.get(url).pipe(
+      map((res) => res.data),
+      catchError((err) => {
+        err.config.auth = undefined; // Hide Auth Details
+        this.logger.error(err);
+        throw new HttpException(err, HttpStatus.BAD_REQUEST);
+      }),
+    );
+
+    const extResponse = await lastValueFrom(request);
+    const dataList =
+      extResponse['Results'] || extResponse['data'] || extResponse || [];
+
+    // Filter by departmentCodeForClass
+    const filteredSubjects = dataList.filter(
+      (item) => item.departmentCodeForClass === departmentCodeForClass,
+    );
+
+    console.log('Filtered Subjects:', filteredSubjects);
+    return filteredSubjects;
+  }
+
   @Cron('45 * * * * *')
   handleCron() {
     this.logger.debug('Called when the current second is 45');

@@ -1,4 +1,4 @@
-INSERT INTO `bsit1`(`subject_code`, `subject`, `units`, `pre_req`, `year`) VALUES 
+INSERT INTO `bsit`(`subject_code`, `subject`, `units`, `pre_req`, `year`) VALUES 
 ('Fil1', 'Retorika ', 3, NULL, 1),
 ('Fil2', 'Panitikan ng Pilipinas', 3, 'Fil 1', 1),
 
