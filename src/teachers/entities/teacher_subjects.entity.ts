@@ -6,6 +6,7 @@ import {
   ManyToOne,
   JoinColumn,
 } from 'typeorm';
+
 import { CcsScheduleEntitiy } from 'src/schedule/CCS/entities/ccs-schedule.entity';
 import { bsedScheduleEntity } from 'src/typeorm';
 import { beedScheduleEntity } from 'src/schedule/CTE/BSELEM/entities/beed-schedule.entity';
@@ -29,38 +30,39 @@ export class TeacherSchedule extends BaseEntity {
   transferIdBeed: number; // Foreign key for BeedScheduleEntity
 
   @Column({ type: 'int', nullable: true })
-  transferIdBsme: number; // Foreign key for BeedScheduleEntity
+  transferIdBsme: number; // Foreign key for BsmeScheduleEntity
+
+  // Many-to-one relationships mapped to corresponding foreign key columns
+  @ManyToOne(
+    () => CcsScheduleEntitiy,
+    (ccsSchedule) => ccsSchedule.teacherSchedules,
+    { eager: true },
+  )
+  @JoinColumn({ name: 'transferIdCcs' }) // Use transferIdCcs for CCS schedules
+  ccsSchedule: CcsScheduleEntitiy;
 
   @ManyToOne(
     () => bsedScheduleEntity,
     (bsedSchedule) => bsedSchedule.teacherSchedules,
     { eager: true },
   )
+  @JoinColumn({ name: 'transferIdBsed' }) // Use transferIdBsed for BSED schedules
+  bsedSchedule: bsedScheduleEntity;
+
   @ManyToOne(
     () => beedScheduleEntity,
     (beedSchedule) => beedSchedule.teacherSchedules,
     { eager: true },
   )
-  @ManyToOne(
-    () => CcsScheduleEntitiy,
-    (ccsSchedule) => ccsSchedule.teacherSchedules,
-    { eager: true },
-  )
+  @JoinColumn({ name: 'transferIdBeed' }) // Use transferIdBeed for BEED schedules
+  beedSchedule: beedScheduleEntity;
+
   @ManyToOne(
     () => bsmeScheduleEntity,
     (bsmeSchedule) => bsmeSchedule.teacherSchedules,
     { eager: true },
   )
-  @JoinColumn({ name: 'transferIdCcs' }) // Use transferIdCcs for CCS schedules
-  ccsSchedule: CcsScheduleEntitiy;
-
-  @JoinColumn({ name: 'transferIdBsed' }) // Use transferIdBsed for BSED schedules
-  bsedSchedule: bsedScheduleEntity;
-
-  @JoinColumn({ name: 'transferIdBsed' }) // Use transferIdBsed for BEED schedules
-  beedSchedule: beedScheduleEntity;
-
-  @JoinColumn({ name: 'transferIdBsme' }) // Use transferIdBsed for BEED schedules
+  @JoinColumn({ name: 'transferIdBsme' }) // Use transferIdBsme for BSME schedules
   bsmeSchedule: bsmeScheduleEntity;
 
   @Column({ type: 'varchar', length: 255 })

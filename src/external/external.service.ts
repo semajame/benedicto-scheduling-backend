@@ -9,6 +9,7 @@ export class ExternalService {
   private readonly logger = new Logger(ExternalService.name);
   private quoteApiUrl = 'https://zenquotes.io/api/random';
 
+  //^ QUOTE
   async getQuoteOfTheDay(): Promise<any> {
     try {
       const response = await lastValueFrom(
