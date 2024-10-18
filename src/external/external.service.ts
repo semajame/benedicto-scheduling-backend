@@ -7,6 +7,21 @@ import { Cron } from '@nestjs/schedule';
 export class ExternalService {
   constructor(private readonly httpService: HttpService) {}
   private readonly logger = new Logger(ExternalService.name);
+  private quoteApiUrl = 'https://zenquotes.io/api/random';
+
+  async getQuoteOfTheDay(): Promise<any> {
+    try {
+      const response = await lastValueFrom(
+        this.httpService.get(this.quoteApiUrl),
+      );
+      return response.data;
+    } catch (error) {
+      throw new HttpException(
+        'Error fetching the quote of the day',
+        HttpStatus.INTERNAL_SERVER_ERROR,
+      );
+    }
+  }
 
   //^ GET DATA TEACHERS
   async getDatasByCampusAndDepartment(

@@ -1,4 +1,4 @@
-INSERT INTO `benedict-scheduling-test`.`user`
+INSERT INTO `bc-scheduling`.`user`
 (`id`,
 `first_name`,
 `last_name`,

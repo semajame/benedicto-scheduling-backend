@@ -13,6 +13,11 @@ import { itSubjectsEntity } from 'src/subjects/IT/entity/ccs-subjects.entity';
 import { bsedSubjectsEntity } from 'src/subjects/CTE/entity/bsed-subjects.entity';
 import { beedSubjectsEntity } from 'src/subjects/CTE/entity/beed-subjects.entity';
 import { bsedScheduleEntity } from 'src/schedule/CTE/BSED/entities/bsed-schedule.entity';
+import { beedScheduleEntity } from 'src/schedule/CTE/BSELEM/entities/beed-schedule.entity';
+
+//^ COE
+
+import { bsmeScheduleEntity } from 'src/schedule/COE/entities/bsme-schedule.entity';
 
 //^ CALENDAR
 
@@ -31,6 +36,8 @@ const entities = [
   bsedSubjectsEntity,
   beedSubjectsEntity,
   bsedScheduleEntity,
+  beedScheduleEntity,
+  bsmeScheduleEntity,
 
   //^ CALENDAR
   CalendarEntity,
@@ -48,6 +55,8 @@ export {
   bsedSubjectsEntity,
   beedSubjectsEntity,
   bsedScheduleEntity,
+  beedScheduleEntity,
+  bsmeScheduleEntity,
   CalendarEntity,
 };
 

@@ -1,4 +1,4 @@
-import { Controller, Get, HttpStatus, Param, Res } from '@nestjs/common';
+import { Controller, Get, Param } from '@nestjs/common';
 import { ExternalService } from './external.service';
 
 export class Teacher {
@@ -22,6 +22,11 @@ export class ExternalController {
    * GET datas by departmentName or departmentCode from test Endpoint
    * @returns filtered datas
    */
+
+  @Get('quote/today')
+  async getQuoteOfTheDay() {
+    return await this.externalService.getQuoteOfTheDay();
+  }
 
   @Get('datas/campus/:campusName/department/:departmentName')
   async getDatasByCampusAndDepartment(

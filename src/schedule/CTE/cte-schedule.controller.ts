@@ -31,10 +31,32 @@ export class cteScheduleController {
     }
   }
 
+  @Get('bachelor-of-elementary-education')
+  async findAllBeed() {
+    try {
+      const schedules = await this.CteService.findAllBeed();
+      return schedules;
+    } catch (err) {
+      console.error('Error executing query:', err);
+      throw new HttpException(err.message, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+  }
+
   @Get('bachelor-of-secondary-education/1st-year')
   async findFirstYear() {
     try {
       const schedules = await this.CteService.findFirstYear();
+      return schedules;
+    } catch (err) {
+      console.error('Error executing query:', err);
+      throw new HttpException(err.message, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+  }
+
+  @Get('bachelor-of-elementary-education/1st-year')
+  async findFirstYearBeed() {
+    try {
+      const schedules = await this.CteService.findFirstYearBeed();
       return schedules;
     } catch (err) {
       console.error('Error executing query:', err);
@@ -53,6 +75,17 @@ export class cteScheduleController {
     }
   }
 
+  @Get('bachelor-of-elementary-education/2nd-year')
+  async findSecondYearBeed() {
+    try {
+      const schedules = await this.CteService.findSecondYearBeed();
+      return schedules;
+    } catch (err) {
+      console.error('Error executing query:', err);
+      throw new HttpException(err.message, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+  }
+
   @Get('bachelor-of-secondary-education/3rd-year')
   async findThirdYear() {
     try {
@@ -64,10 +97,32 @@ export class cteScheduleController {
     }
   }
 
+  @Get('bachelor-of-elementary-education/3rd-year')
+  async findThirdYearBeed() {
+    try {
+      const schedules = await this.CteService.findThirdYearBeed();
+      return schedules;
+    } catch (err) {
+      console.error('Error executing query:', err);
+      throw new HttpException(err.message, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+  }
+
   @Get('bachelor-of-secondary-education/4th-year')
   async findFourthYear() {
     try {
       const schedules = await this.CteService.findFourthYear();
+      return schedules;
+    } catch (err) {
+      console.error('Error executing query:', err);
+      throw new HttpException(err.message, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+  }
+
+  @Get('bachelor-of-elementary-education/4th-year')
+  async findFourthYearBeed() {
+    try {
+      const schedules = await this.CteService.findFourthYearBeed();
       return schedules;
     } catch (err) {
       console.error('Error executing query:', err);
@@ -88,6 +143,15 @@ export class cteScheduleController {
     throw new HttpException(err.message, HttpStatus.INTERNAL_SERVER_ERROR);
   }
 
+  @Post('bachelor-of-elementary-education')
+  async createBeed(@Body() createFirstDto: CreateFirstDto) {
+    // Create the new schedule
+    const newSchedule = await this.CteService.createBeed(createFirstDto);
+    // await this.CteService.transferSchedules();
+
+    return newSchedule;
+  }
+
   @Put('bachelor-of-secondary-education/:id')
   async update(
     @Param('id') id: number,
@@ -96,9 +160,22 @@ export class cteScheduleController {
     await this.CteService.update(id, updateFirstDto);
   }
 
+  @Put('bachelor-of-elementary-education/:id')
+  async updateBeed(
+    @Param('id') id: number,
+    @Body() updateFirstDto: UpdateFirstDto,
+  ): Promise<void> {
+    await this.CteService.updateBeed(id, updateFirstDto);
+  }
+
   @Delete('bachelor-of-secondary-education/:id')
   async delete(@Param('id') id: number): Promise<void> {
     await this.CteService.delete(id);
+  }
+
+  @Delete('bachelor-of-elementary-education/:id')
+  async deleteBeed(@Param('id') id: number): Promise<void> {
+    await this.CteService.deleteBeed(id);
   }
 
   @Get('teacher/:teacher')
