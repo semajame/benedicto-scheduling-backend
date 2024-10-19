@@ -10,21 +10,21 @@ import {
   Delete,
 } from '@nestjs/common';
 
-import { coeService } from './coe-schedule.service';
+import { cbmService } from './cbm-schedule.service';
 import { CreateFirstDto } from './dto/create-first.dto';
 import { UpdateFirstDto } from './dto/update-first.dto';
 import { TeacherSchedule } from 'src/teachers/entities/teacher_subjects.entity';
 // import { First } from 'src/typeorm';
 
 @Controller('schedule')
-export class coeScheduleController {
-  constructor(private readonly CoeService: coeService) {}
+export class cbmScheduleController {
+  constructor(private readonly CbmService: cbmService) {}
 
   //^ GET
-  @Get('mechanical-engineering')
+  @Get('accounting')
   async findAll() {
     try {
-      const schedules = await this.CoeService.findAll();
+      const schedules = await this.CbmService.findAllBsa();
       return schedules;
     } catch (err) {
       console.error('Error executing query:', err);
@@ -32,10 +32,10 @@ export class coeScheduleController {
     }
   }
 
-  @Get('civil-engineering')
-  async findAllBsce() {
+  @Get('hospitality-management')
+  async findAllBshm() {
     try {
-      const schedules = await this.CoeService.findAllBsce();
+      const schedules = await this.CbmService.findAllBshm();
       return schedules;
     } catch (err) {
       console.error('Error executing query:', err);
@@ -43,10 +43,10 @@ export class coeScheduleController {
     }
   }
 
-  @Get('industrial-engineering')
-  async findAllBsie() {
+  @Get('human-resource-management')
+  async findAllBshrm() {
     try {
-      const schedules = await this.CoeService.findAllBsie();
+      const schedules = await this.CbmService.findAllBshrm();
       return schedules;
     } catch (err) {
       console.error('Error executing query:', err);
@@ -54,10 +54,10 @@ export class coeScheduleController {
     }
   }
 
-  @Get('electrical-engineering')
-  async findAllBsee() {
+  @Get('marketing-management')
+  async findAllBsmm() {
     try {
-      const schedules = await this.CoeService.findAllBsee();
+      const schedules = await this.CbmService.findAllBsmm();
       return schedules;
     } catch (err) {
       console.error('Error executing query:', err);
@@ -65,10 +65,10 @@ export class coeScheduleController {
     }
   }
 
-  @Get('mechanical-engineering/1st-year')
-  async findFirstYear() {
+  @Get('accounting/1st-year')
+  async findFirstYearBsa() {
     try {
-      const schedules = await this.CoeService.findFirstYear();
+      const schedules = await this.CbmService.findFirstYearBsa();
       return schedules;
     } catch (err) {
       console.error('Error executing query:', err);
@@ -76,10 +76,10 @@ export class coeScheduleController {
     }
   }
 
-  @Get('mechanical-engineering/2nd-year')
-  async findSecondYear() {
+  @Get('accounting/2nd-year')
+  async findSecondYearBsa() {
     try {
-      const schedules = await this.CoeService.findSecondYear();
+      const schedules = await this.CbmService.findSecondYearBsa();
       return schedules;
     } catch (err) {
       console.error('Error executing query:', err);
@@ -87,10 +87,10 @@ export class coeScheduleController {
     }
   }
 
-  @Get('mechanical-engineering/3rd-year')
-  async findThirdYear() {
+  @Get('accounting/3rd-year')
+  async findThirdYearBsa() {
     try {
-      const schedules = await this.CoeService.findThirdYear();
+      const schedules = await this.CbmService.findThirdYearBsa();
       return schedules;
     } catch (err) {
       console.error('Error executing query:', err);
@@ -98,10 +98,10 @@ export class coeScheduleController {
     }
   }
 
-  @Get('mechanical-engineering/4th-year')
-  async findFourthYear() {
+  @Get('accounting/4th-year')
+  async findFourthYearBsa() {
     try {
-      const schedules = await this.CoeService.findFourthYear();
+      const schedules = await this.CbmService.findFourthYearBsa();
       return schedules;
     } catch (err) {
       console.error('Error executing query:', err);
@@ -109,10 +109,10 @@ export class coeScheduleController {
     }
   }
 
-  @Get('civil-engineering/1st-year')
-  async findFirstYearBsce() {
+  @Get('hospitality-management/1st-year')
+  async findFirstYearBshm() {
     try {
-      const schedules = await this.CoeService.findFirstYearBsce();
+      const schedules = await this.CbmService.findFirstYearBshm();
       return schedules;
     } catch (err) {
       console.error('Error executing query:', err);
@@ -120,10 +120,10 @@ export class coeScheduleController {
     }
   }
 
-  @Get('civil-engineering/2nd-year')
-  async findSecondYearBsce() {
+  @Get('hospitality-management/2nd-year')
+  async findSecondYearBshm() {
     try {
-      const schedules = await this.CoeService.findSecondYearBsce();
+      const schedules = await this.CbmService.findSecondYearBshm();
       return schedules;
     } catch (err) {
       console.error('Error executing query:', err);
@@ -131,10 +131,10 @@ export class coeScheduleController {
     }
   }
 
-  @Get('civil-engineering/3rd-year')
-  async findThirdYearBsce() {
+  @Get('hospitality-management/3rd-year')
+  async findThirdYearBshm() {
     try {
-      const schedules = await this.CoeService.findThirdYearBsce();
+      const schedules = await this.CbmService.findThirdYearBshm();
       return schedules;
     } catch (err) {
       console.error('Error executing query:', err);
@@ -142,10 +142,10 @@ export class coeScheduleController {
     }
   }
 
-  @Get('civil-engineering/4th-year')
-  async findFourthYearBsce() {
+  @Get('hospitality-management/4th-year')
+  async findFourthYearBshm() {
     try {
-      const schedules = await this.CoeService.findFourthYearBsce();
+      const schedules = await this.CbmService.findFourthYearBshm();
       return schedules;
     } catch (err) {
       console.error('Error executing query:', err);
@@ -153,10 +153,10 @@ export class coeScheduleController {
     }
   }
 
-  @Get('industrial-engineering/1st-year')
-  async findFirstYearBsie() {
+  @Get('human-resource-management/1st-year')
+  async findFirstYearBshrm() {
     try {
-      const schedules = await this.CoeService.findFirstYearBsie();
+      const schedules = await this.CbmService.findFirstYearBshrm();
       return schedules;
     } catch (err) {
       console.error('Error executing query:', err);
@@ -164,10 +164,10 @@ export class coeScheduleController {
     }
   }
 
-  @Get('industrial-engineering/2nd-year')
-  async findSecondYearBsie() {
+  @Get('human-resource-management/2nd-year')
+  async findSecondYearBshrm() {
     try {
-      const schedules = await this.CoeService.findSecondYearBsie();
+      const schedules = await this.CbmService.findSecondYearBshrm();
       return schedules;
     } catch (err) {
       console.error('Error executing query:', err);
@@ -175,10 +175,10 @@ export class coeScheduleController {
     }
   }
 
-  @Get('industrial-engineering/3rd-year')
-  async findThirdYearBsie() {
+  @Get('human-resource-management/3rd-year')
+  async findThirdYearBshrm() {
     try {
-      const schedules = await this.CoeService.findThirdYearBsie();
+      const schedules = await this.CbmService.findThirdYearBshrm();
       return schedules;
     } catch (err) {
       console.error('Error executing query:', err);
@@ -186,10 +186,10 @@ export class coeScheduleController {
     }
   }
 
-  @Get('industrial-engineering/4th-year')
-  async findFourthYearBsie() {
+  @Get('human-resource-management/4th-year')
+  async findFourthYearBshrm() {
     try {
-      const schedules = await this.CoeService.findFourthYearBsie();
+      const schedules = await this.CbmService.findFourthYearBshrm();
       return schedules;
     } catch (err) {
       console.error('Error executing query:', err);
@@ -197,10 +197,10 @@ export class coeScheduleController {
     }
   }
 
-  @Get('electrical-engineering/1st-year')
-  async findFirstYearBsee() {
+  @Get('marketing-management/1st-year')
+  async findFirstYearBsmm() {
     try {
-      const schedules = await this.CoeService.findFirstYearBsee();
+      const schedules = await this.CbmService.findFirstYearBsmm();
       return schedules;
     } catch (err) {
       console.error('Error executing query:', err);
@@ -208,10 +208,10 @@ export class coeScheduleController {
     }
   }
 
-  @Get('electrical-engineering/2nd-year')
-  async findSecondYearBsee() {
+  @Get('marketing-management/2nd-year')
+  async findSecondYearBsmm() {
     try {
-      const schedules = await this.CoeService.findSecondYearBsee();
+      const schedules = await this.CbmService.findSecondYearBsmm();
       return schedules;
     } catch (err) {
       console.error('Error executing query:', err);
@@ -219,10 +219,10 @@ export class coeScheduleController {
     }
   }
 
-  @Get('electrical-engineering/3rd-year')
-  async findThirdYearBsee() {
+  @Get('marketing-management/3rd-year')
+  async findThirdYearBsmm() {
     try {
-      const schedules = await this.CoeService.findThirdYearBsee();
+      const schedules = await this.CbmService.findThirdYearBsmm();
       return schedules;
     } catch (err) {
       console.error('Error executing query:', err);
@@ -230,10 +230,10 @@ export class coeScheduleController {
     }
   }
 
-  @Get('electrical-engineering/4th-year')
-  async findFourthYearBsee() {
+  @Get('marketing-management/4th-year')
+  async findFourthYearBsmm() {
     try {
-      const schedules = await this.CoeService.findFourthYearBsee();
+      const schedules = await this.CbmService.findFourthYearBsmm();
       return schedules;
     } catch (err) {
       console.error('Error executing query:', err);
@@ -242,38 +242,38 @@ export class coeScheduleController {
   }
 
   //^ POST
-  @Post('mechanical-engineering')
+  @Post('accounting')
   async create(@Body() createFirstDto: CreateFirstDto) {
     // Create the new schedule
-    const newSchedule = await this.CoeService.create(createFirstDto);
-    // await this.CoeService.transferSchedules();
+    const newSchedule = await this.CbmService.create(createFirstDto);
+    // await this.CbmService.transferSchedules();
 
     return newSchedule;
   }
 
-  @Post('civil-engineering')
-  async createbsce(@Body() createFirstDto: CreateFirstDto) {
+  @Post('hospitality-management')
+  async createBshm(@Body() createFirstDto: CreateFirstDto) {
     // Create the new schedule
-    const newSchedule = await this.CoeService.createbsce(createFirstDto);
-    // await this.CoeService.transferSchedules();
+    const newSchedule = await this.CbmService.createbshm(createFirstDto);
+    // await this.CbmService.transferSchedules();
 
     return newSchedule;
   }
 
-  @Post('electrical-engineering')
-  async createbsee(@Body() createFirstDto: CreateFirstDto) {
+  @Post('marketing-management')
+  async createBsmm(@Body() createFirstDto: CreateFirstDto) {
     // Create the new schedule
-    const newSchedule = await this.CoeService.createbsee(createFirstDto);
-    // await this.CoeService.transferSchedules();
+    const newSchedule = await this.CbmService.createbsmm(createFirstDto);
+    // await this.CbmService.transferSchedules();
 
     return newSchedule;
   }
 
-  @Post('industrial-engineering')
-  async createbsie(@Body() createFirstDto: CreateFirstDto) {
+  @Post('human-resource-management')
+  async createBshrm(@Body() createFirstDto: CreateFirstDto) {
     // Create the new schedule
-    const newSchedule = await this.CoeService.createbsie(createFirstDto);
-    // await this.CoeService.transferSchedules();
+    const newSchedule = await this.CbmService.createbshrm(createFirstDto);
+    // await this.CbmService.transferSchedules();
 
     return newSchedule;
   }
@@ -284,63 +284,63 @@ export class coeScheduleController {
   }
 
   //^ PUT
-  @Put('mechanical-engineering/:id')
+  @Put('accounting/:id')
   async update(
     @Param('id') id: number,
     @Body() updateFirstDto: UpdateFirstDto,
   ): Promise<void> {
-    await this.CoeService.update(id, updateFirstDto);
+    await this.CbmService.update(id, updateFirstDto);
   }
 
-  @Put('civil-engineering/:id')
-  async updatebsce(
+  @Put('hospitality-management/:id')
+  async updateBshm(
     @Param('id') id: number,
     @Body() updateFirstDto: UpdateFirstDto,
   ): Promise<void> {
-    await this.CoeService.updatebsce(id, updateFirstDto);
+    await this.CbmService.updatebshm(id, updateFirstDto);
   }
 
-  @Put('electrical-engineering/:id')
-  async updatebsee(
+  @Put('marketing-management/:id')
+  async updateBsmm(
     @Param('id') id: number,
     @Body() updateFirstDto: UpdateFirstDto,
   ): Promise<void> {
-    await this.CoeService.updatebsee(id, updateFirstDto);
+    await this.CbmService.updatebsmm(id, updateFirstDto);
   }
 
-  @Put('industrial-engineering/:id')
-  async updatebsie(
+  @Put('human-resource-management/:id')
+  async updateBshrm(
     @Param('id') id: number,
     @Body() updateFirstDto: UpdateFirstDto,
   ): Promise<void> {
-    await this.CoeService.updatebsie(id, updateFirstDto);
+    await this.CbmService.updatebshrm(id, updateFirstDto);
   }
 
   //^ DELETE
-  @Delete('mechanical-engineering/:id')
+  @Delete('accounting/:id')
   async delete(@Param('id') id: number): Promise<void> {
-    await this.CoeService.delete(id);
+    await this.CbmService.delete(id);
   }
 
-  @Delete('civil-engineering/:id')
-  async deletebsce(@Param('id') id: number): Promise<void> {
-    await this.CoeService.deletebsce(id);
+  @Delete('hospitality-management/:id')
+  async deleteBshm(@Param('id') id: number): Promise<void> {
+    await this.CbmService.deletebshm(id);
   }
 
-  @Delete('electrical-engineering/:id')
-  async deletebsee(@Param('id') id: number): Promise<void> {
-    await this.CoeService.deletebsee(id);
+  @Delete('marketing-management/:id')
+  async deleteBsmm(@Param('id') id: number): Promise<void> {
+    await this.CbmService.deletebsmm(id);
   }
 
-  @Delete('industrial-engineering/:id')
-  async deletebsie(@Param('id') id: number): Promise<void> {
-    await this.CoeService.deletebsie(id);
+  @Delete('human-resource-management/:id')
+  async deleteBshrm(@Param('id') id: number): Promise<void> {
+    await this.CbmService.deletebshrm(id);
   }
 
   @Get('teacher/:teacher')
   async getTeacherSchedulesByTeacherName(
     @Param('teacher') teacher: string,
   ): Promise<TeacherSchedule[]> {
-    return await this.CoeService.getTeacherSchedulesByTeacherName(teacher);
+    return await this.CbmService.getTeacherSchedulesByTeacherName(teacher);
   }
 }

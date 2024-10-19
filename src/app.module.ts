@@ -11,10 +11,9 @@ import { CalendarModule } from './calendar/calendar.module';
 import { ExternalModule } from './external/external.module';
 
 import { CcsModule } from './schedule/CCS/ccs-schedule.module';
-import { itsubjectsModule } from './subjects/IT/ccs-subjects.module';
-
-import { cteSubjectsModule } from './subjects/CTE/cte-subjects.module';
+import { coeScheduleModule } from './schedule/COE/coe-schedule.module';
 import { cteScheduleModule } from './schedule/CTE/cte-schedule.module';
+import { cbmScheduleModule } from './schedule/CBM/cbm-schedule.module';
 
 @Module({
   imports: [
@@ -35,11 +34,12 @@ import { cteScheduleModule } from './schedule/CTE/cte-schedule.module';
     UsersModule,
     AuthModule,
     // TeachersModule,
-    itsubjectsModule,
+
     CalendarModule,
-    cteSubjectsModule,
+    coeScheduleModule,
     cteScheduleModule,
     CcsModule,
+    cbmScheduleModule,
     ExternalModule,
   ],
   controllers: [],

@@ -7,7 +7,7 @@ import { Cron } from '@nestjs/schedule';
 export class ExternalService {
   constructor(private readonly httpService: HttpService) {}
   private readonly logger = new Logger(ExternalService.name);
-  private quoteApiUrl = 'https://zenquotes.io/api/random';
+  private quoteApiUrl = 'https://zenquotes.io/api/today';
 
   //^ QUOTE
   async getQuoteOfTheDay(): Promise<any> {

@@ -4,29 +4,29 @@ import { UpdateFirstDto } from './dto/update-first.dto';
 
 import { InjectRepository } from '@nestjs/typeorm';
 
-import { bsmeScheduleEntity } from 'src/typeorm';
-import { bsceScheduleEntity } from 'src/typeorm';
-import { bseeScheduleEntity } from 'src/typeorm';
-import { bsieScheduleEntity } from 'src/typeorm';
+import { bsaScheduleEntity } from './entities/bsa-schedule.entity';
+import { bshrmScheduleEntity } from './entities/bshrm-schedule.entity';
+import { bshmScheduleEntity } from './entities/bshm-schedule.entity';
+import { bsmmScheduleEntity } from './entities/bsmm-schedule.entity';
 
 import { Repository } from 'typeorm';
 import { TeacherSchedule } from 'src/teachers/entities/teacher_subjects.entity';
 // import { Teacher } from 'src/teachers/entities/teacher.entity';
 
 @Injectable()
-export class coeService {
+export class cbmService {
   constructor(
-    @InjectRepository(bsmeScheduleEntity)
-    private readonly bsmeScheduleRepository: Repository<bsmeScheduleEntity>,
+    @InjectRepository(bsaScheduleEntity)
+    private readonly bsaScheduleRepository: Repository<bsaScheduleEntity>,
 
-    @InjectRepository(bsceScheduleEntity)
-    private readonly bsceScheduleRepository: Repository<bsceScheduleEntity>,
+    @InjectRepository(bshrmScheduleEntity)
+    private readonly bshrmScheduleRepository: Repository<bshrmScheduleEntity>,
 
-    @InjectRepository(bseeScheduleEntity)
-    private readonly bseeScheduleRepository: Repository<bseeScheduleEntity>,
+    @InjectRepository(bshmScheduleEntity)
+    private readonly bshmScheduleRepository: Repository<bshmScheduleEntity>,
 
-    @InjectRepository(bsieScheduleEntity)
-    private readonly bsieScheduleRepository: Repository<bsieScheduleEntity>,
+    @InjectRepository(bsmmScheduleEntity)
+    private readonly bsmmScheduleRepository: Repository<bsmmScheduleEntity>,
 
     @InjectRepository(TeacherSchedule)
     private teacherScheduleRepository: Repository<TeacherSchedule>,
@@ -42,125 +42,125 @@ export class coeService {
   }
 
   //^ GET
-  async findAll(): Promise<bsmeScheduleEntity[]> {
-    return await this.bsmeScheduleRepository.find();
+  async findAllBsa(): Promise<bsaScheduleEntity[]> {
+    return await this.bsaScheduleRepository.find();
   }
 
-  async findAllBsce(): Promise<bsceScheduleEntity[]> {
-    return await this.bsceScheduleRepository.find();
+  async findAllBshm(): Promise<bshmScheduleEntity[]> {
+    return await this.bshmScheduleRepository.find();
   }
 
-  async findAllBsee(): Promise<bseeScheduleEntity[]> {
-    return await this.bseeScheduleRepository.find();
+  async findAllBshrm(): Promise<bshrmScheduleEntity[]> {
+    return await this.bshrmScheduleRepository.find();
   }
 
-  async findAllBsie(): Promise<bsieScheduleEntity[]> {
-    return await this.bsieScheduleRepository.find();
+  async findAllBsmm(): Promise<bsmmScheduleEntity[]> {
+    return await this.bsmmScheduleRepository.find();
   }
 
-  async findFirstYear(): Promise<bsmeScheduleEntity[]> {
-    return await this.bsmeScheduleRepository.find({
+  async findFirstYearBsa(): Promise<bsaScheduleEntity[]> {
+    return await this.bsaScheduleRepository.find({
       where: { year: 1 },
     });
   }
 
-  async findFirstYearBsce(): Promise<bsceScheduleEntity[]> {
-    return await this.bsceScheduleRepository.find({
+  async findFirstYearBshm(): Promise<bshmScheduleEntity[]> {
+    return await this.bshmScheduleRepository.find({
       where: { year: 1 },
     });
   }
 
-  async findFirstYearBsee(): Promise<bseeScheduleEntity[]> {
-    return await this.bseeScheduleRepository.find({
+  async findFirstYearBsmm(): Promise<bsmmScheduleEntity[]> {
+    return await this.bsmmScheduleRepository.find({
       where: { year: 1 },
     });
   }
 
-  async findFirstYearBsie(): Promise<bsieScheduleEntity[]> {
-    return await this.bsieScheduleRepository.find({
+  async findFirstYearBshrm(): Promise<bshrmScheduleEntity[]> {
+    return await this.bshrmScheduleRepository.find({
       where: { year: 1 },
     });
   }
 
-  async findSecondYear(): Promise<bsmeScheduleEntity[]> {
-    return await this.bsmeScheduleRepository.find({
+  async findSecondYearBsa(): Promise<bsaScheduleEntity[]> {
+    return await this.bsaScheduleRepository.find({
       where: { year: 2 },
     });
   }
 
-  async findSecondYearBsce(): Promise<bsceScheduleEntity[]> {
-    return await this.bsceScheduleRepository.find({
+  async findSecondYearBshm(): Promise<bshmScheduleEntity[]> {
+    return await this.bshmScheduleRepository.find({
       where: { year: 2 },
     });
   }
 
-  async findSecondYearBsee(): Promise<bseeScheduleEntity[]> {
-    return await this.bseeScheduleRepository.find({
+  async findSecondYearBshrm(): Promise<bshrmScheduleEntity[]> {
+    return await this.bshrmScheduleRepository.find({
       where: { year: 2 },
     });
   }
 
-  async findSecondYearBsie(): Promise<bsieScheduleEntity[]> {
-    return await this.bsieScheduleRepository.find({
+  async findSecondYearBsmm(): Promise<bsmmScheduleEntity[]> {
+    return await this.bsmmScheduleRepository.find({
       where: { year: 2 },
     });
   }
 
-  async findThirdYear(): Promise<bsmeScheduleEntity[]> {
-    return await this.bsmeScheduleRepository.find({
+  async findThirdYearBsa(): Promise<bsaScheduleEntity[]> {
+    return await this.bsaScheduleRepository.find({
       where: { year: 3 },
     });
   }
 
-  async findThirdYearBsce(): Promise<bsceScheduleEntity[]> {
-    return await this.bsceScheduleRepository.find({
+  async findThirdYearBshm(): Promise<bshmScheduleEntity[]> {
+    return await this.bshmScheduleRepository.find({
       where: { year: 3 },
     });
   }
 
-  async findThirdYearBsee(): Promise<bseeScheduleEntity[]> {
-    return await this.bseeScheduleRepository.find({
+  async findThirdYearBshrm(): Promise<bshrmScheduleEntity[]> {
+    return await this.bshrmScheduleRepository.find({
       where: { year: 3 },
     });
   }
 
-  async findThirdYearBsie(): Promise<bsieScheduleEntity[]> {
-    return await this.bsieScheduleRepository.find({
+  async findThirdYearBsmm(): Promise<bsmmScheduleEntity[]> {
+    return await this.bsmmScheduleRepository.find({
       where: { year: 3 },
     });
   }
 
-  async findFourthYear(): Promise<bsmeScheduleEntity[]> {
-    return await this.bsmeScheduleRepository.find({
+  async findFourthYearBsa(): Promise<bsaScheduleEntity[]> {
+    return await this.bsaScheduleRepository.find({
       where: { year: 4 },
     });
   }
 
-  async findFourthYearBsce(): Promise<bsceScheduleEntity[]> {
-    return await this.bsceScheduleRepository.find({
+  async findFourthYearBshm(): Promise<bshmScheduleEntity[]> {
+    return await this.bshmScheduleRepository.find({
       where: { year: 4 },
     });
   }
 
-  async findFourthYearBsee(): Promise<bseeScheduleEntity[]> {
-    return await this.bseeScheduleRepository.find({
+  async findFourthYearBshrm(): Promise<bshrmScheduleEntity[]> {
+    return await this.bshrmScheduleRepository.find({
       where: { year: 4 },
     });
   }
 
-  async findFourthYearBsie(): Promise<bsieScheduleEntity[]> {
-    return await this.bsieScheduleRepository.find({
+  async findFourthYearBsmm(): Promise<bsmmScheduleEntity[]> {
+    return await this.bsmmScheduleRepository.find({
       where: { year: 4 },
     });
   }
 
   //^ POST
-  async create(createFirstDto: CreateFirstDto): Promise<bsmeScheduleEntity> {
-    const newSchedule = this.bsmeScheduleRepository.create({
+  async create(createFirstDto: CreateFirstDto): Promise<bsaScheduleEntity> {
+    const newSchedule = this.bsaScheduleRepository.create({
       ...createFirstDto,
     });
 
-    const savedSchedule = await this.bsmeScheduleRepository.save(newSchedule);
+    const savedSchedule = await this.bsaScheduleRepository.save(newSchedule);
 
     const newTeacherSchedule = this.teacherScheduleRepository.create({
       teacher: createFirstDto.teacher, // Use teacher's name from createFirstDto
@@ -171,7 +171,7 @@ export class coeService {
       start: createFirstDto.start,
       end: createFirstDto.end,
       day: createFirstDto.day,
-      transferIdBsme: savedSchedule.id, // Link with saved CcsSchedule
+      transferIdBsa: savedSchedule.id, // Link with saved CcsSchedule
     });
 
     // Save the TeacherSchedule entity
@@ -180,15 +180,15 @@ export class coeService {
     return savedSchedule; // Return the newly created CcsSchedule
   }
 
-  //^ BSCE
-  async createbsce(
+  //^ Bshm
+  async createbshm(
     createFirstDto: CreateFirstDto,
-  ): Promise<bsceScheduleEntity> {
-    const newSchedule = this.bsceScheduleRepository.create({
+  ): Promise<bshmScheduleEntity> {
+    const newSchedule = this.bshmScheduleRepository.create({
       ...createFirstDto,
     });
 
-    const savedSchedule = await this.bsceScheduleRepository.save(newSchedule);
+    const savedSchedule = await this.bshmScheduleRepository.save(newSchedule);
 
     const newTeacherSchedule = this.teacherScheduleRepository.create({
       teacher: createFirstDto.teacher, // Use teacher's name from createFirstDto
@@ -199,7 +199,7 @@ export class coeService {
       start: createFirstDto.start,
       end: createFirstDto.end,
       day: createFirstDto.day,
-      transferIdBsce: savedSchedule.id, // Link with saved CcsSchedule
+      transferIdBshm: savedSchedule.id, // Link with saved CcsSchedule
     });
 
     // Save the TeacherSchedule entity
@@ -208,14 +208,14 @@ export class coeService {
     return savedSchedule; // Return the newly created CcsSchedule
   }
 
-  async createbsee(
+  async createbshrm(
     createFirstDto: CreateFirstDto,
-  ): Promise<bseeScheduleEntity> {
-    const newSchedule = this.bseeScheduleRepository.create({
+  ): Promise<bshrmScheduleEntity> {
+    const newSchedule = this.bshrmScheduleRepository.create({
       ...createFirstDto,
     });
 
-    const savedSchedule = await this.bseeScheduleRepository.save(newSchedule);
+    const savedSchedule = await this.bshrmScheduleRepository.save(newSchedule);
 
     const newTeacherSchedule = this.teacherScheduleRepository.create({
       teacher: createFirstDto.teacher, // Use teacher's name from createFirstDto
@@ -226,7 +226,7 @@ export class coeService {
       start: createFirstDto.start,
       end: createFirstDto.end,
       day: createFirstDto.day,
-      transferIdBsee: savedSchedule.id, // Link with saved CcsSchedule
+      transferIdBshrm: savedSchedule.id, // Link with saved CcsSchedule
     });
 
     // Save the TeacherSchedule entity
@@ -235,14 +235,14 @@ export class coeService {
     return savedSchedule; // Return the newly created CcsSchedule
   }
 
-  async createbsie(
+  async createbsmm(
     createFirstDto: CreateFirstDto,
-  ): Promise<bsieScheduleEntity> {
-    const newSchedule = this.bsieScheduleRepository.create({
+  ): Promise<bsmmScheduleEntity> {
+    const newSchedule = this.bsmmScheduleRepository.create({
       ...createFirstDto,
     });
 
-    const savedSchedule = await this.bsieScheduleRepository.save(newSchedule);
+    const savedSchedule = await this.bsmmScheduleRepository.save(newSchedule);
 
     const newTeacherSchedule = this.teacherScheduleRepository.create({
       teacher: createFirstDto.teacher, // Use teacher's name from createFirstDto
@@ -253,7 +253,7 @@ export class coeService {
       start: createFirstDto.start,
       end: createFirstDto.end,
       day: createFirstDto.day,
-      transferIdBsie: savedSchedule.id, // Link with saved CcsSchedule
+      transferIdBsmm: savedSchedule.id, // Link with saved CcsSchedule
     });
 
     // Save the TeacherSchedule entity
@@ -265,7 +265,7 @@ export class coeService {
   //^ PUT
   async update(id: number, updateDto: UpdateFirstDto): Promise<void> {
     // Find the existing First entity along with related TeacherSchedules
-    const existingFirst = await this.bsmeScheduleRepository.findOne({
+    const existingFirst = await this.bsaScheduleRepository.findOne({
       where: { id },
       relations: ['teacherSchedules'], // Ensure we load related TeacherSchedules
     });
@@ -276,12 +276,12 @@ export class coeService {
 
     // Update the existing First entity with the new values
     Object.assign(existingFirst, updateDto);
-    await this.bsmeScheduleRepository.save(existingFirst);
+    await this.bsaScheduleRepository.save(existingFirst);
   }
 
-  async updatebsce(id: number, updateDto: UpdateFirstDto): Promise<void> {
+  async updatebshm(id: number, updateDto: UpdateFirstDto): Promise<void> {
     // Find the existing First entity along with related TeacherSchedules
-    const existingFirst = await this.bsceScheduleRepository.findOne({
+    const existingFirst = await this.bshmScheduleRepository.findOne({
       where: { id },
       relations: ['teacherSchedules'], // Ensure we load related TeacherSchedules
     });
@@ -292,12 +292,12 @@ export class coeService {
 
     // Update the existing First entity with the new values
     Object.assign(existingFirst, updateDto);
-    await this.bsceScheduleRepository.save(existingFirst);
+    await this.bshmScheduleRepository.save(existingFirst);
   }
 
-  async updatebsie(id: number, updateDto: UpdateFirstDto): Promise<void> {
+  async updatebsmm(id: number, updateDto: UpdateFirstDto): Promise<void> {
     // Find the existing First entity along with related TeacherSchedules
-    const existingFirst = await this.bsieScheduleRepository.findOne({
+    const existingFirst = await this.bsmmScheduleRepository.findOne({
       where: { id },
       relations: ['teacherSchedules'], // Ensure we load related TeacherSchedules
     });
@@ -308,12 +308,12 @@ export class coeService {
 
     // Update the existing First entity with the new values
     Object.assign(existingFirst, updateDto);
-    await this.bsieScheduleRepository.save(existingFirst);
+    await this.bsmmScheduleRepository.save(existingFirst);
   }
 
-  async updatebsee(id: number, updateDto: UpdateFirstDto): Promise<void> {
+  async updatebshrm(id: number, updateDto: UpdateFirstDto): Promise<void> {
     // Find the existing First entity along with related TeacherSchedules
-    const existingFirst = await this.bseeScheduleRepository.findOne({
+    const existingFirst = await this.bshrmScheduleRepository.findOne({
       where: { id },
       relations: ['teacherSchedules'], // Ensure we load related TeacherSchedules
     });
@@ -324,7 +324,7 @@ export class coeService {
 
     // Update the existing First entity with the new values
     Object.assign(existingFirst, updateDto);
-    await this.bseeScheduleRepository.save(existingFirst);
+    await this.bshrmScheduleRepository.save(existingFirst);
   }
 
   //^ DELETE
@@ -339,16 +339,16 @@ export class coeService {
     }
 
     // Now delete the First schedule
-    const result = await this.bsmeScheduleRepository.delete(id);
+    const result = await this.bsaScheduleRepository.delete(id);
     if (result.affected === 0) {
       throw new NotFoundException(`Schedule with ID ${id} not found`);
     }
   }
 
-  async deletebsce(id: number): Promise<void> {
+  async deletebshm(id: number): Promise<void> {
     // First, delete related TeacherSchedule entries
     const deleteRelatedResult = await this.teacherScheduleRepository.delete({
-      transferIdBsce: id, // Ensure you use the correct column to match related schedules
+      transferIdBshm: id, // Ensure you use the correct column to match related schedules
     });
 
     if (deleteRelatedResult.affected === 0) {
@@ -356,16 +356,16 @@ export class coeService {
     }
 
     // Now delete the First schedule
-    const result = await this.bsceScheduleRepository.delete(id);
+    const result = await this.bshmScheduleRepository.delete(id);
     if (result.affected === 0) {
       throw new NotFoundException(`Schedule with ID ${id} not found`);
     }
   }
 
-  async deletebsee(id: number): Promise<void> {
+  async deletebshrm(id: number): Promise<void> {
     // First, delete related TeacherSchedule entries
     const deleteRelatedResult = await this.teacherScheduleRepository.delete({
-      transferIdBsee: id, // Ensure you use the correct column to match related schedules
+      transferIdBshrm: id, // Ensure you use the correct column to match related schedules
     });
 
     if (deleteRelatedResult.affected === 0) {
@@ -373,16 +373,16 @@ export class coeService {
     }
 
     // Now delete the First schedule
-    const result = await this.bseeScheduleRepository.delete(id);
+    const result = await this.bshrmScheduleRepository.delete(id);
     if (result.affected === 0) {
       throw new NotFoundException(`Schedule with ID ${id} not found`);
     }
   }
 
-  async deletebsie(id: number): Promise<void> {
+  async deletebsmm(id: number): Promise<void> {
     // First, delete related TeacherSchedule entries
     const deleteRelatedResult = await this.teacherScheduleRepository.delete({
-      transferIdBsie: id, // Ensure you use the correct column to match related schedules
+      transferIdBsmm: id, // Ensure you use the correct column to match related schedules
     });
 
     if (deleteRelatedResult.affected === 0) {
@@ -390,7 +390,7 @@ export class coeService {
     }
 
     // Now delete the First schedule
-    const result = await this.bsieScheduleRepository.delete(id);
+    const result = await this.bsmmScheduleRepository.delete(id);
     if (result.affected === 0) {
       throw new NotFoundException(`Schedule with ID ${id} not found`);
     }

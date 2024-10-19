@@ -7,8 +7,8 @@ import {
   OneToMany,
 } from 'typeorm';
 
-@Entity({ name: 'bsie_schedules' })
-export class bsieScheduleEntity extends BaseEntity {
+@Entity({ name: 'bsee_schedules' })
+export class bseeScheduleEntity extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
@@ -57,7 +57,7 @@ export class bsieScheduleEntity extends BaseEntity {
 
   @OneToMany(
     () => TeacherSchedule,
-    (teacherSchedule) => teacherSchedule.bsieSchedule,
+    (teacherSchedule) => teacherSchedule.bseeSchedule,
     { cascade: true }, // Ensures cascading insert/update on TeacherSchedule
   )
   teacherSchedules: TeacherSchedule[];

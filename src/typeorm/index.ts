@@ -6,18 +6,24 @@ import { TeacherSchedule } from 'src/teachers/entities/teacher_subjects.entity';
 //^ IT
 import { CcsScheduleEntitiy } from 'src/schedule/CCS/entities/ccs-schedule.entity';
 
-import { itSubjectsEntity } from 'src/subjects/IT/entity/ccs-subjects.entity';
-
 //^ CTE
 
-import { bsedSubjectsEntity } from 'src/subjects/CTE/entity/bsed-subjects.entity';
-import { beedSubjectsEntity } from 'src/subjects/CTE/entity/beed-subjects.entity';
 import { bsedScheduleEntity } from 'src/schedule/CTE/BSED/entities/bsed-schedule.entity';
 import { beedScheduleEntity } from 'src/schedule/CTE/BSELEM/entities/beed-schedule.entity';
 
 //^ COE
 
 import { bsmeScheduleEntity } from 'src/schedule/COE/entities/bsme-schedule.entity';
+import { bsieScheduleEntity } from 'src/schedule/COE/entities/bsie-schedule.entity';
+import { bsceScheduleEntity } from 'src/schedule/COE/entities/bsce-schedule.entity';
+import { bseeScheduleEntity } from 'src/schedule/COE/entities/bsee-schedule.entity';
+
+//^  CBM
+
+import { bsaScheduleEntity } from 'src/schedule/CBM/entities/bsa-schedule.entity';
+import { bsmmScheduleEntity } from 'src/schedule/CBM/entities/bsmm-schedule.entity';
+import { bshmScheduleEntity } from 'src/schedule/CBM/entities/bshm-schedule.entity';
+import { bshrmScheduleEntity } from 'src/schedule/CBM/entities/bshrm-schedule.entity';
 
 //^ CALENDAR
 
@@ -30,14 +36,26 @@ const entities = [
 
   //^ IT
   CcsScheduleEntitiy,
-  itSubjectsEntity,
+  // itSubjectsEntity,
 
   //^ CTE
-  bsedSubjectsEntity,
-  beedSubjectsEntity,
+  // bsedSubjectsEntity,
+  // beedSubjectsEntity,
   bsedScheduleEntity,
   beedScheduleEntity,
   bsmeScheduleEntity,
+
+  //^ COE
+  bsceScheduleEntity,
+  bsmeScheduleEntity,
+  bseeScheduleEntity,
+  bsieScheduleEntity,
+
+  //^ CBM
+  bsaScheduleEntity,
+  bsmmScheduleEntity,
+  bshmScheduleEntity,
+  bshrmScheduleEntity,
 
   //^ CALENDAR
   CalendarEntity,
@@ -52,11 +70,14 @@ export {
   // itsubjectsthreeEntity,
   // itsubjectsfourEntity,
   CcsScheduleEntitiy,
-  bsedSubjectsEntity,
-  beedSubjectsEntity,
+  // bsedSubjectsEntity,
+  // beedSubjectsEntity,
   bsedScheduleEntity,
   beedScheduleEntity,
+  bsceScheduleEntity,
   bsmeScheduleEntity,
+  bseeScheduleEntity,
+  bsieScheduleEntity,
   CalendarEntity,
 };
 

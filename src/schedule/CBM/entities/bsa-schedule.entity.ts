@@ -1,4 +1,4 @@
-import { TeacherSchedule } from 'src/typeorm';
+import { TeacherSchedule } from 'src/typeorm'; // Adjust the import path as needed
 import {
   Entity,
   Column,
@@ -7,8 +7,8 @@ import {
   OneToMany,
 } from 'typeorm';
 
-@Entity({ name: 'bsie_schedules' })
-export class bsieScheduleEntity extends BaseEntity {
+@Entity({ name: 'bsa_schedules' })
+export class bsaScheduleEntity extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
@@ -55,9 +55,10 @@ export class bsieScheduleEntity extends BaseEntity {
   @Column({ type: 'boolean', default: false })
   transferred: boolean;
 
+  // Relation to TeacherSchedule entity
   @OneToMany(
     () => TeacherSchedule,
-    (teacherSchedule) => teacherSchedule.bsieSchedule,
+    (teacherSchedule) => teacherSchedule.bsaSchedule,
     { cascade: true }, // Ensures cascading insert/update on TeacherSchedule
   )
   teacherSchedules: TeacherSchedule[];
