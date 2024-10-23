@@ -1,8 +1,5 @@
 INSERT INTO `bsit`(`subject_code`, `subject`, `units`, `pre_req`, `year`) VALUES 
-('Fil1', 'Retorika ', 3, NULL, 1),
-('Fil2', 'Panitikan ng Pilipinas', 3, 'Fil 1', 1),
 
-('HIST', 'Reading in Philippines History - LEC', 3, NULL, 1),
 ('IT110', 'Introduction to Computing - LEC', 3, NULL, 1),
 ('IT111', 'Computer Programming 1 - LEC', 3, NULL, 1),
 ('IT120', 'Discrete Structures - LEC', 3, 'MathPrep', 1),
@@ -25,3 +22,6 @@ INSERT INTO `bsit`(`subject_code`, `subject`, `units`, `pre_req`, `year`) VALUES
 ('PATHFIT 2', 'Self Defense', 2, 'PE 1', 1),
 ('PurCom', 'Purposive Communication', 3, NULL, 1),
 ('UTS', 'Understanding the Self', 3, NULL, 1);
+('Fil1', 'Retorika ', 3, NULL, 1),
+('Fil2', 'Panitikan ng Pilipinas', 3, 'Fil 1', 1),
+('HIST', 'Reading in Philippines History - LEC', 3, NULL, 1),

@@ -20,7 +20,10 @@ INSERT INTO `bsit` (`subject_code`, `subject`, `units`, `pre_req`) VALUES
 ('IT323L', 'Capstone Project I - LAB', 3, '4th Year Level'),
 ('IT324L', 'Social Issues and Professional Practices', 3, '4th Year Level'),
 ('ITTEL2L', 'IT Trackk Elective II - LAB', 3, 'ITTEL 1'),
+
+
+
 ('MMG', 'Marketing Media Gamification', 3, '-'),
-('RIZAL', 'Rizal\'s Life & Works', 3, '-'),
+('RIZAL', 'Rizal's Life & Works', 3, '-'),
 ('STAT', 'Statistics & Probability', 3, 'MATH Prep'),
 ('TECHNO', 'Technopreneurship', 3, '-');

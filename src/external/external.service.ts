@@ -138,6 +138,59 @@ export class ExternalService {
     return filteredSubjects;
   }
 
+  //^ GET ROOMS
+  async getRooms() {
+    const url = process.env.EXTERNAL_ROOMS; // Ensure the URL is set in your .env file
+
+    try {
+      const request = this.httpService.get(url).pipe(
+        map((res) => res.data),
+        catchError((err) => {
+          err.config.auth = undefined; // Hide auth details
+          this.logger.error(err);
+          throw new HttpException(err, HttpStatus.BAD_REQUEST);
+        }),
+      );
+
+      const extResponse = await lastValueFrom(request);
+
+      // Log the full response to inspect structure
+      console.log(
+        'Full External API Response:',
+        JSON.stringify(extResponse, null, 2),
+      );
+
+      // Extract the relevant data list
+      const dataList =
+        extResponse['Results'] || extResponse['data'] || extResponse || [];
+
+      // Log the extracted data list for debugging
+      console.log('Extracted dataList:', JSON.stringify(dataList, null, 2));
+
+      if (!dataList.length) {
+        console.log('No rooms found in the data list');
+        return null;
+      }
+
+      // Filter the data to get only rooms (where isRoom is true)
+      const rooms = dataList.filter((item) => item.isRoom);
+
+      if (!rooms.length) {
+        console.log('No rooms found with isRoom: true');
+        return [];
+      }
+
+      console.log('Found rooms:', rooms);
+      return rooms;
+    } catch (error) {
+      console.error('Error fetching data from the external API:', error);
+      throw new HttpException(
+        'Failed to retrieve rooms',
+        HttpStatus.BAD_REQUEST,
+      );
+    }
+  }
+
   @Cron('45 * * * * *')
   handleCron() {
     this.logger.debug('Called when the current second is 45');

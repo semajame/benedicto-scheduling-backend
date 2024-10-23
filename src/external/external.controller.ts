@@ -58,4 +58,11 @@ export class ExternalController {
       departmentCodeForClass,
     );
   }
+
+  //^ GET ROOMS
+
+  @Get('datas/rooms')
+  async getRooms() {
+    return this.externalService.getRooms();
+  }
 }

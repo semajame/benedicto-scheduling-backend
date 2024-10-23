@@ -14,6 +14,7 @@ import { Repository } from 'typeorm/repository/Repository';
 import { InjectRepository } from '@nestjs/typeorm';
 
 import { CcsService } from './ccs-schedule.service';
+import { cteService } from '../CTE/cte-schedule.service';
 import { CreateFirstDto } from './dto/create-first.dto';
 import { UpdateFirstDto } from './dto/update-first.dto';
 import { TeacherSchedule } from 'src/teachers/entities/teacher_subjects.entity';
@@ -25,6 +26,8 @@ export class CcsController {
   constructor(
     private readonly ccsService: CcsService,
 
+    private readonly CteService: cteService,
+
     @InjectRepository(TeacherSchedule)
     private teacherScheduleRepository: Repository<TeacherSchedule>,
   ) {}
@@ -33,6 +36,50 @@ export class CcsController {
   async findAll() {
     try {
       const schedules = await this.ccsService.findAll();
+      return schedules;
+    } catch (err) {
+      console.error('Error executing query:', err);
+      throw new HttpException(err.message, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+  }
+
+  @Get('bachelor-of-information-technology/minor-subjects')
+  async findMinorSubjectsIT() {
+    try {
+      const schedules = await this.CteService.findMinorSubjectsIT();
+      return schedules;
+    } catch (err) {
+      console.error('Error executing query:', err);
+      throw new HttpException(err.message, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+  }
+
+  @Get('bachelor-of-information-technology/minor-subjects/1st-year')
+  async findMinorSubjectsITFirstYear() {
+    try {
+      const schedules = await this.CteService.findMinorSubjectsITFirstYear();
+      return schedules;
+    } catch (err) {
+      console.error('Error executing query:', err);
+      throw new HttpException(err.message, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+  }
+
+  @Get('bachelor-of-information-technology/minor-subjects/2nd-year')
+  async findMinorSubjectsITSecondYear() {
+    try {
+      const schedules = await this.CteService.findMinorSubjectsITSecondYear();
+      return schedules;
+    } catch (err) {
+      console.error('Error executing query:', err);
+      throw new HttpException(err.message, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+  }
+
+  @Get('bachelor-of-information-technology/minor-subjects/3rd-year')
+  async findMinorSubjectsITThirdYear() {
+    try {
+      const schedules = await this.CteService.findMinorSubjectsITThirdYear();
       return schedules;
     } catch (err) {
       console.error('Error executing query:', err);

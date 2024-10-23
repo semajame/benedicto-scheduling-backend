@@ -11,6 +11,8 @@ import {
 } from '@nestjs/common';
 
 import { coeService } from './coe-schedule.service';
+import { cteService } from '../CTE/cte-schedule.service';
+import { CcsService } from '../CCS/ccs-schedule.service';
 import { CreateFirstDto } from './dto/create-first.dto';
 import { UpdateFirstDto } from './dto/update-first.dto';
 import { TeacherSchedule } from 'src/teachers/entities/teacher_subjects.entity';
@@ -18,9 +20,69 @@ import { TeacherSchedule } from 'src/teachers/entities/teacher_subjects.entity';
 
 @Controller('schedule')
 export class coeScheduleController {
-  constructor(private readonly CoeService: coeService) {}
+  constructor(
+    private readonly CoeService: coeService,
+    private readonly CteService: cteService,
+    private readonly ccsService: CcsService,
+  ) {}
 
   //^ GET
+
+  @Get('bachelor-of-information-technology/minor-subjects/techno')
+  async findTechnoForCoe() {
+    try {
+      const schedules = await this.ccsService.findTechnoForCoe();
+      return schedules;
+    } catch (err) {
+      console.error('Error executing query:', err);
+      throw new HttpException(err.message, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+  }
+
+  @Get('mechanical-engineering/minor-subjects')
+  async findMinorSubjectsBsme() {
+    try {
+      const schedules = await this.CteService.findMinorSubjectsBsme();
+      return schedules;
+    } catch (err) {
+      console.error('Error executing query:', err);
+      throw new HttpException(err.message, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+  }
+
+  @Get('mechanical-engineering/minor-subjects/1st-year')
+  async findMinorSubjectsBsmeFirstYear() {
+    try {
+      const schedules = await this.CteService.findMinorSubjectsBsmeFirstYear();
+      return schedules;
+    } catch (err) {
+      console.error('Error executing query:', err);
+      throw new HttpException(err.message, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+  }
+
+  @Get('mechanical-engineering/minor-subjects/2nd-year')
+  async findMinorSubjectsBsmeSecondYear() {
+    try {
+      const schedules = await this.CteService.findMinorSubjectsBsmeSecondYear();
+      return schedules;
+    } catch (err) {
+      console.error('Error executing query:', err);
+      throw new HttpException(err.message, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+  }
+
+  @Get('mechanical-engineering/minor-subjects/3rd-year')
+  async findMinorSubjectsBsmeThirdYear() {
+    try {
+      const schedules = await this.CteService.findMinorSubjectsBsmeThirdYear();
+      return schedules;
+    } catch (err) {
+      console.error('Error executing query:', err);
+      throw new HttpException(err.message, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+  }
+
   @Get('mechanical-engineering')
   async findAll() {
     try {
@@ -32,10 +94,44 @@ export class coeScheduleController {
     }
   }
 
+  //* CIVIL ENGINEERING
   @Get('civil-engineering')
   async findAllBsce() {
     try {
       const schedules = await this.CoeService.findAllBsce();
+      return schedules;
+    } catch (err) {
+      console.error('Error executing query:', err);
+      throw new HttpException(err.message, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+  }
+
+  @Get('civil-engineering/minor-subjects')
+  async findMinorSubjectsBsce() {
+    try {
+      const schedules = await this.CteService.findMinorSubjectsBsce();
+      return schedules;
+    } catch (err) {
+      console.error('Error executing query:', err);
+      throw new HttpException(err.message, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+  }
+
+  @Get('civil-engineering/minor-subjects/1st-year')
+  async findMinorSubjectsBsceFirstYear() {
+    try {
+      const schedules = await this.CteService.findMinorSubjectsBsceFirstYear();
+      return schedules;
+    } catch (err) {
+      console.error('Error executing query:', err);
+      throw new HttpException(err.message, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+  }
+
+  @Get('civil-engineering/minor-subjects/2nd-year')
+  async findMinorSubjectsBsceSecondYear() {
+    try {
+      const schedules = await this.CteService.findMinorSubjectsBsceSecondYear();
       return schedules;
     } catch (err) {
       console.error('Error executing query:', err);
@@ -54,10 +150,98 @@ export class coeScheduleController {
     }
   }
 
+  @Get('industrial-engineering/minor-subjects')
+  async findMinorSubjectsBsie() {
+    try {
+      const schedules = await this.CteService.findMinorSubjectsBsie();
+      return schedules;
+    } catch (err) {
+      console.error('Error executing query:', err);
+      throw new HttpException(err.message, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+  }
+
+  @Get('industrial-engineering/minor-subjects/1st-year')
+  async findMinorSubjectsBsieFirstYear() {
+    try {
+      const schedules = await this.CteService.findMinorSubjectsBsieFirstYear();
+      return schedules;
+    } catch (err) {
+      console.error('Error executing query:', err);
+      throw new HttpException(err.message, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+  }
+
+  @Get('industrial-engineering/minor-subjects/2nd-year')
+  async findMinorSubjectsBsieSecondYear() {
+    try {
+      const schedules = await this.CteService.findMinorSubjectsBsieSecondYear();
+      return schedules;
+    } catch (err) {
+      console.error('Error executing query:', err);
+      throw new HttpException(err.message, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+  }
+
+  @Get('industrial-engineering/minor-subjects/3rd-year')
+  async findMinorSubjectsBsieThirdYear() {
+    try {
+      const schedules = await this.CteService.findMinorSubjectsBsieThirdYear();
+      return schedules;
+    } catch (err) {
+      console.error('Error executing query:', err);
+      throw new HttpException(err.message, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+  }
+
   @Get('electrical-engineering')
   async findAllBsee() {
     try {
       const schedules = await this.CoeService.findAllBsee();
+      return schedules;
+    } catch (err) {
+      console.error('Error executing query:', err);
+      throw new HttpException(err.message, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+  }
+
+  @Get('electrical-engineering/minor-subjects')
+  async findMinorSubjectsBsee() {
+    try {
+      const schedules = await this.CteService.findMinorSubjectsBsee();
+      return schedules;
+    } catch (err) {
+      console.error('Error executing query:', err);
+      throw new HttpException(err.message, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+  }
+
+  @Get('electrical-engineering/minor-subjects/1st-year')
+  async findMinorSubjectsBseeFirstYear() {
+    try {
+      const schedules = await this.CteService.findMinorSubjectsBseeFirstYear();
+      return schedules;
+    } catch (err) {
+      console.error('Error executing query:', err);
+      throw new HttpException(err.message, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+  }
+
+  @Get('electrical-engineering/minor-subjects/2nd-year')
+  async findMinorSubjectsBseeSecondYear() {
+    try {
+      const schedules = await this.CteService.findMinorSubjectsBseeSecondYear();
+      return schedules;
+    } catch (err) {
+      console.error('Error executing query:', err);
+      throw new HttpException(err.message, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+  }
+
+  @Get('electrical-engineering/minor-subjects/3rd-year')
+  async findMinorSubjectsBseeThirdYear() {
+    try {
+      const schedules = await this.CteService.findMinorSubjectsBseeThirdYear();
       return schedules;
     } catch (err) {
       console.error('Error executing query:', err);

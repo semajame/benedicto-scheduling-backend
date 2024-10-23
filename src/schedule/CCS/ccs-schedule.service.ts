@@ -5,10 +5,10 @@ import { UpdateFirstDto } from './dto/update-first.dto';
 import { InjectRepository } from '@nestjs/typeorm';
 
 import { CcsScheduleEntitiy } from './entities/ccs-schedule.entity';
-import { Repository } from 'typeorm';
+
+import { In, Repository } from 'typeorm';
 import { TeacherSchedule } from 'src/teachers/entities/teacher_subjects.entity';
 // import { Teacher } from 'src/teachers/entities/teacher.entity';
-import { error } from 'console';
 
 @Injectable()
 export class CcsService {
@@ -38,7 +38,17 @@ export class CcsService {
     });
   }
 
+  //^ GET TECHNO FOR COE
+  async findTechnoForCoe(): Promise<CcsScheduleEntitiy[]> {
+    return await this.CcsRepository.find({
+      where: {
+        subject: In(['Technopreneurship (Lab)', 'Technopreneurship (Lec)']),
+      },
+    });
+  }
+
   //^ GET
+
   async findAll(): Promise<CcsScheduleEntitiy[]> {
     return await this.CcsRepository.find();
   }
