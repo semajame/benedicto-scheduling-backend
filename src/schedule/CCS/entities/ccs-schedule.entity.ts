@@ -16,11 +16,17 @@ export class CcsScheduleEntitiy extends BaseEntity {
   // @Column({ type: 'int', nullable: true })
   // employee_id: number | null;
 
+  @Column({ type: 'int' })
+  subject_id: number;
+
   @Column({ type: 'varchar', length: 255 })
   subject_code: string;
 
   @Column({ type: 'varchar', length: 255 })
   subject: string;
+
+  @Column({ type: 'int', nullable: true })
+  teacher_id: number | null;
 
   @Column({ type: 'int' })
   units: number;

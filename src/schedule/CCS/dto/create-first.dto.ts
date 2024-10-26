@@ -9,6 +9,18 @@ export class CreateFirstDto {
   @IsNotEmpty()
   subject: string;
 
+  @IsString()
+  @IsNotEmpty()
+  subject_id: number;
+
+  @IsString()
+  @IsNotEmpty()
+  teacher_id: number;
+
+  @IsString()
+  @IsNotEmpty()
+  teacher: string;
+
   @IsInt()
   @IsNotEmpty()
   units: number;
@@ -20,10 +32,6 @@ export class CreateFirstDto {
   @IsString()
   @IsNotEmpty()
   room: string;
-
-  @IsString()
-  @IsNotEmpty()
-  teacher: string;
 
   @IsString()
   @IsNotEmpty()

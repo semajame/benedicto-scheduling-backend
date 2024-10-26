@@ -1,4 +1,9 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import {
+  HttpException,
+  HttpStatus,
+  Injectable,
+  NotFoundException,
+} from '@nestjs/common';
 import { CreateFirstDto } from './dto/create-first.dto';
 import { UpdateFirstDto } from './dto/update-first.dto';
 
@@ -79,27 +84,53 @@ export class CcsService {
 
   //^ POST
   async create(createFirstDto: CreateFirstDto): Promise<CcsScheduleEntitiy> {
-    // Create and save the new CcsSchedule entity
-    const newSchedule = this.CcsRepository.create({ ...createFirstDto });
-    const savedSchedule = await this.CcsRepository.save(newSchedule);
+    try {
+      // Log incoming data
+      console.log('Received createFirstDto:', createFirstDto);
 
-    // Create a corresponding TeacherSchedule entity
-    const newTeacherSchedule = this.teacherScheduleRepository.create({
-      teacher: createFirstDto.teacher, // Use teacher's name from createFirstDto
-      subject_code: createFirstDto.subject_code,
-      subject: createFirstDto.subject,
-      units: createFirstDto.units,
-      room: createFirstDto.room,
-      start: createFirstDto.start,
-      end: createFirstDto.end,
-      day: createFirstDto.day,
-      transferIdCcs: savedSchedule.id, // Link with saved CcsSchedule
-    });
+      // Create and save the new CcsSchedule entity
+      const newSchedule = this.CcsRepository.create({ ...createFirstDto });
+      const savedSchedule = await this.CcsRepository.save(newSchedule);
+      console.log('Saved CcsSchedule:', savedSchedule);
 
-    // Save the TeacherSchedule entity
-    await this.teacherScheduleRepository.save(newTeacherSchedule);
+      if (!savedSchedule) {
+        throw new Error('Failed to save CcsSchedule.');
+      }
 
-    return savedSchedule; // Return the newly created CcsSchedule
+      // Create a corresponding TeacherSchedule entity
+      const newTeacherSchedule = this.teacherScheduleRepository.create({
+        teacher: createFirstDto.teacher,
+        subject_code: createFirstDto.subject_code,
+        subject_id: createFirstDto.subject_id,
+        teacher_id: createFirstDto.teacher_id,
+        subject: createFirstDto.subject,
+        units: createFirstDto.units,
+        room: createFirstDto.room,
+        start: createFirstDto.start,
+        end: createFirstDto.end,
+        day: createFirstDto.day,
+        transferIdCcs: savedSchedule.id,
+      });
+
+      // Save the TeacherSchedule entity
+      const savedTeacherSchedule = await this.teacherScheduleRepository.save(
+        newTeacherSchedule,
+      );
+      console.log('Saved TeacherSchedule:', savedTeacherSchedule);
+
+      if (!savedTeacherSchedule) {
+        throw new Error('Failed to save TeacherSchedule.');
+      }
+
+      // Return the newly created CcsSchedule
+      return savedSchedule;
+    } catch (error) {
+      console.error('Error in create method:', error);
+      throw new HttpException(
+        'Failed to create schedule due to internal error.',
+        HttpStatus.INTERNAL_SERVER_ERROR,
+      );
+    }
   }
 
   //^ PUT
@@ -125,6 +156,9 @@ export class CcsService {
     ) {
       for (const teacherSchedule of existingFirst.teacherSchedules) {
         // Update the related TeacherSchedule fields
+        teacherSchedule.subject_id = existingFirst.subject_id;
+        teacherSchedule.teacher_id = existingFirst.teacher_id;
+        teacherSchedule.teacher = existingFirst.teacher;
         teacherSchedule.subject_code = existingFirst.subject_code;
         teacherSchedule.subject = existingFirst.subject;
         teacherSchedule.units = existingFirst.units;

@@ -11,6 +11,14 @@ export class UpdateFirstDto extends PartialType(CreateFirstDto) {
   @IsOptional()
   subject?: string;
 
+  @IsString()
+  @IsOptional()
+  teacher_id?: number;
+
+  @IsString()
+  @IsOptional()
+  subject_id?: number;
+
   @IsInt()
   @IsOptional()
   units?: number;

@@ -163,6 +163,8 @@ export class cbmService {
     const savedSchedule = await this.bsaScheduleRepository.save(newSchedule);
 
     const newTeacherSchedule = this.teacherScheduleRepository.create({
+      subject_id: createFirstDto.subject_id,
+      teacher_id: createFirstDto.teacher_id,
       teacher: createFirstDto.teacher, // Use teacher's name from createFirstDto
       subject_code: createFirstDto.subject_code,
       subject: createFirstDto.subject,
@@ -191,6 +193,8 @@ export class cbmService {
     const savedSchedule = await this.bshmScheduleRepository.save(newSchedule);
 
     const newTeacherSchedule = this.teacherScheduleRepository.create({
+      subject_id: createFirstDto.subject_id,
+      teacher_id: createFirstDto.teacher_id,
       teacher: createFirstDto.teacher, // Use teacher's name from createFirstDto
       subject_code: createFirstDto.subject_code,
       subject: createFirstDto.subject,
@@ -218,6 +222,8 @@ export class cbmService {
     const savedSchedule = await this.bshrmScheduleRepository.save(newSchedule);
 
     const newTeacherSchedule = this.teacherScheduleRepository.create({
+      subject_id: createFirstDto.subject_id,
+      teacher_id: createFirstDto.teacher_id,
       teacher: createFirstDto.teacher, // Use teacher's name from createFirstDto
       subject_code: createFirstDto.subject_code,
       subject: createFirstDto.subject,
@@ -245,6 +251,8 @@ export class cbmService {
     const savedSchedule = await this.bsmmScheduleRepository.save(newSchedule);
 
     const newTeacherSchedule = this.teacherScheduleRepository.create({
+      subject_id: createFirstDto.subject_id,
+      teacher_id: createFirstDto.teacher_id,
       teacher: createFirstDto.teacher, // Use teacher's name from createFirstDto
       subject_code: createFirstDto.subject_code,
       subject: createFirstDto.subject,
@@ -277,6 +285,29 @@ export class cbmService {
     // Update the existing First entity with the new values
     Object.assign(existingFirst, updateDto);
     await this.bsaScheduleRepository.save(existingFirst);
+
+    // Update related TeacherSchedule entities
+    if (
+      existingFirst.teacherSchedules &&
+      existingFirst.teacherSchedules.length > 0
+    ) {
+      for (const teacherSchedule of existingFirst.teacherSchedules) {
+        // Update the related TeacherSchedule fields
+        teacherSchedule.subject_id = existingFirst.subject_id;
+        teacherSchedule.teacher_id = existingFirst.teacher_id;
+        teacherSchedule.teacher = existingFirst.teacher;
+        teacherSchedule.subject_code = existingFirst.subject_code;
+        teacherSchedule.subject = existingFirst.subject;
+        teacherSchedule.units = existingFirst.units;
+        teacherSchedule.room = existingFirst.room;
+        teacherSchedule.start = existingFirst.start;
+        teacherSchedule.end = existingFirst.end;
+        teacherSchedule.day = existingFirst.day;
+
+        // Save updated TeacherSchedule entity
+        await this.teacherScheduleRepository.save(teacherSchedule);
+      }
+    }
   }
 
   async updatebshm(id: number, updateDto: UpdateFirstDto): Promise<void> {
@@ -293,6 +324,29 @@ export class cbmService {
     // Update the existing First entity with the new values
     Object.assign(existingFirst, updateDto);
     await this.bshmScheduleRepository.save(existingFirst);
+
+    // Update related TeacherSchedule entities
+    if (
+      existingFirst.teacherSchedules &&
+      existingFirst.teacherSchedules.length > 0
+    ) {
+      for (const teacherSchedule of existingFirst.teacherSchedules) {
+        // Update the related TeacherSchedule fields
+        teacherSchedule.subject_id = existingFirst.subject_id;
+        teacherSchedule.teacher_id = existingFirst.teacher_id;
+        teacherSchedule.teacher = existingFirst.teacher;
+        teacherSchedule.subject_code = existingFirst.subject_code;
+        teacherSchedule.subject = existingFirst.subject;
+        teacherSchedule.units = existingFirst.units;
+        teacherSchedule.room = existingFirst.room;
+        teacherSchedule.start = existingFirst.start;
+        teacherSchedule.end = existingFirst.end;
+        teacherSchedule.day = existingFirst.day;
+
+        // Save updated TeacherSchedule entity
+        await this.teacherScheduleRepository.save(teacherSchedule);
+      }
+    }
   }
 
   async updatebsmm(id: number, updateDto: UpdateFirstDto): Promise<void> {
@@ -309,6 +363,29 @@ export class cbmService {
     // Update the existing First entity with the new values
     Object.assign(existingFirst, updateDto);
     await this.bsmmScheduleRepository.save(existingFirst);
+
+    // Update related TeacherSchedule entities
+    if (
+      existingFirst.teacherSchedules &&
+      existingFirst.teacherSchedules.length > 0
+    ) {
+      for (const teacherSchedule of existingFirst.teacherSchedules) {
+        // Update the related TeacherSchedule fields
+        teacherSchedule.subject_id = existingFirst.subject_id;
+        teacherSchedule.teacher_id = existingFirst.teacher_id;
+        teacherSchedule.teacher = existingFirst.teacher;
+        teacherSchedule.subject_code = existingFirst.subject_code;
+        teacherSchedule.subject = existingFirst.subject;
+        teacherSchedule.units = existingFirst.units;
+        teacherSchedule.room = existingFirst.room;
+        teacherSchedule.start = existingFirst.start;
+        teacherSchedule.end = existingFirst.end;
+        teacherSchedule.day = existingFirst.day;
+
+        // Save updated TeacherSchedule entity
+        await this.teacherScheduleRepository.save(teacherSchedule);
+      }
+    }
   }
 
   async updatebshrm(id: number, updateDto: UpdateFirstDto): Promise<void> {
@@ -325,6 +402,29 @@ export class cbmService {
     // Update the existing First entity with the new values
     Object.assign(existingFirst, updateDto);
     await this.bshrmScheduleRepository.save(existingFirst);
+
+    // Update related TeacherSchedule entities
+    if (
+      existingFirst.teacherSchedules &&
+      existingFirst.teacherSchedules.length > 0
+    ) {
+      for (const teacherSchedule of existingFirst.teacherSchedules) {
+        // Update the related TeacherSchedule fields
+        teacherSchedule.subject_id = existingFirst.subject_id;
+        teacherSchedule.teacher_id = existingFirst.teacher_id;
+        teacherSchedule.teacher = existingFirst.teacher;
+        teacherSchedule.subject_code = existingFirst.subject_code;
+        teacherSchedule.subject = existingFirst.subject;
+        teacherSchedule.units = existingFirst.units;
+        teacherSchedule.room = existingFirst.room;
+        teacherSchedule.start = existingFirst.start;
+        teacherSchedule.end = existingFirst.end;
+        teacherSchedule.day = existingFirst.day;
+
+        // Save updated TeacherSchedule entity
+        await this.teacherScheduleRepository.save(teacherSchedule);
+      }
+    }
   }
 
   //^ DELETE

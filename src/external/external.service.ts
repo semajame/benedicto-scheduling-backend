@@ -191,6 +191,134 @@ export class ExternalService {
     }
   }
 
+  //^ GET TEACHER BY NAME
+  async getTeacherByName(name: string) {
+    const url = process.env.EXTERNAL_ENDPOINT; // Ensure this is the endpoint that returns teacher data
+    try {
+      const request = this.httpService.get(url).pipe(
+        map((res) => res.data),
+        catchError((err) => {
+          err.config.auth = undefined; // Hide Auth Details
+          this.logger.error(err);
+          throw new HttpException(err, HttpStatus.BAD_REQUEST);
+        }),
+      );
+
+      const extResponse = await lastValueFrom(request);
+      const dataList =
+        extResponse['Results'] || extResponse['data'] || extResponse || [];
+
+      // Filter by name
+      const teacher = dataList.find(
+        (item) => item.name && item.name.toLowerCase() === name.toLowerCase(),
+      );
+
+      if (!teacher) {
+        console.log('Teacher not found with name:', name);
+        return null;
+      }
+
+      console.log('Found teacher:', teacher);
+      return teacher;
+    } catch (error) {
+      console.error('Error fetching data from the external API:', error);
+      throw new HttpException(
+        'Failed to retrieve data',
+        HttpStatus.BAD_REQUEST,
+      );
+    }
+  }
+
+  async getAllSubjects() {
+    const url = process.env.EXTERNAL_SUBJECTS; // Ensure this URL is correct in your .env file
+
+    try {
+      const request = this.httpService.get(url).pipe(
+        map((res) => res.data),
+        catchError((err) => {
+          err.config.auth = undefined; // Hide Auth Details for security
+          console.error('Error fetching subjects from external API:', err);
+          throw new HttpException(
+            'Error fetching subject data',
+            HttpStatus.BAD_REQUEST,
+          );
+        }),
+      );
+
+      const extResponse = await lastValueFrom(request);
+
+      const dataList =
+        extResponse['Results'] || extResponse['data'] || extResponse || [];
+
+      return dataList;
+    } catch (error) {
+      console.error('Error in getAllSubjects:', error);
+      throw new HttpException(
+        'Failed to retrieve subjects data',
+        HttpStatus.INTERNAL_SERVER_ERROR,
+      );
+    }
+  }
+
+  //^ GET SUBJECT BY CODE
+  async getSubjectBySubjectCode(courseCode: string) {
+    const url = process.env.EXTERNAL_SUBJECTS;
+
+    try {
+      const request = this.httpService.get(url).pipe(
+        map((res) => res.data),
+        catchError((err) => {
+          console.log('Error in HTTP request:', err.message);
+          this.logger.error('Error fetching from external API:', err.message);
+          throw new HttpException(
+            'Failed to fetch data from the external service',
+            HttpStatus.BAD_REQUEST,
+          );
+        }),
+      );
+
+      const extResponse = await lastValueFrom(request);
+
+      const dataList =
+        extResponse['Results'] || extResponse['data'] || extResponse || [];
+      console.log('Parsed Data List Length:', dataList.length);
+
+      // Log the structure of the first item in dataList
+      if (dataList.length > 0) {
+        console.log('Sample Item Keys:', Object.keys(dataList[0]));
+        console.log('Sample Item:', dataList[0]);
+      }
+
+      // Check if each item has a courseCode field
+      dataList.forEach((item, index) => {
+        if (item.courseCode) {
+          console.log(`Item ${index} courseCode:`, item.courseCode);
+        } else {
+          console.log(`Item ${index} has no courseCode`);
+        }
+      });
+
+      // Attempt to filter by courseCode
+      const subject = dataList.find(
+        (item) => item.courseCode?.toLowerCase() === courseCode.toLowerCase(),
+      );
+
+      if (!subject) {
+        this.logger.warn(`Subject not found with courseCode: ${courseCode}`);
+        return null;
+      }
+
+      this.logger.log('Found subject:', subject);
+      return subject;
+    } catch (error) {
+      console.error('Error processing the subject retrieval:', error.message);
+      throw new HttpException(
+        'Failed to retrieve subject data',
+        HttpStatus.INTERNAL_SERVER_ERROR,
+      );
+    }
+  }
+
   @Cron('45 * * * * *')
   handleCron() {
     this.logger.debug('Called when the current second is 45');

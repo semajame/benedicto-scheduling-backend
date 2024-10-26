@@ -27,44 +27,6 @@ export class TeacherSchedule extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column({ type: 'varchar', length: 255, nullable: false }) // Ensure teacher name is required
-  teacher: string; // Store teacher's name
-
-  @Column({ type: 'int', nullable: true })
-  transferIdCcs: number; // Foreign key for CcsScheduleEntity
-
-  @Column({ type: 'int', nullable: true })
-  transferIdBsed: number; // Foreign key for bsedScheduleEntity
-
-  @Column({ type: 'int', nullable: true })
-  transferIdBeed: number; // Foreign key for BeedScheduleEntity
-
-  @Column({ type: 'int', nullable: true })
-  transferIdBsme: number; // Foreign key for BsmeScheduleEntity
-
-  @Column({ type: 'int', nullable: true })
-  transferIdBsce: number; // Foreign key for BsmeScheduleEntity
-
-  @Column({ type: 'int', nullable: true })
-  transferIdBsee: number; // Foreign key for BsmeScheduleEntity
-
-  @Column({ type: 'int', nullable: true })
-  transferIdBsie: number; // Foreign key for BsmeScheduleEntity
-
-  //^ CBM
-
-  @Column({ type: 'int', nullable: true })
-  transferIdBsa: number; // Foreign key for BsmeScheduleEntity
-
-  @Column({ type: 'int', nullable: true })
-  transferIdBsmm: number; // Foreign key for BsmeScheduleEntity
-
-  @Column({ type: 'int', nullable: true })
-  transferIdBshm: number; // Foreign key for BsmeScheduleEntity
-
-  @Column({ type: 'int', nullable: true })
-  transferIdBshrm: number; // Foreign key for BsmeScheduleEntity
-
   // Many-to-one relationships mapped to corresponding foreign key columns
   @ManyToOne(
     () => CcsScheduleEntitiy,
@@ -156,11 +118,20 @@ export class TeacherSchedule extends BaseEntity {
   @JoinColumn({ name: 'transferIdBshrm' }) // Use transferIdBsme for BSME schedules
   bshrmSchedule: bshrmScheduleEntity;
 
+  @Column({ type: 'int', nullable: true }) // Ensure teacher name is required
+  subject_id: number; // Store teacher's name
+
   @Column({ type: 'varchar', length: 255 })
   subject_code: string;
 
   @Column({ type: 'varchar', length: 255 })
   subject: string;
+
+  @Column({ type: 'int', nullable: false }) // Ensure teacher name is required
+  teacher_id: number; // Store teacher's name
+
+  @Column({ type: 'varchar', length: 255, nullable: false }) // Ensure teacher name is required
+  teacher: string; // Store teacher's name
 
   @Column({ type: 'int' })
   units: number;
@@ -176,4 +147,39 @@ export class TeacherSchedule extends BaseEntity {
 
   @Column({ type: 'varchar', length: 255 })
   day: string;
+
+  @Column({ type: 'int', nullable: true })
+  transferIdCcs: number; // Foreign key for CcsScheduleEntity
+
+  @Column({ type: 'int', nullable: true })
+  transferIdBsed: number; // Foreign key for bsedScheduleEntity
+
+  @Column({ type: 'int', nullable: true })
+  transferIdBeed: number; // Foreign key for BeedScheduleEntity
+
+  @Column({ type: 'int', nullable: true })
+  transferIdBsme: number; // Foreign key for BsmeScheduleEntity
+
+  @Column({ type: 'int', nullable: true })
+  transferIdBsce: number; // Foreign key for BsmeScheduleEntity
+
+  @Column({ type: 'int', nullable: true })
+  transferIdBsee: number; // Foreign key for BsmeScheduleEntity
+
+  @Column({ type: 'int', nullable: true })
+  transferIdBsie: number; // Foreign key for BsmeScheduleEntity
+
+  //^ CBM
+
+  @Column({ type: 'int', nullable: true })
+  transferIdBsa: number; // Foreign key for BsmeScheduleEntity
+
+  @Column({ type: 'int', nullable: true })
+  transferIdBsmm: number; // Foreign key for BsmeScheduleEntity
+
+  @Column({ type: 'int', nullable: true })
+  transferIdBshm: number; // Foreign key for BsmeScheduleEntity
+
+  @Column({ type: 'int', nullable: true })
+  transferIdBshrm: number; // Foreign key for BsmeScheduleEntity
 }

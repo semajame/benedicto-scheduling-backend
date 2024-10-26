@@ -16,6 +16,12 @@ export class bsaScheduleEntity extends BaseEntity {
   // @Column({ type: 'int', nullable: true })
   // employee_id: number | null;
 
+  @Column({ type: 'int', nullable: true })
+  subject_id: number | null;
+
+  @Column({ type: 'int', nullable: true })
+  teacher_id: number | null;
+
   @Column({ type: 'varchar', length: 255 })
   subject_code: string;
 

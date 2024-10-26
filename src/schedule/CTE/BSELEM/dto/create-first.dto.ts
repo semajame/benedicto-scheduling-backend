@@ -9,6 +9,14 @@ export class CreateFirstDto {
   @IsNotEmpty()
   subject: string;
 
+  @IsString()
+  @IsNotEmpty()
+  subject_id: number;
+
+  @IsString()
+  @IsNotEmpty()
+  teacher_id: number;
+
   @IsInt()
   @IsNotEmpty()
   units: number;

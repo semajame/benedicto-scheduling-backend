@@ -11,6 +11,7 @@ import {
 } from '@nestjs/common';
 
 import { cbmService } from './cbm-schedule.service';
+import { cteService } from '../CTE/cte-schedule.service';
 import { CreateFirstDto } from './dto/create-first.dto';
 import { UpdateFirstDto } from './dto/update-first.dto';
 import { TeacherSchedule } from 'src/teachers/entities/teacher_subjects.entity';
@@ -18,13 +19,71 @@ import { TeacherSchedule } from 'src/teachers/entities/teacher_subjects.entity';
 
 @Controller('schedule')
 export class cbmScheduleController {
-  constructor(private readonly CbmService: cbmService) {}
+  constructor(
+    private readonly CbmService: cbmService,
+    private readonly CteService: cteService,
+  ) {}
 
   //^ GET
   @Get('accounting')
   async findAll() {
     try {
       const schedules = await this.CbmService.findAllBsa();
+      return schedules;
+    } catch (err) {
+      console.error('Error executing query:', err);
+      throw new HttpException(err.message, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+  }
+
+  @Get('accounting/minor-subjects')
+  async findMinorSubjectsBsa() {
+    try {
+      const schedules = await this.CteService.findMinorSubjectsBsa();
+      return schedules;
+    } catch (err) {
+      console.error('Error executing query:', err);
+      throw new HttpException(err.message, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+  }
+
+  @Get('accounting/minor-subjects/1st-year')
+  async findMinorSubjectsBsaFirstYear() {
+    try {
+      const schedules = await this.CteService.findMinorSubjectsBsaFirstYear();
+      return schedules;
+    } catch (err) {
+      console.error('Error executing query:', err);
+      throw new HttpException(err.message, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+  }
+
+  @Get('accounting/minor-subjects/2nd-year')
+  async findMinorSubjectsBsaSecondYear() {
+    try {
+      const schedules = await this.CteService.findMinorSubjectsBsaSecondYear();
+      return schedules;
+    } catch (err) {
+      console.error('Error executing query:', err);
+      throw new HttpException(err.message, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+  }
+
+  @Get('accounting/minor-subjects/3rd-year')
+  async findMinorSubjectsBsaThirdYear() {
+    try {
+      const schedules = await this.CteService.findMinorSubjectsBsaThirdYear();
+      return schedules;
+    } catch (err) {
+      console.error('Error executing query:', err);
+      throw new HttpException(err.message, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+  }
+
+  @Get('accounting/minor-subjects/4th-year')
+  async findMinorSubjectsBsaFourthYear() {
+    try {
+      const schedules = await this.CteService.findMinorSubjectsBsaFourthYear();
       return schedules;
     } catch (err) {
       console.error('Error executing query:', err);
@@ -43,6 +102,61 @@ export class cbmScheduleController {
     }
   }
 
+  @Get('hospitality-management/minor-subjects')
+  async findMinorSubjectsBshm() {
+    try {
+      const schedules = await this.CteService.findMinorSubjectsBshm();
+      return schedules;
+    } catch (err) {
+      console.error('Error executing query:', err);
+      throw new HttpException(err.message, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+  }
+
+  @Get('hospitality-management/minor-subjects/1st-year')
+  async findMinorSubjectsBshmFirstYear() {
+    try {
+      const schedules = await this.CteService.findMinorSubjectsBshmFirstYear();
+      return schedules;
+    } catch (err) {
+      console.error('Error executing query:', err);
+      throw new HttpException(err.message, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+  }
+
+  @Get('hospitality-management/minor-subjects/2nd-year')
+  async findMinorSubjectsBshmSecondYear() {
+    try {
+      const schedules = await this.CteService.findMinorSubjectsBshmSecondYear();
+      return schedules;
+    } catch (err) {
+      console.error('Error executing query:', err);
+      throw new HttpException(err.message, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+  }
+
+  @Get('hospitality-management/minor-subjects/3rd-year')
+  async findMinorSubjectsBshmThirdYear() {
+    try {
+      const schedules = await this.CteService.findMinorSubjectsBshmThirdYear();
+      return schedules;
+    } catch (err) {
+      console.error('Error executing query:', err);
+      throw new HttpException(err.message, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+  }
+
+  @Get('hospitality-management/minor-subjects/4th-year')
+  async findMinorSubjectsBshmFourthYear() {
+    try {
+      const schedules = await this.CteService.findMinorSubjectsBshmFourthYear();
+      return schedules;
+    } catch (err) {
+      console.error('Error executing query:', err);
+      throw new HttpException(err.message, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+  }
+
   @Get('human-resource-management')
   async findAllBshrm() {
     try {
@@ -54,10 +168,122 @@ export class cbmScheduleController {
     }
   }
 
+  @Get('human-resource-management/minor-subjects')
+  async findMinorSubjectsBshrm() {
+    try {
+      const schedules = await this.CteService.findMinorSubjectsBshrm();
+      return schedules;
+    } catch (err) {
+      console.error('Error executing query:', err);
+      throw new HttpException(err.message, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+  }
+
+  @Get('human-resource-management/minor-subjects/1st-year')
+  async findMinorSubjectsBshrmFirstYear() {
+    try {
+      const schedules = await this.CteService.findMinorSubjectsBshrmFirstYear();
+      return schedules;
+    } catch (err) {
+      console.error('Error executing query:', err);
+      throw new HttpException(err.message, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+  }
+
+  @Get('human-resource-management/minor-subjects/2nd-year')
+  async findMinorSubjectsBshrmSecondYear() {
+    try {
+      const schedules =
+        await this.CteService.findMinorSubjectsBshrmSecondYear();
+      return schedules;
+    } catch (err) {
+      console.error('Error executing query:', err);
+      throw new HttpException(err.message, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+  }
+
+  @Get('human-resource-management/minor-subjects/3rd-year')
+  async findMinorSubjectsBshrmThirdYear() {
+    try {
+      const schedules = await this.CteService.findMinorSubjectsBshrmThirdYear();
+      return schedules;
+    } catch (err) {
+      console.error('Error executing query:', err);
+      throw new HttpException(err.message, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+  }
+
+  @Get('human-resource-management/minor-subjects/4th-year')
+  async findMinorSubjectsBshrmFourthYear() {
+    try {
+      const schedules =
+        await this.CteService.findMinorSubjectsBshrmFourthYear();
+      return schedules;
+    } catch (err) {
+      console.error('Error executing query:', err);
+      throw new HttpException(err.message, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+  }
+
   @Get('marketing-management')
   async findAllBsmm() {
     try {
       const schedules = await this.CbmService.findAllBsmm();
+      return schedules;
+    } catch (err) {
+      console.error('Error executing query:', err);
+      throw new HttpException(err.message, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+  }
+
+  @Get('marketing-management/minor-subjects')
+  async findMinorSubjectsBsmm() {
+    try {
+      const schedules = await this.CteService.findMinorSubjectsBsmm();
+      return schedules;
+    } catch (err) {
+      console.error('Error executing query:', err);
+      throw new HttpException(err.message, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+  }
+
+  @Get('marketing-management/minor-subjects/1st-year')
+  async findMinorSubjectsBsmmFirstYear() {
+    try {
+      const schedules = await this.CteService.findMinorSubjectsBsmmFirstYear();
+      return schedules;
+    } catch (err) {
+      console.error('Error executing query:', err);
+      throw new HttpException(err.message, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+  }
+
+  @Get('marketing-management/minor-subjects/2nd-year')
+  async findMinorSubjectsBsmmSecondYear() {
+    try {
+      const schedules = await this.CteService.findMinorSubjectsBsmmSecondYear();
+      return schedules;
+    } catch (err) {
+      console.error('Error executing query:', err);
+      throw new HttpException(err.message, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+  }
+
+  @Get('marketing-management/minor-subjects/3rd-year')
+  async findMinorSubjectsBsmmThirdYear() {
+    try {
+      const schedules = await this.CteService.findMinorSubjectsBsmmThirdYear();
+      return schedules;
+    } catch (err) {
+      console.error('Error executing query:', err);
+      throw new HttpException(err.message, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+  }
+
+  @Get('marketing-management/minor-subjects/4th-year')
+  async findMinorSubjectsBsmmFourthYear() {
+    try {
+      const schedules = await this.CteService.findMinorSubjectsBsmmFourthYear();
       return schedules;
     } catch (err) {
       console.error('Error executing query:', err);

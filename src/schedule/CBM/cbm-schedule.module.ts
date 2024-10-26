@@ -8,7 +8,9 @@ import { bsmmScheduleEntity } from './entities/bsmm-schedule.entity';
 import { bshrmScheduleEntity } from './entities/bshrm-schedule.entity';
 import { TeacherSchedule } from 'src/teachers/entities/teacher_subjects.entity';
 // import { Teacher } from 'src/teachers/entities/teacher.entity';
-
+import { cteService } from '../CTE/cte-schedule.service';
+import { bsedScheduleEntity } from 'src/typeorm';
+import { beedScheduleEntity } from 'src/typeorm';
 @Module({
   imports: [
     TypeOrmModule.forFeature([
@@ -16,11 +18,13 @@ import { TeacherSchedule } from 'src/teachers/entities/teacher_subjects.entity';
       bshmScheduleEntity,
       bsmmScheduleEntity,
       bshrmScheduleEntity,
+      bsedScheduleEntity,
+      beedScheduleEntity,
       TeacherSchedule,
     ]),
   ],
   controllers: [cbmScheduleController],
-  providers: [cbmService],
+  providers: [cbmService, cteService],
   exports: [cbmService, TypeOrmModule],
 })
 export class cbmScheduleModule {}

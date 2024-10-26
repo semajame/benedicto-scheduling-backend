@@ -7,6 +7,14 @@ export class CreateFirstDto {
 
   @IsString()
   @IsNotEmpty()
+  subject_id: number;
+
+  @IsString()
+  @IsNotEmpty()
+  teacher_id: number;
+
+  @IsString()
+  @IsNotEmpty()
   subject: string;
 
   @IsInt()
