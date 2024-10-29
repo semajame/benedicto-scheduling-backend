@@ -106,4 +106,31 @@ export class ExternalController {
   async getRooms() {
     return this.externalService.getRooms();
   }
+
+  @Get('datas/rooms/:roomName')
+  async getRoomByName(@Param('roomName') roomName: number) {
+    return this.externalService.getRoomByName(roomName);
+  }
+
+  @Get('datas/rooms/schedule/:room')
+  async getRoomSchedule(@Param('room') room: string) {
+    try {
+      const schedule = await this.externalService.getRoomSchedule(room);
+
+      if (!schedule || schedule.length === 0) {
+        throw new HttpException(
+          'No schedule found for the specified room',
+          HttpStatus.NOT_FOUND,
+        );
+      }
+
+      return schedule;
+    } catch (error) {
+      console.error('Error fetching room schedule:', error);
+      throw new HttpException(
+        'Failed to retrieve the schedule',
+        HttpStatus.BAD_REQUEST,
+      );
+    }
+  }
 }

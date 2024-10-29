@@ -7,9 +7,14 @@ import {
   JoinColumn,
 } from 'typeorm';
 
+//^ IT
 import { CcsScheduleEntitiy } from 'src/schedule/CCS/entities/ccs-schedule.entity';
+
+//^ CEA
 import { bsedScheduleEntity } from 'src/typeorm';
 import { beedScheduleEntity } from 'src/schedule/CTE/BSELEM/entities/beed-schedule.entity';
+
+//^ COE
 import { bsmeScheduleEntity } from 'src/schedule/COE/entities/bsme-schedule.entity';
 import { bsieScheduleEntity } from 'src/schedule/COE/entities/bsie-schedule.entity';
 import { bsceScheduleEntity } from 'src/schedule/COE/entities/bsce-schedule.entity';
@@ -22,7 +27,7 @@ import { bsmmScheduleEntity } from 'src/schedule/CBM/entities/bsmm-schedule.enti
 import { bshmScheduleEntity } from 'src/schedule/CBM/entities/bshm-schedule.entity';
 import { bshrmScheduleEntity } from 'src/schedule/CBM/entities/bshrm-schedule.entity';
 
-@Entity({ name: 'teacher_schedules' })
+@Entity({ name: 'schedules' })
 export class TeacherSchedule extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: number;

@@ -3,9 +3,18 @@ import { HttpException, HttpStatus, Injectable, Logger } from '@nestjs/common';
 import { catchError, lastValueFrom, map } from 'rxjs';
 import { Cron } from '@nestjs/schedule';
 
+import { TeacherSchedule } from 'src/teachers/entities/teacher_subjects.entity';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
+
 @Injectable()
 export class ExternalService {
-  constructor(private readonly httpService: HttpService) {}
+  constructor(
+    private readonly httpService: HttpService,
+
+    @InjectRepository(TeacherSchedule)
+    private teacherSchedule: Repository<TeacherSchedule>,
+  ) {}
   private readonly logger = new Logger(ExternalService.name);
   private quoteApiUrl = 'https://zenquotes.io/api/today';
 
@@ -138,97 +147,7 @@ export class ExternalService {
     return filteredSubjects;
   }
 
-  //^ GET ROOMS
-  async getRooms() {
-    const url = process.env.EXTERNAL_ROOMS; // Ensure the URL is set in your .env file
-
-    try {
-      const request = this.httpService.get(url).pipe(
-        map((res) => res.data),
-        catchError((err) => {
-          err.config.auth = undefined; // Hide auth details
-          this.logger.error(err);
-          throw new HttpException(err, HttpStatus.BAD_REQUEST);
-        }),
-      );
-
-      const extResponse = await lastValueFrom(request);
-
-      // Log the full response to inspect structure
-      console.log(
-        'Full External API Response:',
-        JSON.stringify(extResponse, null, 2),
-      );
-
-      // Extract the relevant data list
-      const dataList =
-        extResponse['Results'] || extResponse['data'] || extResponse || [];
-
-      // Log the extracted data list for debugging
-      console.log('Extracted dataList:', JSON.stringify(dataList, null, 2));
-
-      if (!dataList.length) {
-        console.log('No rooms found in the data list');
-        return null;
-      }
-
-      // Filter the data to get only rooms (where isRoom is true)
-      const rooms = dataList.filter((item) => item.isRoom);
-
-      if (!rooms.length) {
-        console.log('No rooms found with isRoom: true');
-        return [];
-      }
-
-      console.log('Found rooms:', rooms);
-      return rooms;
-    } catch (error) {
-      console.error('Error fetching data from the external API:', error);
-      throw new HttpException(
-        'Failed to retrieve rooms',
-        HttpStatus.BAD_REQUEST,
-      );
-    }
-  }
-
-  //^ GET TEACHER BY NAME
-  async getTeacherByName(name: string) {
-    const url = process.env.EXTERNAL_ENDPOINT; // Ensure this is the endpoint that returns teacher data
-    try {
-      const request = this.httpService.get(url).pipe(
-        map((res) => res.data),
-        catchError((err) => {
-          err.config.auth = undefined; // Hide Auth Details
-          this.logger.error(err);
-          throw new HttpException(err, HttpStatus.BAD_REQUEST);
-        }),
-      );
-
-      const extResponse = await lastValueFrom(request);
-      const dataList =
-        extResponse['Results'] || extResponse['data'] || extResponse || [];
-
-      // Filter by name
-      const teacher = dataList.find(
-        (item) => item.name && item.name.toLowerCase() === name.toLowerCase(),
-      );
-
-      if (!teacher) {
-        console.log('Teacher not found with name:', name);
-        return null;
-      }
-
-      console.log('Found teacher:', teacher);
-      return teacher;
-    } catch (error) {
-      console.error('Error fetching data from the external API:', error);
-      throw new HttpException(
-        'Failed to retrieve data',
-        HttpStatus.BAD_REQUEST,
-      );
-    }
-  }
-
+  //^ GET ALL SUBJECTs
   async getAllSubjects() {
     const url = process.env.EXTERNAL_SUBJECTS; // Ensure this URL is correct in your .env file
 
@@ -315,6 +234,159 @@ export class ExternalService {
       throw new HttpException(
         'Failed to retrieve subject data',
         HttpStatus.INTERNAL_SERVER_ERROR,
+      );
+    }
+  }
+
+  //^ GET ROOMS
+  async getRooms() {
+    const url = process.env.EXTERNAL_ROOMS; // Ensure the URL is set in your .env file
+
+    try {
+      const request = this.httpService.get(url).pipe(
+        map((res) => res.data),
+        catchError((err) => {
+          err.config.auth = undefined; // Hide auth details
+          this.logger.error(err);
+          throw new HttpException(err, HttpStatus.BAD_REQUEST);
+        }),
+      );
+
+      const extResponse = await lastValueFrom(request);
+
+      // Log the full response to inspect structure
+      console.log(
+        'Full External API Response:',
+        JSON.stringify(extResponse, null, 2),
+      );
+
+      // Extract the relevant data list
+      const dataList =
+        extResponse['Results'] || extResponse['data'] || extResponse || [];
+
+      // Log the extracted data list for debugging
+      console.log('Extracted dataList:', JSON.stringify(dataList, null, 2));
+
+      if (!dataList.length) {
+        console.log('No rooms found in the data list');
+        return null;
+      }
+
+      // Filter the data to get only rooms (where isRoom is true)
+      const rooms = dataList.filter((item) => item.isRoom);
+
+      if (!rooms.length) {
+        console.log('No rooms found with isRoom: true');
+        return [];
+      }
+
+      console.log('Found rooms:', rooms);
+      return rooms;
+    } catch (error) {
+      console.error('Error fetching data from the external API:', error);
+      throw new HttpException(
+        'Failed to retrieve rooms',
+        HttpStatus.BAD_REQUEST,
+      );
+    }
+  }
+
+  //^ GET ROOM BY ID
+  async getRoomByName(roomName) {
+    const url = process.env.EXTERNAL_ROOMS; // Ensure the URL is set in your .env file
+
+    try {
+      const request = this.httpService.get(url).pipe(
+        map((res) => res.data),
+        catchError((err) => {
+          err.config.auth = undefined; // Hide auth details
+          this.logger.error(err);
+          throw new HttpException(err, HttpStatus.BAD_REQUEST);
+        }),
+      );
+
+      const extResponse = await lastValueFrom(request);
+
+      // Log the full response to inspect structure
+      console.log(
+        'Full External API Response:',
+        JSON.stringify(extResponse, null, 2),
+      );
+
+      // Extract the relevant data list
+      const dataList =
+        extResponse['Results'] || extResponse['data'] || extResponse || [];
+
+      // Log the extracted data list for debugging
+      console.log('Extracted dataList:', JSON.stringify(dataList, null, 2));
+
+      if (!dataList.length) {
+        console.log('No rooms found in the data list');
+        return null;
+      }
+
+      // Filter the data to get the specific room by ID
+      const room = dataList.find(
+        (item) => item.isRoom && item.roomName === roomName,
+      );
+
+      if (!room) {
+        console.log(`No room found with ID: ${roomName}`);
+        return null;
+      }
+
+      console.log('Found room:', room);
+      return room;
+    } catch (error) {
+      console.error('Error fetching data from the external API:', error);
+      throw new HttpException(
+        'Failed to retrieve the room',
+        HttpStatus.BAD_REQUEST,
+      );
+    }
+  }
+
+  //^ GET ROOM SCHEDULE
+  async getRoomSchedule(room: string): Promise<TeacherSchedule[]> {
+    return await this.teacherSchedule.find({
+      where: { room: room },
+    });
+  }
+
+  //^ GET TEACHER BY NAME
+  async getTeacherByName(name: string) {
+    const url = process.env.EXTERNAL_ENDPOINT; // Ensure this is the endpoint that returns teacher data
+    try {
+      const request = this.httpService.get(url).pipe(
+        map((res) => res.data),
+        catchError((err) => {
+          err.config.auth = undefined; // Hide Auth Details
+          this.logger.error(err);
+          throw new HttpException(err, HttpStatus.BAD_REQUEST);
+        }),
+      );
+
+      const extResponse = await lastValueFrom(request);
+      const dataList =
+        extResponse['Results'] || extResponse['data'] || extResponse || [];
+
+      // Filter by name
+      const teacher = dataList.find(
+        (item) => item.name && item.name.toLowerCase() === name.toLowerCase(),
+      );
+
+      if (!teacher) {
+        console.log('Teacher not found with name:', name);
+        return null;
+      }
+
+      console.log('Found teacher:', teacher);
+      return teacher;
+    } catch (error) {
+      console.error('Error fetching data from the external API:', error);
+      throw new HttpException(
+        'Failed to retrieve data',
+        HttpStatus.BAD_REQUEST,
       );
     }
   }
