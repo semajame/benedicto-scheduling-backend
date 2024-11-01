@@ -63,22 +63,27 @@ const entities = [
 
 export {
   User,
-  // Teacher,
   TeacherSchedule,
-  // itsubjectsEntity,
-  // itsubjectstwoEntity,
-  // itsubjectsthreeEntity,
-  // itsubjectsfourEntity,
+  CalendarEntity,
+
+  //^ IT
   CcsScheduleEntitiy,
-  // bsedSubjectsEntity,
-  // beedSubjectsEntity,
+
+  //^ CEA
   bsedScheduleEntity,
   beedScheduleEntity,
+
+  //^ COE
   bsceScheduleEntity,
   bsmeScheduleEntity,
   bseeScheduleEntity,
   bsieScheduleEntity,
-  CalendarEntity,
+
+  //^ CBM
+  bsaScheduleEntity,
+  bsmmScheduleEntity,
+  bshmScheduleEntity,
+  bshrmScheduleEntity,
 };
 
 export default entities;

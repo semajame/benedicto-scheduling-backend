@@ -8,3 +8,12 @@ DB_NAME=benedicto-scheduling-nestjs
 
 #JWT Secret
 JWT_SECRET=eyJhbGciOiJIUzI1NiJ9.eyJSb2xlIjoiQWRtaW4iLCJJc3N1ZXIiOiJJc3N1ZXIiLCJVc2VybmFtZSI6IkphdmFJblVzZSIsImV4cCI6MTY4NjI4MjkzOCwiaWF0IjoxNjg2MjgyOTM4fQ.biK447xT-Iv10beYy4gsBc84Rgo2WG1lj7SMb-EiG3o
+
+
+EXTERNAL_ENDPOINT=https://node-mysql-signup-verification-api.onrender.com/external/get-employee-active?role=Instructor
+Database
+
+
+EXTERNAL_SUBJECTS=https://node-mysql-signup-verification-api.onrender.com/external/get-subjects-active?campus_id=1&fbclid=IwY2xjawF65yBleHRuA2FlbQIxMAABHQOPtFlI0dLs4oBrymTRvAT7Of0OKbLIZAaQH76t7w_MzKbv8Z02R4ERbg_aem_Q-BEhEj9XZU_q-27JToUeA
+
+EXTERNAL_ROOMS =https://node-mysql-signup-verification-api.onrender.com/external/get-structures-active?filterRoom=true;

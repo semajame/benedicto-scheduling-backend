@@ -14,7 +14,7 @@ import { UsersService } from '../service/users.service';
 import { CreateUserDto } from '../models/dto/create-user.dto';
 import { User } from '../models/entities/user.entity';
 import { UpdateUserDto } from '../models/dto/update-user.dto';
-import { RequestWithUser } from '../types';
+
 import { RequestGetUser } from '../decorator/user.decorator';
 import { JwtAuthGuard } from 'src/auth/guards/jwt-auth.guard';
 
