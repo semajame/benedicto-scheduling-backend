@@ -163,6 +163,8 @@ export class coeService {
     const savedSchedule = await this.bsmeScheduleRepository.save(newSchedule);
 
     const newTeacherSchedule = this.teacherScheduleRepository.create({
+      subject_id: createFirstDto.subject_id,
+      teacher_id: createFirstDto.teacher_id,
       teacher: createFirstDto.teacher, // Use teacher's name from createFirstDto
       subject_code: createFirstDto.subject_code,
       subject: createFirstDto.subject,
@@ -191,6 +193,8 @@ export class coeService {
     const savedSchedule = await this.bsceScheduleRepository.save(newSchedule);
 
     const newTeacherSchedule = this.teacherScheduleRepository.create({
+      subject_id: createFirstDto.subject_id,
+      teacher_id: createFirstDto.teacher_id,
       teacher: createFirstDto.teacher, // Use teacher's name from createFirstDto
       subject_code: createFirstDto.subject_code,
       subject: createFirstDto.subject,
@@ -218,6 +222,8 @@ export class coeService {
     const savedSchedule = await this.bseeScheduleRepository.save(newSchedule);
 
     const newTeacherSchedule = this.teacherScheduleRepository.create({
+      subject_id: createFirstDto.subject_id,
+      teacher_id: createFirstDto.teacher_id,
       teacher: createFirstDto.teacher, // Use teacher's name from createFirstDto
       subject_code: createFirstDto.subject_code,
       subject: createFirstDto.subject,
@@ -245,6 +251,8 @@ export class coeService {
     const savedSchedule = await this.bsieScheduleRepository.save(newSchedule);
 
     const newTeacherSchedule = this.teacherScheduleRepository.create({
+      subject_id: createFirstDto.subject_id,
+      teacher_id: createFirstDto.teacher_id,
       teacher: createFirstDto.teacher, // Use teacher's name from createFirstDto
       subject_code: createFirstDto.subject_code,
       subject: createFirstDto.subject,
