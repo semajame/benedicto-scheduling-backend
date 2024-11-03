@@ -69,11 +69,11 @@ export class UsersService {
   }
 
   async updateUser(
-    userId: number,
+    id: number,
     updateUserDto: UpdateUserDto,
     username: string,
   ): Promise<User> {
-    const user = await this.userRepository.findOne({ where: { id: userId } });
+    const user = await this.userRepository.findOne({ where: { id: id } });
 
     if (!user) {
       throw new NotFoundException(UserErrors.UserNotFound);
@@ -81,6 +81,7 @@ export class UsersService {
 
     // Update user fields
     user.first_name = updateUserDto.first_name;
+    user.username = updateUserDto.username;
     user.last_name = updateUserDto.last_name;
     user.role = updateUserDto.role;
     user.status = updateUserDto.status;

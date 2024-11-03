@@ -10,6 +10,9 @@ export class UpdateUserDto {
   last_name: string;
 
   @IsNotEmpty()
+  username: string;
+
+  @IsNotEmpty()
   password: string;
 
   @IsEnum(UserRole)

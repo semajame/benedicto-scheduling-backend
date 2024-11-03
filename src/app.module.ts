@@ -6,7 +6,7 @@ import entities from './typeorm';
 
 import { UsersModule } from './users/users.module';
 import { AuthModule } from './auth/auth.module';
-// import { TeachersModule } from './teachers/teachers.module';
+import { TeachersModule } from './teachers/teachers.module';
 import { CalendarModule } from './calendar/calendar.module';
 import { ExternalModule } from './external/external.module';
 
@@ -33,8 +33,7 @@ import { cbmScheduleModule } from './schedule/CBM/cbm-schedule.module';
     }),
     UsersModule,
     AuthModule,
-    // TeachersModule,
-
+    TeachersModule,
     CalendarModule,
     coeScheduleModule,
     cteScheduleModule,

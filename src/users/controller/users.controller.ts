@@ -43,12 +43,12 @@ export class UsersController {
 
   @Put(':id')
   async updateUser(
-    @Param('id') userId: number,
+    @Param('id') id: number,
     @RequestGetUser() user: User,
     @Body() updateUserDto: UpdateUserDto,
   ): Promise<User> {
     const updatedUser = await this.usersService.updateUser(
-      userId,
+      id,
       updateUserDto,
       user.username,
     );
