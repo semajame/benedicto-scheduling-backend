@@ -173,6 +173,8 @@ export class coeService {
       start: createFirstDto.start,
       end: createFirstDto.end,
       day: createFirstDto.day,
+      recurrencePattern: createFirstDto.recurrencePattern,
+      background: createFirstDto.background,
       transferIdBsme: savedSchedule.id, // Link with saved CcsSchedule
     });
 
@@ -203,6 +205,8 @@ export class coeService {
       start: createFirstDto.start,
       end: createFirstDto.end,
       day: createFirstDto.day,
+      recurrencePattern: createFirstDto.recurrencePattern,
+      background: createFirstDto.background,
       transferIdBsce: savedSchedule.id, // Link with saved CcsSchedule
     });
 
@@ -232,6 +236,8 @@ export class coeService {
       start: createFirstDto.start,
       end: createFirstDto.end,
       day: createFirstDto.day,
+      recurrencePattern: createFirstDto.recurrencePattern,
+      background: createFirstDto.background,
       transferIdBsee: savedSchedule.id, // Link with saved CcsSchedule
     });
 
@@ -261,6 +267,8 @@ export class coeService {
       start: createFirstDto.start,
       end: createFirstDto.end,
       day: createFirstDto.day,
+      recurrencePattern: createFirstDto.recurrencePattern,
+      background: createFirstDto.background,
       transferIdBsie: savedSchedule.id, // Link with saved CcsSchedule
     });
 
@@ -285,6 +293,30 @@ export class coeService {
     // Update the existing First entity with the new values
     Object.assign(existingFirst, updateDto);
     await this.bsmeScheduleRepository.save(existingFirst);
+
+    if (
+      existingFirst.teacherSchedules &&
+      existingFirst.teacherSchedules.length > 0
+    ) {
+      for (const teacherSchedule of existingFirst.teacherSchedules) {
+        // Update the related TeacherSchedule fields
+        teacherSchedule.subject_id = existingFirst.subject_id;
+        teacherSchedule.teacher_id = existingFirst.teacher_id;
+        teacherSchedule.teacher = existingFirst.teacher;
+        teacherSchedule.subject_code = existingFirst.subject_code;
+        teacherSchedule.subject = existingFirst.subject;
+        teacherSchedule.units = existingFirst.units;
+        teacherSchedule.room = existingFirst.room;
+        teacherSchedule.start = existingFirst.start;
+        teacherSchedule.end = existingFirst.end;
+        teacherSchedule.day = existingFirst.day;
+        teacherSchedule.recurrencePattern = existingFirst.recurrencePattern;
+        teacherSchedule.background = existingFirst.background;
+
+        // Save updated TeacherSchedule entity
+        await this.teacherScheduleRepository.save(teacherSchedule);
+      }
+    }
   }
 
   async updatebsce(id: number, updateDto: UpdateFirstDto): Promise<void> {
@@ -301,6 +333,30 @@ export class coeService {
     // Update the existing First entity with the new values
     Object.assign(existingFirst, updateDto);
     await this.bsceScheduleRepository.save(existingFirst);
+
+    if (
+      existingFirst.teacherSchedules &&
+      existingFirst.teacherSchedules.length > 0
+    ) {
+      for (const teacherSchedule of existingFirst.teacherSchedules) {
+        // Update the related TeacherSchedule fields
+        teacherSchedule.subject_id = existingFirst.subject_id;
+        teacherSchedule.teacher_id = existingFirst.teacher_id;
+        teacherSchedule.teacher = existingFirst.teacher;
+        teacherSchedule.subject_code = existingFirst.subject_code;
+        teacherSchedule.subject = existingFirst.subject;
+        teacherSchedule.units = existingFirst.units;
+        teacherSchedule.room = existingFirst.room;
+        teacherSchedule.start = existingFirst.start;
+        teacherSchedule.end = existingFirst.end;
+        teacherSchedule.day = existingFirst.day;
+        teacherSchedule.recurrencePattern = existingFirst.recurrencePattern;
+        teacherSchedule.background = existingFirst.background;
+
+        // Save updated TeacherSchedule entity
+        await this.teacherScheduleRepository.save(teacherSchedule);
+      }
+    }
   }
 
   async updatebsie(id: number, updateDto: UpdateFirstDto): Promise<void> {
@@ -317,6 +373,30 @@ export class coeService {
     // Update the existing First entity with the new values
     Object.assign(existingFirst, updateDto);
     await this.bsieScheduleRepository.save(existingFirst);
+
+    if (
+      existingFirst.teacherSchedules &&
+      existingFirst.teacherSchedules.length > 0
+    ) {
+      for (const teacherSchedule of existingFirst.teacherSchedules) {
+        // Update the related TeacherSchedule fields
+        teacherSchedule.subject_id = existingFirst.subject_id;
+        teacherSchedule.teacher_id = existingFirst.teacher_id;
+        teacherSchedule.teacher = existingFirst.teacher;
+        teacherSchedule.subject_code = existingFirst.subject_code;
+        teacherSchedule.subject = existingFirst.subject;
+        teacherSchedule.units = existingFirst.units;
+        teacherSchedule.room = existingFirst.room;
+        teacherSchedule.start = existingFirst.start;
+        teacherSchedule.end = existingFirst.end;
+        teacherSchedule.day = existingFirst.day;
+        teacherSchedule.recurrencePattern = existingFirst.recurrencePattern;
+        teacherSchedule.background = existingFirst.background;
+
+        // Save updated TeacherSchedule entity
+        await this.teacherScheduleRepository.save(teacherSchedule);
+      }
+    }
   }
 
   async updatebsee(id: number, updateDto: UpdateFirstDto): Promise<void> {
@@ -333,6 +413,30 @@ export class coeService {
     // Update the existing First entity with the new values
     Object.assign(existingFirst, updateDto);
     await this.bseeScheduleRepository.save(existingFirst);
+
+    if (
+      existingFirst.teacherSchedules &&
+      existingFirst.teacherSchedules.length > 0
+    ) {
+      for (const teacherSchedule of existingFirst.teacherSchedules) {
+        // Update the related TeacherSchedule fields
+        teacherSchedule.subject_id = existingFirst.subject_id;
+        teacherSchedule.teacher_id = existingFirst.teacher_id;
+        teacherSchedule.teacher = existingFirst.teacher;
+        teacherSchedule.subject_code = existingFirst.subject_code;
+        teacherSchedule.subject = existingFirst.subject;
+        teacherSchedule.units = existingFirst.units;
+        teacherSchedule.room = existingFirst.room;
+        teacherSchedule.start = existingFirst.start;
+        teacherSchedule.end = existingFirst.end;
+        teacherSchedule.day = existingFirst.day;
+        teacherSchedule.recurrencePattern = existingFirst.recurrencePattern;
+        teacherSchedule.background = existingFirst.background;
+
+        // Save updated TeacherSchedule entity
+        await this.teacherScheduleRepository.save(teacherSchedule);
+      }
+    }
   }
 
   //^ DELETE

@@ -45,6 +45,8 @@ export class TeacherController {
         start: schedule.start,
         end: schedule.end,
         day: schedule.day,
+        recurrencePattern: schedule.recurrencePattern,
+        background: schedule.background,
       }));
     } catch (err) {
       console.error('Error retrieving all schedules:', err);

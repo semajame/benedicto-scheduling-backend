@@ -109,6 +109,8 @@ export class CcsService {
         start: createFirstDto.start,
         end: createFirstDto.end,
         day: createFirstDto.day,
+        recurrencePattern: createFirstDto.recurrencePattern,
+        background: createFirstDto.background,
         transferIdCcs: savedSchedule.id,
       });
 
@@ -166,6 +168,8 @@ export class CcsService {
         teacherSchedule.start = existingFirst.start;
         teacherSchedule.end = existingFirst.end;
         teacherSchedule.day = existingFirst.day;
+        teacherSchedule.recurrencePattern = existingFirst.recurrencePattern;
+        teacherSchedule.background = existingFirst.background;
 
         // Save updated TeacherSchedule entity
         await this.teacherScheduleRepository.save(teacherSchedule);

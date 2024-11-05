@@ -34,6 +34,8 @@ export class TeacherService {
         start: true,
         end: true,
         day: true,
+        recurrencePattern: true,
+        background: true,
       },
     });
   }

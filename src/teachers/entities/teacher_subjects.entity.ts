@@ -153,6 +153,12 @@ export class TeacherSchedule extends BaseEntity {
   @Column({ type: 'varchar', length: 255 })
   day: string;
 
+  @Column({ type: 'varchar', length: 255, nullable: true })
+  recurrencePattern: string | null;
+
+  @Column({ type: 'varchar', length: 255, nullable: true })
+  background: string | null;
+
   @Column({ type: 'int', nullable: true })
   transferIdCcs: number; // Foreign key for CcsScheduleEntity
 

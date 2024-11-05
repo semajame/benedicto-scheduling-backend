@@ -866,6 +866,8 @@ export class cteService {
       start: createFirstDto.start,
       end: createFirstDto.end,
       day: createFirstDto.day,
+      recurrencePattern: createFirstDto.recurrencePattern,
+      background: createFirstDto.background,
       transferIdBsed: savedSchedule.id, // Link with saved CcsSchedule
     });
 
@@ -895,6 +897,8 @@ export class cteService {
       start: createFirstDto.start,
       end: createFirstDto.end,
       day: createFirstDto.day,
+      recurrencePattern: createFirstDto.recurrencePattern,
+      background: createFirstDto.background,
       transferIdBsed: savedSchedule.id, // Link with saved CcsSchedule
     });
 
@@ -936,6 +940,8 @@ export class cteService {
         teacherSchedule.start = existingFirst.start;
         teacherSchedule.end = existingFirst.end;
         teacherSchedule.day = existingFirst.day;
+        teacherSchedule.recurrencePattern = existingFirst.recurrencePattern;
+        teacherSchedule.background = existingFirst.background;
 
         // Save updated TeacherSchedule entity
         await this.teacherScheduleRepository.save(teacherSchedule);
@@ -974,6 +980,8 @@ export class cteService {
         teacherSchedule.start = existingFirst.start;
         teacherSchedule.end = existingFirst.end;
         teacherSchedule.day = existingFirst.day;
+        teacherSchedule.recurrencePattern = existingFirst.recurrencePattern;
+        teacherSchedule.background = existingFirst.background;
 
         // Save updated TeacherSchedule entity
         await this.teacherScheduleRepository.save(teacherSchedule);

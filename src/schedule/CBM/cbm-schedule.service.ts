@@ -203,6 +203,8 @@ export class cbmService {
       start: createFirstDto.start,
       end: createFirstDto.end,
       day: createFirstDto.day,
+      recurrencePattern: createFirstDto.recurrencePattern,
+      background: createFirstDto.background,
       transferIdBshm: savedSchedule.id, // Link with saved CcsSchedule
     });
 
@@ -232,6 +234,8 @@ export class cbmService {
       start: createFirstDto.start,
       end: createFirstDto.end,
       day: createFirstDto.day,
+      recurrencePattern: createFirstDto.recurrencePattern,
+      background: createFirstDto.background,
       transferIdBshrm: savedSchedule.id, // Link with saved CcsSchedule
     });
 
@@ -261,6 +265,8 @@ export class cbmService {
       start: createFirstDto.start,
       end: createFirstDto.end,
       day: createFirstDto.day,
+      recurrencePattern: createFirstDto.recurrencePattern,
+      background: createFirstDto.background,
       transferIdBsmm: savedSchedule.id, // Link with saved CcsSchedule
     });
 
@@ -303,6 +309,8 @@ export class cbmService {
         teacherSchedule.start = existingFirst.start;
         teacherSchedule.end = existingFirst.end;
         teacherSchedule.day = existingFirst.day;
+        teacherSchedule.recurrencePattern = existingFirst.recurrencePattern;
+        teacherSchedule.background = existingFirst.background;
 
         // Save updated TeacherSchedule entity
         await this.teacherScheduleRepository.save(teacherSchedule);
@@ -342,6 +350,8 @@ export class cbmService {
         teacherSchedule.start = existingFirst.start;
         teacherSchedule.end = existingFirst.end;
         teacherSchedule.day = existingFirst.day;
+        teacherSchedule.recurrencePattern = existingFirst.recurrencePattern;
+        teacherSchedule.background = existingFirst.background;
 
         // Save updated TeacherSchedule entity
         await this.teacherScheduleRepository.save(teacherSchedule);
@@ -381,6 +391,8 @@ export class cbmService {
         teacherSchedule.start = existingFirst.start;
         teacherSchedule.end = existingFirst.end;
         teacherSchedule.day = existingFirst.day;
+        teacherSchedule.recurrencePattern = existingFirst.recurrencePattern;
+        teacherSchedule.background = existingFirst.background;
 
         // Save updated TeacherSchedule entity
         await this.teacherScheduleRepository.save(teacherSchedule);
@@ -420,6 +432,8 @@ export class cbmService {
         teacherSchedule.start = existingFirst.start;
         teacherSchedule.end = existingFirst.end;
         teacherSchedule.day = existingFirst.day;
+        teacherSchedule.recurrencePattern = existingFirst.recurrencePattern;
+        teacherSchedule.background = existingFirst.background;
 
         // Save updated TeacherSchedule entity
         await this.teacherScheduleRepository.save(teacherSchedule);
