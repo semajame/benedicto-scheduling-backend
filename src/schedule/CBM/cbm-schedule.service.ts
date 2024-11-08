@@ -445,7 +445,7 @@ export class cbmService {
   async delete(id: number): Promise<void> {
     // First, delete related TeacherSchedule entries
     const deleteRelatedResult = await this.teacherScheduleRepository.delete({
-      transferIdBsed: id, // Ensure you use the correct column to match related schedules
+      transferIdBsa: id, // Ensure you use the correct column to match related schedules
     });
 
     if (deleteRelatedResult.affected === 0) {

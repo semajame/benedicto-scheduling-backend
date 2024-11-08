@@ -61,7 +61,6 @@ export class ExternalService {
         item.department.departmentName === departmentName,
     );
 
-    console.log('filteredData...', filteredData);
     return filteredData;
   }
 
@@ -143,7 +142,6 @@ export class ExternalService {
       (item) => item.departmentCodeForClass === departmentCodeForClass,
     );
 
-    console.log('Filtered Subjects:', filteredSubjects);
     return filteredSubjects;
   }
 
@@ -200,7 +198,6 @@ export class ExternalService {
 
       const dataList =
         extResponse['Results'] || extResponse['data'] || extResponse || [];
-      console.log('Parsed Data List Length:', dataList.length);
 
       // Log the structure of the first item in dataList
       if (dataList.length > 0) {
@@ -254,18 +251,9 @@ export class ExternalService {
 
       const extResponse = await lastValueFrom(request);
 
-      // Log the full response to inspect structure
-      console.log(
-        'Full External API Response:',
-        JSON.stringify(extResponse, null, 2),
-      );
-
       // Extract the relevant data list
       const dataList =
         extResponse['Results'] || extResponse['data'] || extResponse || [];
-
-      // Log the extracted data list for debugging
-      console.log('Extracted dataList:', JSON.stringify(dataList, null, 2));
 
       if (!dataList.length) {
         console.log('No rooms found in the data list');
@@ -280,7 +268,6 @@ export class ExternalService {
         return [];
       }
 
-      console.log('Found rooms:', rooms);
       return rooms;
     } catch (error) {
       console.error('Error fetching data from the external API:', error);
@@ -307,18 +294,11 @@ export class ExternalService {
 
       const extResponse = await lastValueFrom(request);
 
-      // Log the full response to inspect structure
-      console.log(
-        'Full External API Response:',
-        JSON.stringify(extResponse, null, 2),
-      );
-
       // Extract the relevant data list
       const dataList =
         extResponse['Results'] || extResponse['data'] || extResponse || [];
 
       // Log the extracted data list for debugging
-      console.log('Extracted dataList:', JSON.stringify(dataList, null, 2));
 
       if (!dataList.length) {
         console.log('No rooms found in the data list');
@@ -335,7 +315,6 @@ export class ExternalService {
         return null;
       }
 
-      console.log('Found room:', room);
       return room;
     } catch (error) {
       console.error('Error fetching data from the external API:', error);

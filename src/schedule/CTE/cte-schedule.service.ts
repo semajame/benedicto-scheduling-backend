@@ -899,7 +899,7 @@ export class cteService {
       day: createFirstDto.day,
       recurrencePattern: createFirstDto.recurrencePattern,
       background: createFirstDto.background,
-      transferIdBsed: savedSchedule.id, // Link with saved CcsSchedule
+      transferIdBeed: savedSchedule.id, // Link with saved CcsSchedule
     });
 
     // Save the TeacherSchedule entity
