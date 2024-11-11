@@ -4,7 +4,10 @@ import { UpdateFirstDto } from './BSED/dto/update-first.dto';
 
 import { InjectRepository } from '@nestjs/typeorm';
 
-import { bsedScheduleEntity } from './BSED/entities/bsed-schedule.entity';
+import {
+  bsedScheduleEntity,
+  minorScheduleEntity,
+} from './BSED/entities/bsed-schedule.entity';
 import { beedScheduleEntity } from './BSELEM/entities/beed-schedule.entity';
 import { In, Repository } from 'typeorm';
 import { TeacherSchedule } from 'src/teachers/entities/teacher_subjects.entity';
@@ -15,6 +18,9 @@ export class cteService {
   constructor(
     @InjectRepository(bsedScheduleEntity)
     private readonly bsedScheduleRepository: Repository<bsedScheduleEntity>,
+
+    @InjectRepository(minorScheduleEntity)
+    private readonly minorScheduleRepository: Repository<minorScheduleEntity>,
 
     @InjectRepository(beedScheduleEntity)
     private readonly beedScheduleRepository: Repository<beedScheduleEntity>,
@@ -36,8 +42,8 @@ export class cteService {
   }
 
   //^ GET MINOR SUBJECTS IT
-  async findMinorSubjectsIT(): Promise<bsedScheduleEntity[]> {
-    return await this.bsedScheduleRepository.find({
+  async findMinorSubjectsIT(): Promise<minorScheduleEntity[]> {
+    return await this.minorScheduleRepository.find({
       where: {
         subject: In([
           'National Service Training Prog. 1',
@@ -68,8 +74,8 @@ export class cteService {
     });
   }
 
-  async findMinorSubjectsITFirstYear(): Promise<bsedScheduleEntity[]> {
-    return await this.bsedScheduleRepository.find({
+  async findMinorSubjectsITFirstYear(): Promise<minorScheduleEntity[]> {
+    return await this.minorScheduleRepository.find({
       where: {
         subject: In([
           'National Service Training Prog. 1',
@@ -88,8 +94,8 @@ export class cteService {
     });
   }
 
-  async findMinorSubjectsITSecondYear(): Promise<bsedScheduleEntity[]> {
-    return await this.bsedScheduleRepository.find({
+  async findMinorSubjectsITSecondYear(): Promise<minorScheduleEntity[]> {
+    return await this.minorScheduleRepository.find({
       where: {
         subject: In([
           'The Contemporary World',
@@ -104,8 +110,8 @@ export class cteService {
     });
   }
 
-  async findMinorSubjectsITThirdYear(): Promise<bsedScheduleEntity[]> {
-    return await this.bsedScheduleRepository.find({
+  async findMinorSubjectsITThirdYear(): Promise<minorScheduleEntity[]> {
+    return await this.minorScheduleRepository.find({
       where: {
         subject: In([
           'Marketing Media Gamification',
@@ -121,8 +127,8 @@ export class cteService {
   //^ GET MINOR SUBJECTS COE
 
   //* MECHANICAL ENGINEERING
-  async findMinorSubjectsBsme(): Promise<bsedScheduleEntity[]> {
-    return await this.bsedScheduleRepository.find({
+  async findMinorSubjectsBsme(): Promise<minorScheduleEntity[]> {
+    return await this.minorScheduleRepository.find({
       where: {
         subject: In([
           'National Service Training Prog. 1',
@@ -150,8 +156,8 @@ export class cteService {
     });
   }
 
-  async findMinorSubjectsBsmeFirstYear(): Promise<bsedScheduleEntity[]> {
-    return await this.bsedScheduleRepository.find({
+  async findMinorSubjectsBsmeFirstYear(): Promise<minorScheduleEntity[]> {
+    return await this.minorScheduleRepository.find({
       where: {
         subject: In([
           'National Service Training Prog. 1',
@@ -169,8 +175,8 @@ export class cteService {
     });
   }
 
-  async findMinorSubjectsBsmeSecondYear(): Promise<bsedScheduleEntity[]> {
-    return await this.bsedScheduleRepository.find({
+  async findMinorSubjectsBsmeSecondYear(): Promise<minorScheduleEntity[]> {
+    return await this.minorScheduleRepository.find({
       where: {
         subject: In([
           'Individual/Dual Sports',
@@ -187,8 +193,8 @@ export class cteService {
     });
   }
 
-  async findMinorSubjectsBsmeThirdYear(): Promise<bsedScheduleEntity[]> {
-    return await this.bsedScheduleRepository.find({
+  async findMinorSubjectsBsmeThirdYear(): Promise<minorScheduleEntity[]> {
+    return await this.minorScheduleRepository.find({
       where: {
         subject: In(['Social Science and Philosophy']),
       },
@@ -197,8 +203,8 @@ export class cteService {
 
   //* CIVIL ENGINEERING
 
-  async findMinorSubjectsBsce(): Promise<bsedScheduleEntity[]> {
-    return await this.bsedScheduleRepository.find({
+  async findMinorSubjectsBsce(): Promise<minorScheduleEntity[]> {
+    return await this.minorScheduleRepository.find({
       where: {
         subject: In([
           'National Service Training Prog. 1',
@@ -227,8 +233,8 @@ export class cteService {
     });
   }
 
-  async findMinorSubjectsBsceFirstYear(): Promise<bsedScheduleEntity[]> {
-    return await this.bsedScheduleRepository.find({
+  async findMinorSubjectsBsceFirstYear(): Promise<minorScheduleEntity[]> {
+    return await this.minorScheduleRepository.find({
       where: {
         subject: In([
           'National Service Training Prog. 1',
@@ -246,8 +252,8 @@ export class cteService {
     });
   }
 
-  async findMinorSubjectsBsceSecondYear(): Promise<bsedScheduleEntity[]> {
-    return await this.bsedScheduleRepository.find({
+  async findMinorSubjectsBsceSecondYear(): Promise<minorScheduleEntity[]> {
+    return await this.minorScheduleRepository.find({
       where: {
         subject: In([
           'Individual/Dual Sports',
@@ -268,8 +274,8 @@ export class cteService {
 
   //* ELECTRICAL ENGINEERING
 
-  async findMinorSubjectsBsee(): Promise<bsedScheduleEntity[]> {
-    return await this.bsedScheduleRepository.find({
+  async findMinorSubjectsBsee(): Promise<minorScheduleEntity[]> {
+    return await this.minorScheduleRepository.find({
       where: {
         subject: In([
           'National Service Training Prog. 1',
@@ -299,8 +305,8 @@ export class cteService {
     });
   }
 
-  async findMinorSubjectsBseeFirstYear(): Promise<bsedScheduleEntity[]> {
-    return await this.bsedScheduleRepository.find({
+  async findMinorSubjectsBseeFirstYear(): Promise<minorScheduleEntity[]> {
+    return await this.minorScheduleRepository.find({
       where: {
         subject: In([
           'National Service Training Prog. 1',
@@ -318,8 +324,8 @@ export class cteService {
     });
   }
 
-  async findMinorSubjectsBseeSecondYear(): Promise<bsedScheduleEntity[]> {
-    return await this.bsedScheduleRepository.find({
+  async findMinorSubjectsBseeSecondYear(): Promise<minorScheduleEntity[]> {
+    return await this.minorScheduleRepository.find({
       where: {
         subject: In([
           'Individual/Dual Sports',
@@ -339,8 +345,8 @@ export class cteService {
     });
   }
 
-  async findMinorSubjectsBseeThirdYear(): Promise<bsedScheduleEntity[]> {
-    return await this.bsedScheduleRepository.find({
+  async findMinorSubjectsBseeThirdYear(): Promise<minorScheduleEntity[]> {
+    return await this.minorScheduleRepository.find({
       where: {
         subject: In(['Social Science and Philosophy']),
       },
@@ -349,8 +355,8 @@ export class cteService {
 
   //* INDUSTRIAL ENGINEERING
 
-  async findMinorSubjectsBsie(): Promise<bsedScheduleEntity[]> {
-    return await this.bsedScheduleRepository.find({
+  async findMinorSubjectsBsie(): Promise<minorScheduleEntity[]> {
+    return await this.minorScheduleRepository.find({
       where: {
         subject: In([
           'National Service Training Prog. 1',
@@ -377,8 +383,8 @@ export class cteService {
     });
   }
 
-  async findMinorSubjectsBsieFirstYear(): Promise<bsedScheduleEntity[]> {
-    return await this.bsedScheduleRepository.find({
+  async findMinorSubjectsBsieFirstYear(): Promise<minorScheduleEntity[]> {
+    return await this.minorScheduleRepository.find({
       where: {
         subject: In([
           'National Service Training Prog. 1',
@@ -396,8 +402,8 @@ export class cteService {
     });
   }
 
-  async findMinorSubjectsBsieSecondYear(): Promise<bsedScheduleEntity[]> {
-    return await this.bsedScheduleRepository.find({
+  async findMinorSubjectsBsieSecondYear(): Promise<minorScheduleEntity[]> {
+    return await this.minorScheduleRepository.find({
       where: {
         subject: In([
           'Individual/Dual Sports',
@@ -413,8 +419,8 @@ export class cteService {
     });
   }
 
-  async findMinorSubjectsBsieThirdYear(): Promise<bsedScheduleEntity[]> {
-    return await this.bsedScheduleRepository.find({
+  async findMinorSubjectsBsieThirdYear(): Promise<minorScheduleEntity[]> {
+    return await this.minorScheduleRepository.find({
       where: {
         subject: In(['Social Science and Philosophy']),
       },
@@ -424,8 +430,8 @@ export class cteService {
   //^ GET MINOR SUBJECTS CBM
 
   //* ACCOUNTING
-  async findMinorSubjectsBsa(): Promise<bsedScheduleEntity[]> {
-    return await this.bsedScheduleRepository.find({
+  async findMinorSubjectsBsa(): Promise<minorScheduleEntity[]> {
+    return await this.minorScheduleRepository.find({
       where: {
         subject: In([
           'National Service Training Prog. 1',
@@ -453,8 +459,8 @@ export class cteService {
     });
   }
 
-  async findMinorSubjectsBsaFirstYear(): Promise<bsedScheduleEntity[]> {
-    return await this.bsedScheduleRepository.find({
+  async findMinorSubjectsBsaFirstYear(): Promise<minorScheduleEntity[]> {
+    return await this.minorScheduleRepository.find({
       where: {
         subject: In([
           'National Service Training Prog. 1',
@@ -476,8 +482,8 @@ export class cteService {
     });
   }
 
-  async findMinorSubjectsBsaSecondYear(): Promise<bsedScheduleEntity[]> {
-    return await this.bsedScheduleRepository.find({
+  async findMinorSubjectsBsaSecondYear(): Promise<minorScheduleEntity[]> {
+    return await this.minorScheduleRepository.find({
       where: {
         subject: In([
           'Individual/Dual Sports',
@@ -488,16 +494,16 @@ export class cteService {
     });
   }
 
-  async findMinorSubjectsBsaThirdYear(): Promise<bsedScheduleEntity[]> {
-    return await this.bsedScheduleRepository.find({
+  async findMinorSubjectsBsaThirdYear(): Promise<minorScheduleEntity[]> {
+    return await this.minorScheduleRepository.find({
       where: {
         subject: In(['Arts & Humanities']),
       },
     });
   }
 
-  async findMinorSubjectsBsaFourthYear(): Promise<bsedScheduleEntity[]> {
-    return await this.bsedScheduleRepository.find({
+  async findMinorSubjectsBsaFourthYear(): Promise<minorScheduleEntity[]> {
+    return await this.minorScheduleRepository.find({
       where: {
         subject: In(["Rizal's Life & Works", 'Philippine Literature']),
       },
@@ -505,8 +511,8 @@ export class cteService {
   }
 
   //* MARKETING MANAGEMENT
-  async findMinorSubjectsBsmm(): Promise<bsedScheduleEntity[]> {
-    return await this.bsedScheduleRepository.find({
+  async findMinorSubjectsBsmm(): Promise<minorScheduleEntity[]> {
+    return await this.minorScheduleRepository.find({
       where: {
         subject: In([
           'National Service Training Prog. 1',
@@ -533,8 +539,8 @@ export class cteService {
     });
   }
 
-  async findMinorSubjectsBsmmFirstYear(): Promise<bsedScheduleEntity[]> {
-    return await this.bsedScheduleRepository.find({
+  async findMinorSubjectsBsmmFirstYear(): Promise<minorScheduleEntity[]> {
+    return await this.minorScheduleRepository.find({
       where: {
         subject: In([
           'National Service Training Prog. 1',
@@ -554,8 +560,8 @@ export class cteService {
     });
   }
 
-  async findMinorSubjectsBsmmSecondYear(): Promise<bsedScheduleEntity[]> {
-    return await this.bsedScheduleRepository.find({
+  async findMinorSubjectsBsmmSecondYear(): Promise<minorScheduleEntity[]> {
+    return await this.minorScheduleRepository.find({
       where: {
         subject: In([
           'Individual/Dual Sports',
@@ -568,16 +574,16 @@ export class cteService {
     });
   }
 
-  async findMinorSubjectsBsmmThirdYear(): Promise<bsedScheduleEntity[]> {
-    return await this.bsedScheduleRepository.find({
+  async findMinorSubjectsBsmmThirdYear(): Promise<minorScheduleEntity[]> {
+    return await this.minorScheduleRepository.find({
       where: {
         subject: In(["Rizal's Life & Works"]),
       },
     });
   }
 
-  async findMinorSubjectsBsmmFourthYear(): Promise<bsedScheduleEntity[]> {
-    return await this.bsedScheduleRepository.find({
+  async findMinorSubjectsBsmmFourthYear(): Promise<minorScheduleEntity[]> {
+    return await this.minorScheduleRepository.find({
       where: {
         subject: In(['Arts & Humanities']),
       },
@@ -586,8 +592,8 @@ export class cteService {
 
   //* HOSPITALITY MANAGEMENT
 
-  async findMinorSubjectsBshm(): Promise<bsedScheduleEntity[]> {
-    return await this.bsedScheduleRepository.find({
+  async findMinorSubjectsBshm(): Promise<minorScheduleEntity[]> {
+    return await this.minorScheduleRepository.find({
       where: {
         subject: In([
           'National Service Training Prog. 1',
@@ -613,8 +619,8 @@ export class cteService {
     });
   }
 
-  async findMinorSubjectsBshmFirstYear(): Promise<bsedScheduleEntity[]> {
-    return await this.bsedScheduleRepository.find({
+  async findMinorSubjectsBshmFirstYear(): Promise<minorScheduleEntity[]> {
+    return await this.minorScheduleRepository.find({
       where: {
         subject: In([
           'National Service Training Prog. 1',
@@ -629,8 +635,8 @@ export class cteService {
     });
   }
 
-  async findMinorSubjectsBshmSecondYear(): Promise<bsedScheduleEntity[]> {
-    return await this.bsedScheduleRepository.find({
+  async findMinorSubjectsBshmSecondYear(): Promise<minorScheduleEntity[]> {
+    return await this.minorScheduleRepository.find({
       where: {
         subject: In([
           'Individual/Dual Sports',
@@ -645,8 +651,8 @@ export class cteService {
     });
   }
 
-  async findMinorSubjectsBshmThirdYear(): Promise<bsedScheduleEntity[]> {
-    return await this.bsedScheduleRepository.find({
+  async findMinorSubjectsBshmThirdYear(): Promise<minorScheduleEntity[]> {
+    return await this.minorScheduleRepository.find({
       where: {
         subject: In([
           "Rizal's Life & Works",
@@ -659,7 +665,7 @@ export class cteService {
   }
 
   async findMinorSubjectsBshmFourthYear(): Promise<bsedScheduleEntity[]> {
-    return await this.bsedScheduleRepository.find({
+    return await this.minorScheduleRepository.find({
       where: {
         subject: In(['Arts & Humanities']),
       },
@@ -668,8 +674,8 @@ export class cteService {
 
   //* HUMAN RESOURCE MANAGEMENT
 
-  async findMinorSubjectsBshrm(): Promise<bsedScheduleEntity[]> {
-    return await this.bsedScheduleRepository.find({
+  async findMinorSubjectsBshrm(): Promise<minorScheduleEntity[]> {
+    return await this.minorScheduleRepository.find({
       where: {
         subject: In([
           'National Service Training Prog. 1',
@@ -697,8 +703,8 @@ export class cteService {
     });
   }
 
-  async findMinorSubjectsBshrmFirstYear(): Promise<bsedScheduleEntity[]> {
-    return await this.bsedScheduleRepository.find({
+  async findMinorSubjectsBshrmFirstYear(): Promise<minorScheduleEntity[]> {
+    return await this.minorScheduleRepository.find({
       where: {
         subject: In([
           'National Service Training Prog. 1',
@@ -719,8 +725,8 @@ export class cteService {
     });
   }
 
-  async findMinorSubjectsBshrmSecondYear(): Promise<bsedScheduleEntity[]> {
-    return await this.bsedScheduleRepository.find({
+  async findMinorSubjectsBshrmSecondYear(): Promise<minorScheduleEntity[]> {
+    return await this.minorScheduleRepository.find({
       where: {
         subject: In([
           'Individual/Dual Sports',
@@ -732,16 +738,16 @@ export class cteService {
     });
   }
 
-  async findMinorSubjectsBshrmThirdYear(): Promise<bsedScheduleEntity[]> {
-    return await this.bsedScheduleRepository.find({
+  async findMinorSubjectsBshrmThirdYear(): Promise<minorScheduleEntity[]> {
+    return await this.minorScheduleRepository.find({
       where: {
         subject: In(["Rizal's Life & Works"]),
       },
     });
   }
 
-  async findMinorSubjectsBshrmFourthYear(): Promise<bsedScheduleEntity[]> {
-    return await this.bsedScheduleRepository.find({
+  async findMinorSubjectsBshrmFourthYear(): Promise<minorScheduleEntity[]> {
+    return await this.minorScheduleRepository.find({
       where: {
         subject: In(['Arts & Humanities', 'Philippine Literature']),
       },
@@ -755,6 +761,46 @@ export class cteService {
 
   async findAllBeed(): Promise<beedScheduleEntity[]> {
     return await this.beedScheduleRepository.find();
+  }
+
+  async findAllMinor(): Promise<minorScheduleEntity[]> {
+    const uniqueSubjects = [
+      'National Service Training Prog. 1',
+      'Ethics',
+      'Wellness & Fitness',
+      'Purposive Communication',
+      'Understanding the Self',
+      'Retorika',
+      'Art Appreciation',
+      'Readings in Philippine History',
+      'Self Defense',
+      'National Service Training Prog. 2',
+      'Panitikan ng Pilipinas',
+      'Science, Technology & Society',
+      'The Contemporary World',
+      'Individual/Dual Sports',
+      'Mathematics in the Modern World',
+      'Social Science and Philosophy',
+      'Team Sports',
+      'Arts & Humanities',
+      'Philippine Literature',
+      "Rizal's Life & Works",
+      'Pantikin ng Pilipinas',
+      'Reading in Philippine History',
+      'Technopreneurship (Lec)',
+      'Technopreneurship (Lab)',
+      'Computer Fund. & Programming 1',
+      'Pre Calculus for Non-STEM',
+      'Fundamentals of Accounting',
+      'Marketing Media Gamification',
+      'Statistics & Probability',
+    ];
+
+    return await this.minorScheduleRepository.find({
+      where: {
+        subject: In(uniqueSubjects),
+      },
+    });
   }
 
   async findFirstYear(): Promise<bsedScheduleEntity[]> {
@@ -804,48 +850,6 @@ export class cteService {
       where: { year: 4 },
     });
   }
-
-  // async transferSchedules(): Promise<void> {
-  //   const firstSchedules = await this.bsedScheduleRepository.find({
-  //     where: { transferred: false }, // Only get schedules that haven't been transferred
-  //   });
-
-  //   for (const schedule of firstSchedules) {
-  //     // Find the teacher by name
-  //     const teacher = await this.teacherRepository.findOne({
-  //       where: {
-  //         firstName: schedule.teacher.split(' ')[0],
-  //         lastName: schedule.teacher.split(' ')[1],
-  //       }, // Assumes the name is in "First Last" format
-  //     });
-
-  //     if (!teacher) {
-  //       console.warn(
-  //         `Teacher not found for schedule with subject code ${schedule.subject_code}`,
-  //       );
-  //       error; // Skip this schedule if the teacher is not found
-  //     }
-
-  //     const teacherSchedule = new TeacherSchedule();
-  //     // teacherSchedule.teacher = teacher; // Assuming teacher is a Teacher entity
-  //     teacherSchedule.subject_code = schedule.subject_code;
-  //     teacherSchedule.subject = schedule.subject;
-  //     teacherSchedule.units = schedule.units;
-  //     teacherSchedule.room = schedule.room;
-  //     teacherSchedule.start = schedule.start;
-  //     teacherSchedule.end = schedule.end;
-  //     teacherSchedule.day = schedule.day;
-  //     teacherSchedule.transferId = schedule.id;
-
-  //     try {
-  //       await this.teacherScheduleRepository.save(teacherSchedule);
-  //       schedule.transferred = true;
-  //       await this.bsedScheduleRepository.save(schedule);
-  //     } catch (error) {
-  //       console.error('Error saving teacher schedule:', error);
-  //     }
-  //   }
-  // }
 
   //^ POST
   async create(createFirstDto: CreateFirstDto): Promise<bsedScheduleEntity> {
@@ -906,6 +910,57 @@ export class cteService {
     await this.teacherScheduleRepository.save(newTeacherSchedule);
 
     return savedSchedule; // Return the newly created CcsSchedule
+  }
+
+  async createMinor(
+    createFirstDto: CreateFirstDto,
+  ): Promise<minorScheduleEntity> {
+    try {
+      // Create a new minor schedule with explicit field assignments
+      const newSchedule = this.minorScheduleRepository.create({
+        ...createFirstDto,
+      });
+
+      console.log('New minor schedule data:', newSchedule);
+
+      // Save the new schedule to the database
+      const savedSchedule = await this.minorScheduleRepository.save(
+        newSchedule,
+      );
+
+      // Check if the schedule was saved correctly
+      if (!savedSchedule || !savedSchedule.id) {
+        console.error('Failed to save minor schedule.');
+        throw new Error('Failed to save minor schedule.');
+      }
+
+      // Create a linked teacher schedule
+      const newTeacherSchedule = this.teacherScheduleRepository.create({
+        subject_id: createFirstDto.subject_id,
+        teacher_id: createFirstDto.teacher_id,
+        teacher: createFirstDto.teacher,
+        subject_code: createFirstDto.subject_code,
+        subject: createFirstDto.subject,
+        units: createFirstDto.units,
+        room: createFirstDto.room,
+        start: createFirstDto.start,
+        end: createFirstDto.end,
+        day: createFirstDto.day,
+        recurrencePattern: createFirstDto.recurrencePattern,
+        background: createFirstDto.background,
+        transferIdMinor: savedSchedule.id, // Link with the saved minor schedule
+      });
+
+      // Save the TeacherSchedule entity
+      await this.teacherScheduleRepository.save(newTeacherSchedule);
+
+      console.log('Minor schedule and teacher schedule created successfully.');
+
+      return savedSchedule; // Return the newly created minor schedule
+    } catch (error) {
+      console.error('Error in createMinor:', error);
+      throw error;
+    }
   }
 
   //^ PUT
@@ -989,6 +1044,46 @@ export class cteService {
     }
   }
 
+  async updateMinor(id: number, updateDto: UpdateFirstDto): Promise<void> {
+    // Find the existing First entity along with related TeacherSchedules
+    const existingFirst = await this.minorScheduleRepository.findOne({
+      where: { id },
+      relations: ['teacherSchedules'], // Ensure we load related TeacherSchedules
+    });
+
+    if (!existingFirst) {
+      throw new NotFoundException(`First with ID ${id} not found`);
+    }
+
+    // Update the existing First entity with the new values
+    Object.assign(existingFirst, updateDto);
+    await this.minorScheduleRepository.save(existingFirst);
+
+    if (
+      existingFirst.teacherSchedules &&
+      existingFirst.teacherSchedules.length > 0
+    ) {
+      for (const teacherSchedule of existingFirst.teacherSchedules) {
+        // Update the related TeacherSchedule fields
+        teacherSchedule.subject_id = existingFirst.subject_id;
+        teacherSchedule.teacher_id = existingFirst.teacher_id;
+        teacherSchedule.teacher = existingFirst.teacher;
+        teacherSchedule.subject_code = existingFirst.subject_code;
+        teacherSchedule.subject = existingFirst.subject;
+        teacherSchedule.units = existingFirst.units;
+        teacherSchedule.room = existingFirst.room;
+        teacherSchedule.start = existingFirst.start;
+        teacherSchedule.end = existingFirst.end;
+        teacherSchedule.day = existingFirst.day;
+        teacherSchedule.recurrencePattern = existingFirst.recurrencePattern;
+        teacherSchedule.background = existingFirst.background;
+
+        // Save updated TeacherSchedule entity
+        await this.teacherScheduleRepository.save(teacherSchedule);
+      }
+    }
+  }
+
   //^ DELETE
   async delete(id: number): Promise<void> {
     // First, delete related TeacherSchedule entries
@@ -1019,6 +1114,23 @@ export class cteService {
 
     // Now delete the First schedule
     const result = await this.beedScheduleRepository.delete(id);
+    if (result.affected === 0) {
+      throw new NotFoundException(`Schedule with ID ${id} not found`);
+    }
+  }
+
+  async deleteMinor(id: number): Promise<void> {
+    // First, delete related TeacherSchedule entries
+    const deleteRelatedResult = await this.teacherScheduleRepository.delete({
+      transferIdMinor: id, // Ensure you use the correct column to match related schedules
+    });
+
+    if (deleteRelatedResult.affected === 0) {
+      console.warn(`No related teacher schedules found for schedule ID ${id}`);
+    }
+
+    // Now delete the First schedule
+    const result = await this.minorScheduleRepository.delete(id);
     if (result.affected === 0) {
       throw new NotFoundException(`Schedule with ID ${id} not found`);
     }

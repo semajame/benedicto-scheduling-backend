@@ -11,6 +11,7 @@ import { TeacherSchedule } from 'src/teachers/entities/teacher_subjects.entity';
 import { cteService } from '../CTE/cte-schedule.service';
 import { bsedScheduleEntity } from 'src/typeorm';
 import { beedScheduleEntity } from 'src/typeorm';
+import { minorScheduleEntity } from '../CTE/BSED/entities/bsed-schedule.entity';
 @Module({
   imports: [
     TypeOrmModule.forFeature([
@@ -21,6 +22,7 @@ import { beedScheduleEntity } from 'src/typeorm';
       bsedScheduleEntity,
       beedScheduleEntity,
       TeacherSchedule,
+      minorScheduleEntity,
     ]),
   ],
   controllers: [cbmScheduleController],

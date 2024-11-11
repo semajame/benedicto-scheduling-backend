@@ -26,6 +26,7 @@ import { bsaScheduleEntity } from 'src/schedule/CBM/entities/bsa-schedule.entity
 import { bsmmScheduleEntity } from 'src/schedule/CBM/entities/bsmm-schedule.entity';
 import { bshmScheduleEntity } from 'src/schedule/CBM/entities/bshm-schedule.entity';
 import { bshrmScheduleEntity } from 'src/schedule/CBM/entities/bshrm-schedule.entity';
+import { minorScheduleEntity } from 'src/schedule/CTE/BSED/entities/bsed-schedule.entity';
 
 @Entity({ name: 'schedules' })
 export class TeacherSchedule extends BaseEntity {
@@ -33,6 +34,14 @@ export class TeacherSchedule extends BaseEntity {
   id: number;
 
   // Many-to-one relationships mapped to corresponding foreign key columns
+  @ManyToOne(
+    () => minorScheduleEntity,
+    (minorSchedule) => minorSchedule.teacherSchedules,
+    { eager: true },
+  )
+  @JoinColumn({ name: 'transferIdMinor' }) // Use transferIdCcs for CCS schedules
+  minorSchedule: minorScheduleEntity;
+
   @ManyToOne(
     () => CcsScheduleEntitiy,
     (ccsSchedule) => ccsSchedule.teacherSchedules,
@@ -158,6 +167,9 @@ export class TeacherSchedule extends BaseEntity {
 
   @Column({ type: 'varchar', length: 255, nullable: true })
   background: string | null;
+
+  @Column({ type: 'int', nullable: true })
+  transferIdMinor: number; // Foreign key for CcsScheduleEntity
 
   @Column({ type: 'int', nullable: true })
   transferIdCcs: number; // Foreign key for CcsScheduleEntity

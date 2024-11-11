@@ -10,6 +10,7 @@ import { CcsScheduleEntitiy } from 'src/schedule/CCS/entities/ccs-schedule.entit
 
 import { bsedScheduleEntity } from 'src/schedule/CTE/BSED/entities/bsed-schedule.entity';
 import { beedScheduleEntity } from 'src/schedule/CTE/BSELEM/entities/beed-schedule.entity';
+import { minorScheduleEntity } from 'src/schedule/CTE/BSED/entities/bsed-schedule.entity';
 
 //^ COE
 
@@ -43,7 +44,7 @@ const entities = [
   // beedSubjectsEntity,
   bsedScheduleEntity,
   beedScheduleEntity,
-  bsmeScheduleEntity,
+  minorScheduleEntity,
 
   //^ COE
   bsceScheduleEntity,

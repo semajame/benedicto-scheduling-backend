@@ -42,6 +42,18 @@ export class cteScheduleController {
     }
   }
 
+  @Get('minor-subjects')
+  async findMinorSubjects() {
+    try {
+      const schedules = await this.CteService.findAllMinor();
+
+      return schedules;
+    } catch (err) {
+      console.error('Error executing query:', err);
+      throw new HttpException(err.message, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+  }
+
   @Get('bachelor-of-secondary-education/1st-year')
   async findFirstYear() {
     try {
@@ -152,6 +164,15 @@ export class cteScheduleController {
     return newSchedule;
   }
 
+  @Post('minor-subjects')
+  async createMinor(@Body() createFirstDto: CreateFirstDto) {
+    // Create the new schedule
+    const newSchedule = await this.CteService.createMinor(createFirstDto);
+    // await this.CteService.transferSchedules();
+
+    return newSchedule;
+  }
+
   @Put('bachelor-of-secondary-education/:id')
   async update(
     @Param('id') id: number,
@@ -168,6 +189,14 @@ export class cteScheduleController {
     await this.CteService.updateBeed(id, updateFirstDto);
   }
 
+  @Put('minor-subjects/:id')
+  async updateMinor(
+    @Param('id') id: number,
+    @Body() updateFirstDto: UpdateFirstDto,
+  ): Promise<void> {
+    await this.CteService.updateMinor(id, updateFirstDto);
+  }
+
   @Delete('bachelor-of-secondary-education/:id')
   async delete(@Param('id') id: number): Promise<void> {
     await this.CteService.delete(id);
@@ -176,6 +205,11 @@ export class cteScheduleController {
   @Delete('bachelor-of-elementary-education/:id')
   async deleteBeed(@Param('id') id: number): Promise<void> {
     await this.CteService.deleteBeed(id);
+  }
+
+  @Delete('minor-subjects/:id')
+  async deleteMinor(@Param('id') id: number): Promise<void> {
+    await this.CteService.deleteMinor(id);
   }
 
   @Get('teacher/:teacher')

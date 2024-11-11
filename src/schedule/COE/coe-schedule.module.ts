@@ -10,6 +10,7 @@ import { TeacherSchedule } from 'src/teachers/entities/teacher_subjects.entity';
 // import { Teacher } from 'src/teachers/entities/teacher.entity';
 import { cteService } from '../CTE/cte-schedule.service';
 import { bsedScheduleEntity } from 'src/typeorm';
+import { minorScheduleEntity } from '../CTE/BSED/entities/bsed-schedule.entity';
 import { beedScheduleEntity } from 'src/typeorm';
 import { CcsService } from '../CCS/ccs-schedule.service';
 
@@ -23,7 +24,7 @@ import { CcsService } from '../CCS/ccs-schedule.service';
       bsedScheduleEntity,
       beedScheduleEntity,
       TeacherSchedule,
-
+      minorScheduleEntity,
       CcsScheduleEntitiy,
     ]),
   ],
