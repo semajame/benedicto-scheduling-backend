@@ -370,6 +370,99 @@ export class ExternalService {
     }
   }
 
+  //^ GET ALL SEMESTER
+  async getAllSemester() {
+    const url = process.env.EXTERNAL_SEMESTER;
+
+    try {
+      // Log the URL being used to confirm it's read correctly from .env
+      this.logger.log(`Using URL: "${url}"`);
+
+      if (!url) {
+        this.logger.error(
+          '[Configuration Error] EXTERNAL_SEMESTER URL is not set in environment variables',
+        );
+        throw new HttpException(
+          'Configuration error: Missing external URL',
+          HttpStatus.INTERNAL_SERVER_ERROR,
+        );
+      }
+
+      const request = this.httpService.get(url, { timeout: 5000 }).pipe(
+        map((res) => res.data),
+        catchError((err) => {
+          const errorStatus = err.response?.status || HttpStatus.BAD_GATEWAY;
+
+          if (errorStatus === HttpStatus.NOT_FOUND) {
+            this.logger.error(
+              `Endpoint not found at ${url}. Check if the endpoint is correctly defined.`,
+            );
+            throw new HttpException(
+              `The external API endpoint at ${url} was not found. Please verify the URL or the service availability.`,
+              HttpStatus.NOT_FOUND,
+            );
+          }
+
+          const errorMessage =
+            err.response?.data?.message || err.message || 'Unknown error';
+          this.logger.error(
+            `[HTTP Request Failed] Status: ${errorStatus}, Message: ${errorMessage}`,
+          );
+
+          if (err.config && err.config.auth) {
+            err.config.auth = undefined;
+          }
+
+          throw new HttpException(
+            'Error fetching data from external API: ' + errorMessage,
+            errorStatus,
+          );
+        }),
+      );
+
+      const extResponse = await lastValueFrom(request);
+
+      const dataList =
+        extResponse?.Results || extResponse?.data || extResponse || [];
+
+      // Log the response data to inspect its structure
+      this.logger.log(
+        'External API response data:',
+        JSON.stringify(dataList, null, 2),
+      );
+
+      if (!Array.isArray(dataList) || dataList.length === 0) {
+        this.logger.warn('No data found in external API response');
+        throw new HttpException(
+          'No data found in external API response',
+          HttpStatus.NOT_FOUND,
+        );
+      }
+
+      // Filter the data to get only rooms, based on the isRoom property or alternative
+      const rooms = dataList.filter((item) => item?.isActive);
+
+      // Log if no rooms were found
+      if (rooms.length === 0) {
+        this.logger.warn('No rooms found with isRoom: true in the data');
+        return [];
+      }
+
+      console.log(rooms);
+      return rooms;
+    } catch (error) {
+      this.logger.error(
+        '[getAllSemester Error] Processing error:',
+        error.message,
+      );
+
+      throw new HttpException(
+        error.message || 'Failed to retrieve rooms',
+        error.status || HttpStatus.BAD_REQUEST,
+      );
+    }
+  }
+
   @Cron('45 * * * * *')
   handleCron() {
     this.logger.debug('Called when the current second is 45');

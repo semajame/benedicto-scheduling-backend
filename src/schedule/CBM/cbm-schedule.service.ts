@@ -173,6 +173,9 @@ export class cbmService {
       start: createFirstDto.start,
       end: createFirstDto.end,
       day: createFirstDto.day,
+      semester_id: createFirstDto.semester_id,
+      semester: createFirstDto.semester,
+      school_year: createFirstDto.school_year,
       transferIdBsa: savedSchedule.id, // Link with saved CcsSchedule
     });
 
@@ -203,6 +206,9 @@ export class cbmService {
       start: createFirstDto.start,
       end: createFirstDto.end,
       day: createFirstDto.day,
+      semester_id: createFirstDto.semester_id,
+      semester: createFirstDto.semester,
+      school_year: createFirstDto.school_year,
       recurrencePattern: createFirstDto.recurrencePattern,
       background: createFirstDto.background,
       transferIdBshm: savedSchedule.id, // Link with saved CcsSchedule
@@ -234,6 +240,9 @@ export class cbmService {
       start: createFirstDto.start,
       end: createFirstDto.end,
       day: createFirstDto.day,
+      semester_id: createFirstDto.semester_id,
+      semester: createFirstDto.semester,
+      school_year: createFirstDto.school_year,
       recurrencePattern: createFirstDto.recurrencePattern,
       background: createFirstDto.background,
       transferIdBshrm: savedSchedule.id, // Link with saved CcsSchedule
@@ -265,6 +274,9 @@ export class cbmService {
       start: createFirstDto.start,
       end: createFirstDto.end,
       day: createFirstDto.day,
+      semester_id: createFirstDto.semester_id,
+      semester: createFirstDto.semester,
+      school_year: createFirstDto.school_year,
       recurrencePattern: createFirstDto.recurrencePattern,
       background: createFirstDto.background,
       transferIdBsmm: savedSchedule.id, // Link with saved CcsSchedule

@@ -173,6 +173,9 @@ export class coeService {
       start: createFirstDto.start,
       end: createFirstDto.end,
       day: createFirstDto.day,
+      semester_id: createFirstDto.semester_id,
+      semester: createFirstDto.semester,
+      school_year: createFirstDto.school_year,
       recurrencePattern: createFirstDto.recurrencePattern,
       background: createFirstDto.background,
       transferIdBsme: savedSchedule.id, // Link with saved CcsSchedule
@@ -205,6 +208,9 @@ export class coeService {
       start: createFirstDto.start,
       end: createFirstDto.end,
       day: createFirstDto.day,
+      semester_id: createFirstDto.semester_id,
+      semester: createFirstDto.semester,
+      school_year: createFirstDto.school_year,
       recurrencePattern: createFirstDto.recurrencePattern,
       background: createFirstDto.background,
       transferIdBsce: savedSchedule.id, // Link with saved CcsSchedule
@@ -236,6 +242,9 @@ export class coeService {
       start: createFirstDto.start,
       end: createFirstDto.end,
       day: createFirstDto.day,
+      semester_id: createFirstDto.semester_id,
+      semester: createFirstDto.semester,
+      school_year: createFirstDto.school_year,
       recurrencePattern: createFirstDto.recurrencePattern,
       background: createFirstDto.background,
       transferIdBsee: savedSchedule.id, // Link with saved CcsSchedule
@@ -267,6 +276,9 @@ export class coeService {
       start: createFirstDto.start,
       end: createFirstDto.end,
       day: createFirstDto.day,
+      semester_id: createFirstDto.semester_id,
+      semester: createFirstDto.semester,
+      school_year: createFirstDto.school_year,
       recurrencePattern: createFirstDto.recurrencePattern,
       background: createFirstDto.background,
       transferIdBsie: savedSchedule.id, // Link with saved CcsSchedule

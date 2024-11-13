@@ -52,6 +52,15 @@ export class bsedScheduleEntity extends BaseEntity {
   @Column({ type: 'varchar', length: 255 })
   day: string;
 
+  @Column({ type: 'int', nullable: true })
+  semester_id: number | null;
+
+  @Column({ type: 'varchar', nullable: true })
+  semester: string | null;
+
+  @Column({ type: 'varchar', length: 255, nullable: true })
+  school_year: string | null;
+
   @Column({ type: 'varchar', length: 255, nullable: true })
   recurrencePattern: string | null;
 
@@ -113,6 +122,15 @@ export class minorScheduleEntity extends BaseEntity {
 
   @Column({ type: 'varchar', length: 255 })
   day: string;
+
+  @Column({ type: 'int', nullable: true })
+  semester_id: number | null;
+
+  @Column({ type: 'varchar', nullable: true })
+  semester: string | null;
+
+  @Column({ type: 'varchar', length: 255, nullable: true })
+  school_year: string | null;
 
   @Column({ type: 'varchar', length: 255, nullable: true })
   recurrencePattern: string | null;

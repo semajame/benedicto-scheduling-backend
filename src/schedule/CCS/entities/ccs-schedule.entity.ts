@@ -12,10 +12,6 @@ export class CcsScheduleEntitiy extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
-  // // Employee ID from the external API
-  // @Column({ type: 'int', nullable: true })
-  // employee_id: number | null;
-
   @Column({ type: 'int' })
   subject_id: number;
 
@@ -51,6 +47,15 @@ export class CcsScheduleEntitiy extends BaseEntity {
 
   @Column({ type: 'varchar', length: 255 })
   day: string;
+
+  @Column({ type: 'int', nullable: true })
+  semester_id: number | null;
+
+  @Column({ type: 'varchar', nullable: true })
+  semester: string | null;
+
+  @Column({ type: 'varchar', length: 255, nullable: true })
+  school_year: string | null;
 
   @Column({ type: 'varchar', length: 255, nullable: true })
   recurrencePattern: string | null;

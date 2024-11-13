@@ -44,6 +44,17 @@ export class CreateFirstDto {
   @IsString()
   @IsNotEmpty()
   day: string;
+  @IsInt()
+  @IsNotEmpty()
+  semester_id: number;
+
+  @IsString()
+  @IsNotEmpty()
+  semester: string;
+
+  @IsString()
+  @IsNotEmpty()
+  school_year: string;
 
   @IsString()
   @IsOptional()

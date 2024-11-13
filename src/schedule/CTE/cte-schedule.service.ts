@@ -870,6 +870,9 @@ export class cteService {
       start: createFirstDto.start,
       end: createFirstDto.end,
       day: createFirstDto.day,
+      semester_id: createFirstDto.semester_id,
+      semester: createFirstDto.semester,
+      school_year: createFirstDto.school_year,
       recurrencePattern: createFirstDto.recurrencePattern,
       background: createFirstDto.background,
       transferIdBsed: savedSchedule.id, // Link with saved CcsSchedule
@@ -901,6 +904,9 @@ export class cteService {
       start: createFirstDto.start,
       end: createFirstDto.end,
       day: createFirstDto.day,
+      semester_id: createFirstDto.semester_id,
+      semester: createFirstDto.semester,
+      school_year: createFirstDto.school_year,
       recurrencePattern: createFirstDto.recurrencePattern,
       background: createFirstDto.background,
       transferIdBeed: savedSchedule.id, // Link with saved CcsSchedule
@@ -946,6 +952,8 @@ export class cteService {
         start: createFirstDto.start,
         end: createFirstDto.end,
         day: createFirstDto.day,
+        semester: createFirstDto.semester,
+        school_year: createFirstDto.school_year,
         recurrencePattern: createFirstDto.recurrencePattern,
         background: createFirstDto.background,
         transferIdMinor: savedSchedule.id, // Link with the saved minor schedule

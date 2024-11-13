@@ -34,6 +34,8 @@ export class TeacherService {
         start: true,
         end: true,
         day: true,
+        semester: true,
+        school_year: true,
         recurrencePattern: true,
         background: true,
       },

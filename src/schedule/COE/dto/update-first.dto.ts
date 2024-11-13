@@ -47,6 +47,18 @@ export class UpdateFirstDto extends PartialType(CreateFirstDto) {
   @IsOptional()
   day?: string;
 
+  @IsInt()
+  @IsOptional()
+  semester_id?: number;
+
+  @IsString()
+  @IsOptional()
+  semester?: string;
+
+  @IsString()
+  @IsOptional()
+  school_year?: string;
+
   @IsString()
   @IsOptional()
   recurrencePattern?: string;

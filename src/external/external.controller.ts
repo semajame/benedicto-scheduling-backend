@@ -107,11 +107,13 @@ export class ExternalController {
     return this.externalService.getRooms();
   }
 
+  //^ GET ROOM NAME
   @Get('datas/rooms/:roomName')
   async getRoomByName(@Param('roomName') roomName: number) {
     return this.externalService.getRoomByName(roomName);
   }
 
+  //^ GET ROOM SCHEDULE
   @Get('datas/rooms/schedule/:room')
   async getRoomSchedule(@Param('room') room: string) {
     try {
@@ -132,5 +134,11 @@ export class ExternalController {
         HttpStatus.BAD_REQUEST,
       );
     }
+  }
+
+  //^ GET ALL SEMESTER
+  @Get('datas/all-semester')
+  async getAllSemester() {
+    return this.externalService.getAllSemester();
   }
 }
