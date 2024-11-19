@@ -793,6 +793,7 @@ export class cteService {
       'Pre Calculus for Non-STEM',
       'Fundamentals of Accounting',
       'Marketing Media Gamification',
+      'Wikang Filipino',
       'Statistics & Probability',
     ];
 

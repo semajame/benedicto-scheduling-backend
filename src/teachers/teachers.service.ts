@@ -26,6 +26,7 @@ export class TeacherService {
         id: true,
         teacher_id: true,
         subject_id: true,
+        semester_id: true,
         subject_code: true,
         teacher: true,
         subject: true,
@@ -35,7 +36,7 @@ export class TeacherService {
         end: true,
         day: true,
         semester: true,
-        semester_id: true,
+
         school_year: true,
         recurrencePattern: true,
         background: true,

@@ -37,9 +37,10 @@ export class TeacherController {
         id: schedule.id,
         teacher_id: schedule.teacher_id,
         subject_id: schedule.subject_id,
+        semester_id: schedule.semester_id,
         subject_code: schedule.subject_code,
         semester: schedule.semester,
-        semester_id: schedule.semester_id,
+
         school_year: schedule.school_year,
         teacher: schedule.teacher,
         subject: schedule.subject,
