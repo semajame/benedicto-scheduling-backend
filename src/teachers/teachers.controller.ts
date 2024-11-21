@@ -29,6 +29,35 @@ export class TeacherController {
     }
   }
 
+  @Get('schedules/:id')
+  async getById(@Param('id') id: number, @Res() res: Response) {
+    try {
+      const schedules = await this.teacherService.getById(id);
+      const formattedSchedules = schedules.map((schedule) => ({
+        id: schedule.id,
+        teacher_id: schedule.teacher_id,
+        subject_id: schedule.subject_id,
+        teacher: schedule.teacher, // Teacher name is fetched from the API
+        subject_code: schedule.subject_code,
+        semester: schedule.semester,
+        semester_id: schedule.semester_id,
+        school_year: schedule.school_year,
+        subject: schedule.subject,
+        units: schedule.units,
+        room: schedule.room,
+        start: schedule.start,
+        end: schedule.end,
+        day: schedule.day,
+      }));
+      return res.status(HttpStatus.OK).json(formattedSchedules);
+    } catch (err) {
+      console.error('Error retrieving teacher schedule:', err);
+      return res
+        .status(HttpStatus.NOT_FOUND)
+        .json({ error: 'Schedule not found' });
+    }
+  }
+
   @Get('all-subjects')
   async getAllSchedules() {
     try {

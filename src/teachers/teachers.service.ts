@@ -36,7 +36,6 @@ export class TeacherService {
         end: true,
         day: true,
         semester: true,
-
         school_year: true,
         recurrencePattern: true,
         background: true,
@@ -64,6 +63,12 @@ export class TeacherService {
   ): Promise<TeacherSchedule[]> {
     return this.teacherScheduleRepository.find({
       where: { teacher_id },
+    });
+  }
+
+  async getById(id: number): Promise<TeacherSchedule[]> {
+    return this.teacherScheduleRepository.find({
+      where: { id },
     });
   }
 }
