@@ -953,6 +953,7 @@ export class cteService {
         start: createFirstDto.start,
         end: createFirstDto.end,
         day: createFirstDto.day,
+        semester_id: createFirstDto.semester_id,
         semester: createFirstDto.semester,
         school_year: createFirstDto.school_year,
         recurrencePattern: createFirstDto.recurrencePattern,
