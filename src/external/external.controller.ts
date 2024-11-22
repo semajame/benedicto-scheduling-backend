@@ -141,4 +141,9 @@ export class ExternalController {
   async getAllSemester() {
     return this.externalService.getAllSemester();
   }
+
+  @Get('datas/fetch-classes')
+  async fetchClasses() {
+    return this.externalService.fetchClass();
+  }
 }

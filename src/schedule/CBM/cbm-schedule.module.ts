@@ -12,8 +12,13 @@ import { cteService } from '../CTE/cte-schedule.service';
 import { bsedScheduleEntity } from 'src/typeorm';
 import { beedScheduleEntity } from 'src/typeorm';
 import { minorScheduleEntity } from '../CTE/BSED/entities/bsed-schedule.entity';
+import { ExternalService } from 'src/external/external.service';
+import { HttpModule } from '@nestjs/axios';
+
 @Module({
   imports: [
+    HttpModule,
+
     TypeOrmModule.forFeature([
       bsaScheduleEntity,
       bshmScheduleEntity,
@@ -26,7 +31,7 @@ import { minorScheduleEntity } from '../CTE/BSED/entities/bsed-schedule.entity';
     ]),
   ],
   controllers: [cbmScheduleController],
-  providers: [cbmService, cteService],
+  providers: [cbmService, cteService, ExternalService],
   exports: [cbmService, TypeOrmModule],
 })
 export class cbmScheduleModule {}

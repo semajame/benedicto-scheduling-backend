@@ -463,6 +463,21 @@ export class ExternalService {
     }
   }
 
+  //^ FETCH CLASS XAV
+
+  async fetchClass() {
+    const url = process.env.FETCH_CLASSES;
+
+    try {
+      const response = await lastValueFrom(this.httpService.get(url));
+      return response.data; // Return the fetched class data
+    } catch (error) {
+      // Handle errors gracefully
+      console.error('Error fetching classes:', error.message);
+      throw new Error('Failed to fetch classes');
+    }
+  }
+
   @Cron('45 * * * * *')
   handleCron() {
     this.logger.debug('Called when the current second is 45');

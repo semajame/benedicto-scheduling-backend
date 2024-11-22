@@ -11,6 +11,8 @@ import { bsieScheduleEntity } from 'src/typeorm';
 
 import { Repository } from 'typeorm';
 import { TeacherSchedule } from 'src/teachers/entities/teacher_subjects.entity';
+
+import { ExternalService } from 'src/external/external.service';
 // import { Teacher } from 'src/teachers/entities/teacher.entity';
 
 @Injectable()
@@ -30,6 +32,8 @@ export class coeService {
 
     @InjectRepository(TeacherSchedule)
     private teacherScheduleRepository: Repository<TeacherSchedule>,
+
+    private readonly externalService: ExternalService, // Inject ClassService
   ) {}
 
   //^ GET TEACHER SCHEDULE BY TEACHER NAME
@@ -184,6 +188,9 @@ export class coeService {
     // Save the TeacherSchedule entity
     await this.teacherScheduleRepository.save(newTeacherSchedule);
 
+    const externalClasses = await this.externalService.fetchClass();
+    console.log('Fetched external classes:', externalClasses);
+
     return savedSchedule; // Return the newly created CcsSchedule
   }
 
@@ -218,6 +225,9 @@ export class coeService {
 
     // Save the TeacherSchedule entity
     await this.teacherScheduleRepository.save(newTeacherSchedule);
+
+    const externalClasses = await this.externalService.fetchClass();
+    console.log('Fetched external classes:', externalClasses);
 
     return savedSchedule; // Return the newly created CcsSchedule
   }
@@ -287,6 +297,9 @@ export class coeService {
     // Save the TeacherSchedule entity
     await this.teacherScheduleRepository.save(newTeacherSchedule);
 
+    const externalClasses = await this.externalService.fetchClass();
+    console.log('Fetched external classes:', externalClasses);
+
     return savedSchedule; // Return the newly created CcsSchedule
   }
 
@@ -329,6 +342,9 @@ export class coeService {
         await this.teacherScheduleRepository.save(teacherSchedule);
       }
     }
+
+    const externalClasses = await this.externalService.fetchClass();
+    console.log('Fetched external classes:', externalClasses);
   }
 
   async updatebsce(id: number, updateDto: UpdateFirstDto): Promise<void> {
@@ -369,6 +385,9 @@ export class coeService {
         await this.teacherScheduleRepository.save(teacherSchedule);
       }
     }
+
+    const externalClasses = await this.externalService.fetchClass();
+    console.log('Fetched external classes:', externalClasses);
   }
 
   async updatebsie(id: number, updateDto: UpdateFirstDto): Promise<void> {
@@ -409,6 +428,9 @@ export class coeService {
         await this.teacherScheduleRepository.save(teacherSchedule);
       }
     }
+
+    const externalClasses = await this.externalService.fetchClass();
+    console.log('Fetched external classes:', externalClasses);
   }
 
   async updatebsee(id: number, updateDto: UpdateFirstDto): Promise<void> {
@@ -449,6 +471,9 @@ export class coeService {
         await this.teacherScheduleRepository.save(teacherSchedule);
       }
     }
+
+    const externalClasses = await this.externalService.fetchClass();
+    console.log('Fetched external classes:', externalClasses);
   }
 
   //^ DELETE

@@ -8,10 +8,13 @@ import {
 } from './BSED/entities/bsed-schedule.entity';
 import { beedScheduleEntity } from './BSELEM/entities/beed-schedule.entity';
 import { TeacherSchedule } from 'src/teachers/entities/teacher_subjects.entity';
+import { ExternalService } from 'src/external/external.service';
+import { HttpModule } from '@nestjs/axios';
 // import { Teacher } from 'src/teachers/entities/teacher.entity';
 
 @Module({
   imports: [
+    HttpModule,
     TypeOrmModule.forFeature([
       bsedScheduleEntity,
       TeacherSchedule,
@@ -20,7 +23,7 @@ import { TeacherSchedule } from 'src/teachers/entities/teacher_subjects.entity';
     ]),
   ],
   controllers: [cteScheduleController],
-  providers: [cteService],
+  providers: [cteService, ExternalService],
   exports: [cteService, TypeOrmModule],
 })
 export class cteScheduleModule {}

@@ -10,6 +10,7 @@ import { UpdateFirstDto } from './dto/update-first.dto';
 import { InjectRepository } from '@nestjs/typeorm';
 
 import { CcsScheduleEntitiy } from './entities/ccs-schedule.entity';
+import { ExternalService } from 'src/external/external.service';
 
 import { In, Repository } from 'typeorm';
 import { TeacherSchedule } from 'src/teachers/entities/teacher_subjects.entity';
@@ -23,6 +24,8 @@ export class CcsService {
 
     // @InjectRepository(Teacher)
     // private teacherRepository: Repository<Teacher>,
+
+    private readonly externalService: ExternalService, // Inject ClassService
 
     @InjectRepository(TeacherSchedule)
     private teacherScheduleRepository: Repository<TeacherSchedule>,
@@ -128,6 +131,9 @@ export class CcsService {
         throw new Error('Failed to save TeacherSchedule.');
       }
 
+      const externalClasses = await this.externalService.fetchClass();
+      console.log('Fetched external classes:', externalClasses);
+
       // Return the newly created CcsSchedule
       return savedSchedule;
     } catch (error) {
@@ -179,6 +185,9 @@ export class CcsService {
         await this.teacherScheduleRepository.save(teacherSchedule);
       }
     }
+
+    const externalClasses = await this.externalService.fetchClass();
+    console.log('Fetched external classes:', externalClasses);
   }
 
   //^ DELETE
