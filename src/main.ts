@@ -51,8 +51,11 @@ async function bootstrap() {
   // Set CORS dynamically based on environment
   const origin =
     env === 'production'
-      ? 'https://bc-scheduling-1024.vercel.app' // Replace with your production frontend URL
-      : 'http://localhost:4200'; // Replace with your local frontend URL
+      ? [
+          'https://bc-scheduling-1024.vercel.app',
+          'https://benedicto-student-portal.vercel.app',
+        ] // Replace with your production frontend URLs
+      : ['http://localhost:4200', 'http://localhost:3000']; // Replace with your local frontend URLs
 
   app.enableCors({
     origin,
