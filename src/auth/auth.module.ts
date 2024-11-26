@@ -17,13 +17,13 @@ import { JwtStrategy } from './guards/jwt.strategy';
       imports: [ConfigModule],
       useFactory: async () => ({
         secret: process.env.JWT_SECRET,
-        signOptions: { expiresIn: '1d' }, // "10h", "7d"
+        signOptions: { expiresIn: '1m' }, // "10h", "7d"
       }),
       inject: [ConfigService],
     }),
   ],
   controllers: [AuthController],
   providers: [AuthService, LocalStrategy, JwtStrategy],
-  // exports: [AuthService],
+  exports: [AuthService],
 })
 export class AuthModule {}
