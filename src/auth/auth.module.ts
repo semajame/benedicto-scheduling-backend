@@ -17,7 +17,7 @@ import { JwtStrategy } from './guards/jwt.strategy';
       imports: [ConfigModule],
       useFactory: async () => ({
         secret: process.env.JWT_SECRET,
-        signOptions: { expiresIn: '5s' }, // "10h", "7d"
+        signOptions: { expiresIn: '1h' }, // "10h", "7d"
       }),
       inject: [ConfigService],
     }),
